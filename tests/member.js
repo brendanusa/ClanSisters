@@ -11,8 +11,8 @@ describe('Member Schema', function() {
     return db.sync({force: true});
   });
   
-  it('inserts new members', function() {
-    return User.create(user)
+  it('inserts new members', function(done) {
+    User.create(user)
       .then(newUser => {
         user.id = newUser.id;
         clan.userId = newUser.id;
@@ -23,11 +23,12 @@ describe('Member Schema', function() {
       })
       .then(newMember => {
         expect(newMember).to.exist;
+        done();
       });
   });
 
-  it('reads a member', function() {
-    return User.create(user)
+  it('reads a member', function(done) {
+    User.create(user)
       .then(newUser => {
         user.id = newUser.id;
         clan.userId = newUser.id;
@@ -44,11 +45,12 @@ describe('Member Schema', function() {
         expect(readMember).to.exist;
         expect(readMember.userId).to.equal(user.id);
         expect(readMember.clanId).to.equal(clan.id);
+        done();
       });
   });
 
-  it('reads members', function() {
-    return User.create(user)
+  it('reads members', function(done) {
+    User.create(user)
       .then(newUser => {
         user.id = newUser.id;
         return User.create(user2);
@@ -75,6 +77,7 @@ describe('Member Schema', function() {
         expect(readMember[1].userId).to.equal(user2.id);
         expect(readMember[0].clanId).to.equal(clan.id);
         expect(readMember[1].clanId).to.equal(clan.id);
+        done();
       });
   });
 });
