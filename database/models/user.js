@@ -8,7 +8,7 @@ const Clan = require('./clan');
 const Post = require('./post');
 
 const hashData = function(data, salt = '') {
-  var shasum = crypto.createHash('sha256');
+  let shasum = crypto.createHash('sha256');
   shasum.update(data + salt);
   return shasum.digest('hex');
 };
@@ -37,7 +37,7 @@ const UserModel = db.define('user', {
 });
 
 UserModel.prototype.toJSON = function() {
-  var values = this.dataValues;
+  let values = this.dataValues;
 
   delete values.password;
   delete values.salt;
@@ -45,7 +45,7 @@ UserModel.prototype.toJSON = function() {
   return values;
 };
 
-var User = {model: UserModel};
+let User = {model: UserModel};
 
 const privateData = ['password', 'salt'];
 

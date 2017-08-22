@@ -3,35 +3,40 @@ const {app} = require('../server/server');
 const request = require('supertest').agent(app);
 const {db} = require('../database/connection');
 
-var testClan = {name: 'test_clan_please_ignore'};
+let testClan = {name: 'test_clan_please_ignore'};
 
 describe('Clans API Endpoint', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+      .then(() => {
+        done();
+      });
   });
 
-  it('should retrieve an array', function() {
-    return request.get('/api/clans')
+  it('should retrieve an array', function(done) {
+    request.get('/api/clans')
       .expect(200)
       .then(res => {
         expect(res.body.results).to.exist;
         expect(res.body.results).to.be.an('array');
+        done();
       });
   });
 
-  it('should insert new clans', function() {
-    return request.post('/api/clans')
+  it('should insert new clans', function(done) {
+    request.post('/api/clans')
       .send(testClan)
       .expect(201)
       .then(res => {
         expect(res.body.name).to.equal(testClan.name);
+        done();
       });
   });
 
-  it('should retrieve existing clans', function() {
-    var newClan;
+  it('should retrieve existing clans', function(done) {
+    let newClan;
 
-    return request.post('/api/clans')
+    request.post('/api/clans')
       .send(testClan)
       .expect(201)
       .then(res => {
@@ -53,11 +58,12 @@ describe('Clans API Endpoint', function() {
         expect(res.body.results).to.exist;
         expect(res.body.results.id).to.equal(newClan.id);
         expect(res.body.results.name).to.equal(newClan.name);
+        done();
       });
   });
 
-  it('should retrieve existing clans with a query', function() {
-    return request.post('/api/clans')
+  it('should retrieve existing clans with a query', function(done) {
+    request.post('/api/clans')
       .send(testClan)
       .expect(201)
       .then(res => {
@@ -77,13 +83,14 @@ describe('Clans API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.results.length).to.equal(0);
+        done();
       });
   });
   
-  it('should update existing clans', function() {
-    var row;
+  it('should update existing clans', function(done) {
+    let row;
 
-    return request.post('/api/clans/1')
+    request.post('/api/clans/1')
       .send({name: 'Fred\'s Club'})
       .expect(400)
       .then(() => {
@@ -104,13 +111,14 @@ describe('Clans API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.results.name).to.equal('Fred\'s Club');
+        done();
       });
   });
 
-  it('should delete existing clans', function() {
-    var row;
+  it('should delete existing clans', function(done) {
+    let row;
 
-    return request.delete('/api/clans/1')
+    request.delete('/api/clans/1')
       .expect(400)
       .then(() => {
         return request.post('/api/clans')
@@ -120,6 +128,9 @@ describe('Clans API Endpoint', function() {
       .then(() => {
         return request.delete('/api/clans/1')
           .expect(202);
+      })
+      .then(() => {
+        done();
       });
   });
 });

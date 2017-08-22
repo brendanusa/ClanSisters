@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {User} = require('../database');
 
 router.post('/local', (req, res) => {
-  var user = req.body;
+  let user = req.body;
 
   User.validate(user)
     .then(function(validUser) {

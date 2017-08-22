@@ -3,30 +3,34 @@ const {app} = require('../server/server');
 const request = require('supertest').agent(app);
 const {db} = require('../database/connection');
 
-var clan = {name: 'test_clan_please_ignore'};
-var forum = {name: 'test_forum_please_ignore', clanId: 0};
-var post = {
+let clan = {name: 'test_clan_please_ignore'};
+let forum = {name: 'test_forum_please_ignore', clanId: 0};
+let post = {
   forumId: 0,
   title: 'test_post_please_ignore', 
   body: 'test_body_please_ignore',
 };
 
 describe('Forums API Endpoint', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+      .then(() => {
+        done();
+      });
   });
 
-  it('should retrieve an array', function() {
-    return request.get('/api/clans')
+  it('should retrieve an array', function(done) {
+    request.get('/api/clans')
       .expect(200)
       .then(res => {
         expect(res.body.results).to.exist;
         expect(res.body.results).to.be.an('array');
+        done();
       });
   });
 
-  it('should insert new forum', function() {
-    return request.post('/api/clans')
+  it('should insert new forum', function(done) {
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -41,11 +45,12 @@ describe('Forums API Endpoint', function() {
         expect(res.body.results).to.be.an('object');
         expect(res.body.results.name).to.equal(forum.name);
         expect(res.body.results.clanId).to.equal(forum.clanId);
+        done();
       });
   });
 
-  it('should retrieve existing forums with a query', function() {
-    return request.post('/api/clans')
+  it('should retrieve existing forums with a query', function(done) {
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -53,7 +58,7 @@ describe('Forums API Endpoint', function() {
           .send(forum);
       })
       .then(res => {
-        var name = res.body.name;
+        let name = res.body.name;
         return request.get('/api/forums')
           .query({name});
       })
@@ -68,12 +73,13 @@ describe('Forums API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.results.length).to.equal(0);
+        done();
       });
   });
   
-  it('should update existing clans', function() {
-    var id;
-    return request.post('/api/clans')
+  it('should update existing clans', function(done) {
+    let id;
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -97,12 +103,13 @@ describe('Forums API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.results.name).to.equal('Fred\'s Club');
+        done();
       });
   });
 
-  it('should delete existing forums', function() {
-    var id;
-    return request.post('/api/clans')
+  it('should delete existing forums', function(done) {
+    let id;
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -125,11 +132,12 @@ describe('Forums API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.results).to.equal(undefined);
+        done();
       });
   });
 
-  it('should create posts', function() {
-    return request.post('/api/clans')
+  it('should create posts', function(done) {
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -147,7 +155,8 @@ describe('Forums API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.body).to.equal(post.body); 
-        expect(res.body.title).to.equal(post.title); 
+        expect(res.body.title).to.equal(post.title);
+        done();
       });
   });
 });

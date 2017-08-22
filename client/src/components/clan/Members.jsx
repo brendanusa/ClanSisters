@@ -16,7 +16,7 @@ class Members extends React.Component {
 
   render() {
 
-    var members = this.props.clan.members.map((member, i) => {
+    let members = this.props.clan.members.map((member, i) => {
       return <MemberEntry member={member} key={i} />;
     });
 

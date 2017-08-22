@@ -2,17 +2,20 @@ const {Clan, Forum, User} = require('../database');
 const {expect} = require('chai');
 const {db} = require('../database/connection');
 
-var user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-var clan = {name: 'test_clan_please_ignore', userId: 0};
-var forum = {name: 'test_forum_please_ignore', clanId: 0};
+let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
+let clan = {name: 'test_clan_please_ignore', userId: 0};
+let forum = {name: 'test_forum_please_ignore', clanId: 0};
 
 describe('Forum Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+      .then(() => {
+        done();
+      });
   });
 
-  it('inserts new Forums', function() {
-    return User.create(user)
+  it('inserts new Forums', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -25,12 +28,13 @@ describe('Forum Schema', function() {
         expect(newForum).to.exist;
         expect(newForum.name).to.equal(forum.name);
         expect(newForum.clanId).to.equal(forum.clanId);
+        done();
       });
   });
 
-  it('limits the number of new Forums', function() {
-    var name = forum.name;
-    return User.create(user)
+  it('limits the number of new Forums', function(done) {
+    let name = forum.name;
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -40,31 +44,31 @@ describe('Forum Schema', function() {
         return Forum.create(forum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
@@ -74,11 +78,12 @@ describe('Forum Schema', function() {
       })
       .catch(error => {
         expect(error.message).to.equal('A clan can only have 5 forums!');
+        done();
       });
   });
 
-  it('reads existing Forums', function() {
-    return User.create(user)
+  it('reads existing Forums', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -94,11 +99,12 @@ describe('Forum Schema', function() {
         expect(newForum).to.exist;
         expect(newForum.name).to.equal(forum.name);
         expect(newForum.clanId).to.equal(forum.clanId);
+        done();
       });
   });
 
-  it('updates existing forums', function() {
-    return User.create(user)
+  it('updates existing forums', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -118,11 +124,12 @@ describe('Forum Schema', function() {
         expect(newForum).to.exist;
         expect(newForum.name).to.equal('TEST');
         expect(newForum.clanId).to.equal(forum.clanId);
+        done();
       });
   });
 
-  it('deletes existing Forums', function() {
-    return User.create(user)
+  it('deletes existing Forums', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -140,6 +147,7 @@ describe('Forum Schema', function() {
       })
       .then(newForum => {
         expect(newForum).to.equal(null);
+        done();
       });
   });
 });

@@ -23,7 +23,7 @@ class ForumList extends React.Component {
   render() {
     // TODO: update where the data is coming right, changing it to state
     //       for now to allow for testing.
-    var forums = this.props.forums.map((forum, i) => {
+    let forums = this.props.forums.map((forum, i) => {
       return <ForumListEntry clan={this.props.clan} forum={forum} key={i} />;
     });
     if (forums) {

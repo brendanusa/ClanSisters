@@ -21,7 +21,7 @@ const ClanModel = db.define('clan', {
   },
 });
 
-var Clan = {model: ClanModel};
+let Clan = {model: ClanModel};
 
 const joinArray = [
   {

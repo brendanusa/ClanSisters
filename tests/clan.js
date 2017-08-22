@@ -2,16 +2,19 @@ const {Clan, User} = require('../database');
 const {expect} = require('chai');
 const {db} = require('../database/connection');
 
-var user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-var clan = {name: 'test_clan_please_ignore', userId: 0};
+let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
+let clan = {name: 'test_clan_please_ignore', userId: 0};
 
 describe('Clan Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+      .then(() => {
+        done();
+      });
   });
 
-  it('inserts new clans', function() {
-    return User.create(user)
+  it('inserts new clans', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.creatorId = newUser.id;
         return Clan.create(clan);
@@ -20,11 +23,12 @@ describe('Clan Schema', function() {
         expect(newClan).to.exist;
         expect(newClan.name).to.equal(clan.name);
         expect(newClan.creatorId).to.equal(clan.creatorId);
+        done();
       });
   });
 
-  it('does not allow duplicate clans', function() {
-    return User.create(user)
+  it('does not allow duplicate clans', function(done) {
+    User.create(user)
       .then(function(newUser) {
         clan.userId = newUser.id;
         return Clan.create(clan);
@@ -34,11 +38,12 @@ describe('Clan Schema', function() {
       })
       .catch(function(error) {
         expect(error.message).to.equal('Clan already exists');
+        done();
       });
   });
 
-  it ('returns clan data on read', function() {
-    return User.create(user)
+  it ('returns clan data on read', function(done) {
+    User.create(user)
       .then(function(newUser) {
         clan.userId = newUser.id;
         return Clan.create(clan);
@@ -49,11 +54,12 @@ describe('Clan Schema', function() {
       .then(function(newClan) {
         expect(newClan.id).to.exist;
         expect(newClan.name).to.exist;
+        done();
       });
   });
 
-  it ('updates clan data', function() {
-    return User.create(user)
+  it ('updates clan data', function(done) {
+    User.create(user)
       .then(function(newUser) {
         clan.userId = newUser.id;
         return Clan.create(clan);
@@ -68,11 +74,12 @@ describe('Clan Schema', function() {
       .then(function(newClan) {
         expect(newClan.id).to.exist;
         expect(newClan.name).to.equal('TEST');
+        done();
       });
   });
 
-  it ('deletes clan data', function() {
-    return User.create(user)
+  it ('deletes clan data', function(done) {
+    User.create(user)
       .then(function(newUser) {
         clan.userId = newUser.id;
         return Clan.create(clan);
@@ -86,11 +93,12 @@ describe('Clan Schema', function() {
       })
       .then(function(newClan) {
         expect(newClan).to.equal(null);
+        done();
       });
   });
 
-  it('does not allow a single user more than 5 clans', function() {
-    return User.create(user)
+  it('does not allow a single user more than 5 clans', function(done) {
+    User.create(user)
       .then(function(newUser) {
         clan.creatorId = newUser.id;
         return Clan.create(clan);
@@ -120,6 +128,7 @@ describe('Clan Schema', function() {
       })
       .catch(function(error) {
         expect(error.message).to.equal('A user can only have 5 clans!');
+        done();
       });
   });
 });

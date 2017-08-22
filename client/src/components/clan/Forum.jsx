@@ -12,7 +12,7 @@ class Forum extends React.Component {
 
   render() {
 
-    var posts = this.props.posts.map((post, i) => {
+    let posts = this.props.posts.map((post, i) => {
       return <ForumEntry post={post} key={i} />;
     });
 

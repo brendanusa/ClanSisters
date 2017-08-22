@@ -10,7 +10,7 @@ cache:
     - "node_modules"
 
 env:
-  - DATABASE_URL=mysql://root@localhost/test
+  - NODE_ENV=test
 
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'

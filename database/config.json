@@ -1,0 +1,26 @@
+{
+  "development": {
+      "username": "student",
+      "password": "student",
+      "database": "clansisters",
+      "host": "localhost",
+      "dialect": "mysql",
+      "logging": false
+  },
+  "test": {
+      "username": "root",
+      "password": null,
+      "database": "test",
+      "host": "localhost",
+      "dialect": "mysql",
+      "logging": true
+  },
+  "production": {
+      "username": "server",
+      "password": "serverpass",
+      "database": "clansisters",
+      "host": "localhost",
+      "dialect": "mysql",
+      "logging": false
+  }
+}

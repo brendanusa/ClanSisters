@@ -1,12 +1,12 @@
 describe('App', function() {
-  var {
+  let {
     Simulate,
     renderIntoDocument,
     findRenderedDOMComponentWithClass,
     scryRenderedDOMComponentsWithClass
   } = React.addons.TestUtils;
 
-  var app;
+  let app;
 
   beforeEach(function() {
     app = renderIntoDocument(

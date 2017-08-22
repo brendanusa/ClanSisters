@@ -2,11 +2,11 @@ const {User, Clan, Forum, Post, PostVote} = require('../database');
 const {expect} = require('chai');
 const {db} = require('../database/connection');
 
-var user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-var user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
-var clan = {name: 'test_clan_please_ignore', userId: 0};
-var forum = {name: 'test_forum_please_ignore', clanId: 0};
-var post = {
+let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
+let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
+let clan = {name: 'test_clan_please_ignore', userId: 0};
+let forum = {name: 'test_forum_please_ignore', clanId: 0};
+let post = {
   userId: 0, 
   forumId: 0,
   title: 'test_post_please_ignore', 
@@ -14,12 +14,15 @@ var post = {
 };
 
 describe('PostVote Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+      .then(() => {
+        done();
+      });
   });
 
-  it('users can upvote on Posts', function() {
-    return User.create(user)
+  it('users can upvote on Posts', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -53,11 +56,12 @@ describe('PostVote Schema', function() {
       .then(votes => {
         expect(votes[0]).to.equal(1);
         expect(votes[1]).to.equal(0);
+        done();
       });
   });
   
-  it('users cant upvote on Posts more than once', function() {
-    return User.create(user)
+  it('users cant upvote on Posts more than once', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -93,11 +97,12 @@ describe('PostVote Schema', function() {
       .then(votes => {
         expect(votes[0]).to.equal(1);
         expect(votes[1]).to.equal(0);
+        done();
       });
   });
 
-  it('users can downboat Posts they have upboated', function() {
-    return User.create(user)
+  it('users can downboat Posts they have upboated', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -133,6 +138,7 @@ describe('PostVote Schema', function() {
       .then(votes => {
         expect(votes[0]).to.equal(0);
         expect(votes[1]).to.equal(1);
+        done();
       });
   });
 });

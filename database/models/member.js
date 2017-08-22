@@ -14,7 +14,7 @@ const MemberModel = db.define('member', {
   }
 });
 
-var Member = {model: MemberModel};
+let Member = {model: MemberModel};
 
 Member.create = Member.joinUserToClan = function(userId, clanId, confirmed = false) {
   return User.find({id: userId})
