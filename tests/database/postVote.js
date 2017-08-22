@@ -13,15 +13,15 @@ let post = {
   body: 'test_body_please_ignore',
 };
 
-describe('PostVote Schema', function() {
-  beforeEach(function(done) {
+describe('PostVote Schema', () => {
+  beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
         done();
       });
   });
 
-  it('users can upvote on Posts', function(done) {
+  it('users can upvote on Posts', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -37,7 +37,7 @@ describe('PostVote Schema', function() {
         post.forumId = newForum.forumId;
         return Post.create(post);
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         post.id = newPost.id;
         expect(newPost).to.exist;
         expect(newPost.title).to.equal(post.title);
@@ -60,7 +60,7 @@ describe('PostVote Schema', function() {
       });
   });
   
-  it('users cant upvote on Posts more than once', function(done) {
+  it('users cant upvote on Posts more than once', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -76,7 +76,7 @@ describe('PostVote Schema', function() {
         post.forumId = newForum.forumId;
         return Post.create(post);
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         post.id = newPost.id;
         return PostVote.create({
           userId: clan.userId, 
@@ -84,7 +84,7 @@ describe('PostVote Schema', function() {
           upvote: true
         });
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         return PostVote.create({
           userId: clan.userId, 
           postId: post.id, 
@@ -101,7 +101,7 @@ describe('PostVote Schema', function() {
       });
   });
 
-  it('users can downboat Posts they have upboated', function(done) {
+  it('users can downboat Posts they have upboated', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -117,7 +117,7 @@ describe('PostVote Schema', function() {
         post.forumId = newForum.forumId;
         return Post.create(post);
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         post.id = newPost.id;
         return PostVote.create({
           userId: clan.userId, 
@@ -125,7 +125,7 @@ describe('PostVote Schema', function() {
           upvote: true
         });
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         return PostVote.create({
           userId: clan.userId, 
           postId: post.id, 

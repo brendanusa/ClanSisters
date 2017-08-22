@@ -23,7 +23,7 @@ let PostVote = {model: PostVoteModel};
  * @param {Boolean} upvote - Boolean indicating whether the user is upvoting
  * @param {Boolean} downvote - Boolean indicating whether the user is downvoting
  */
-PostVote.create = function({userId, postId, upvote = false, downvote = false}) {
+PostVote.create = ({userId, postId, upvote = false, downvote = false}) => {
   return User.find({id: userId})
     .then(user => {
       if (!user) { throw new Error('No such user! ' + userId); }
@@ -59,7 +59,7 @@ PostVote.create = function({userId, postId, upvote = false, downvote = false}) {
  * @param {Object} Object - contains a postId as a key.
  * @return {Array} array - Tuple of size two. (upvotes, downvotes)
  */
-PostVote.count = function({postId}) {
+PostVote.count = ({postId}) => {
   return PostVote.model.findAll({where: {postId}})
     .then(doc => {
       if (!doc) {
@@ -77,19 +77,19 @@ PostVote.count = function({postId}) {
     });
 };
 
-PostVote.read = PostVote.find = function(query) {
+PostVote.read = PostVote.find = (query) => {
   return PostVote.model.findOne({where: query});
 };
 
-PostVote.readAll = PostVote.findAll = function(query = {}) {
+PostVote.readAll = PostVote.findAll = (query = {}) => {
   return PostVote.model.findAll({where: query});
 };
 
-PostVote.update = function(query, values) {
+PostVote.update = (query, values) => {
   return PostVote.model.update(values, {where: query});
 };
 
-PostVote.delete = function({userId, postId}) {
+PostVote.delete = ({userId, postId}) => {
   return PostVote.model.destroy({where: {userId, postId}});
 };
 

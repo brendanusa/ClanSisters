@@ -11,7 +11,7 @@ const ForumModel = db.define('forum', {
 
 const Forum = {model: ForumModel};
 
-Forum.findAll = function(query = {}) {
+Forum.findAll = (query = {}) => {
   return ForumModel.findAll({where: query});
 };
 
@@ -20,15 +20,15 @@ const MAX_FORUMS_PER_CLAN = 5;
 /**
  * Forum crud methods.
  */
-Forum.create = function({name, clanId}) {
+Forum.create = ({name, clanId}) => {
   return Forum.model.find({where: {name}})
-    .then(function(clan) {
+    .then((clan) => {
       if (clan) {
         throw new Error('Clan already exists');
       }
       return Forum.model.findAll({where: {clanId}});
     })
-    .then(function(clans) {
+    .then((clans) => {
       if (clans.length + 1 > MAX_FORUMS_PER_CLAN) {
         throw new Error(`A clan can only have ${MAX_FORUMS_PER_CLAN} forums!`);
       }
@@ -36,15 +36,15 @@ Forum.create = function({name, clanId}) {
     });
 };
 
-Forum.read = Forum.find = function(query) {
+Forum.read = Forum.find = (query) => {
   return ForumModel.findOne({where: query});
 };
 
-Forum.update = function(query, values) {
+Forum.update = (query, values) => {
   return ForumModel.update(values, {where: query});
 };
 
-Forum.delete = function(query) {
+Forum.delete = (query) => {
   return ForumModel.destroy({where: query});
 };
 

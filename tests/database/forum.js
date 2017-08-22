@@ -6,15 +6,15 @@ let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 let clan = {name: 'test_clan_please_ignore', userId: 0};
 let forum = {name: 'test_forum_please_ignore', clanId: 0};
 
-describe('Forum Schema', function() {
-  beforeEach(function(done) {
+describe('Forum Schema', () => {
+  beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
         done();
       });
   });
 
-  it('inserts new Forums', function(done) {
+  it('inserts new Forums', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -24,7 +24,7 @@ describe('Forum Schema', function() {
         forum.clanId = newClan.id;
         return Forum.create(forum);
       })
-      .then(function(newForum) {
+      .then((newForum) => {
         expect(newForum).to.exist;
         expect(newForum.name).to.equal(forum.name);
         expect(newForum.clanId).to.equal(forum.clanId);
@@ -32,7 +32,7 @@ describe('Forum Schema', function() {
       });
   });
 
-  it('limits the number of new Forums', function(done) {
+  it('limits the number of new Forums', (done) => {
     let name = forum.name;
     User.create(user)
       .then(newUser => {
@@ -82,7 +82,7 @@ describe('Forum Schema', function() {
       });
   });
 
-  it('reads existing Forums', function(done) {
+  it('reads existing Forums', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -103,7 +103,7 @@ describe('Forum Schema', function() {
       });
   });
 
-  it('updates existing forums', function(done) {
+  it('updates existing forums', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -128,7 +128,7 @@ describe('Forum Schema', function() {
       });
   });
 
-  it('deletes existing Forums', function(done) {
+  it('deletes existing Forums', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;

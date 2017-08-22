@@ -5,17 +5,17 @@ const {db} = require('../../database/connection');
 let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
 
-describe('User Schema', function() {
-  beforeEach(function(done) {
+describe('User Schema', () => {
+  beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
         done();
       });
   });
 
-  it('inserts new users', function(done) {
+  it('inserts new users', (done) => {
     User.model.create(user)
-      .then(function(newUser) {
+      .then((newUser) => {
         expect(newUser.id).to.exist;
         expect(newUser.username).to.exist;
         expect(newUser.salt).to.exist;
@@ -24,31 +24,31 @@ describe('User Schema', function() {
       });
   });
 
-  it('does not allow duplicate users', function(done) {
+  it('does not allow duplicate users', (done) => {
     User.create(user)
-      .then(function(newUser) {
+      .then((newUser) => {
         return User.create(user);
       })
-      .catch(function(error) {
+      .catch((error) => {
         expect(error.message).to.equal('User already exists');
         done();
       });
   });
 
-  it ('validates existing users', function(done) {
+  it ('validates existing users', (done) => {
     User.create(user)
-      .then(function() {
+      .then(() => {
         return User.validate(user);
       })
-      .then(function(user) {
+      .then((user) => {
         expect(user).to.exist;
         done();
       });
   });
 
-  it ('sanitizes user data on create', function(done) {
+  it ('sanitizes user data on create', (done) => {
     User.create(user)
-      .then(function(newUser) {
+      .then((newUser) => {
         expect(newUser.id).to.exist;
         expect(newUser.username).to.exist;
         expect(newUser.salt).to.not.exist;
@@ -57,12 +57,12 @@ describe('User Schema', function() {
       });
   });
 
-  it ('sanitizes user data on read', function(done) {
+  it ('sanitizes user data on read', (done) => {
     User.create(user)
       .then(({id}) => {
         return User.read({id});
       })
-      .then(function(newUser) {
+      .then((newUser) => {
         expect(newUser.id).to.exist;
         expect(newUser.username).to.exist;
         expect(newUser.salt).to.not.exist;
@@ -71,7 +71,7 @@ describe('User Schema', function() {
       });
   });
 
-  it ('sanitizes user data on findAll', function(done) {
+  it ('sanitizes user data on findAll', (done) => {
     User.create(user)
       .then(() => {
         return User.create(user2);

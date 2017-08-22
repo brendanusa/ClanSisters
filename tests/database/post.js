@@ -12,15 +12,15 @@ let post = {
   body: 'test_body_please_ignore',
 };
 
-describe('Post Schema', function() {
-  beforeEach(function(done) {
+describe('Post Schema', () => {
+  beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
         done();
       });
   });
 
-  it('inserts new Posts', function(done) {
+  it('inserts new Posts', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -35,7 +35,7 @@ describe('Post Schema', function() {
         post.forumId = newForum.id;
         return Post.create(post);
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         expect(newPost).to.exist;
         expect(newPost.title).to.equal(post.title);
         expect(newPost.body).to.equal(post.body);
@@ -45,7 +45,7 @@ describe('Post Schema', function() {
       });
   });
 
-  it('reads existing Posts', function(done) {
+  it('reads existing Posts', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -63,7 +63,7 @@ describe('Post Schema', function() {
       .then(newPost => {
         return Post.read({id: newPost.id});
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         expect(newPost).to.exist;
         expect(newPost.title).to.equal(post.title);
         expect(newPost.body).to.equal(post.body);
@@ -73,7 +73,7 @@ describe('Post Schema', function() {
       });
   });
 
-  it('updates existing Posts', function(done) {
+  it('updates existing Posts', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -95,7 +95,7 @@ describe('Post Schema', function() {
       .then(newPost => {
         return Post.read({id: post.id});
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         expect(newPost).to.exist;
         expect(newPost.title).to.equal('TEST');
         expect(newPost.body).to.equal(post.body);
@@ -105,7 +105,7 @@ describe('Post Schema', function() {
       });
   });
 
-  it('deletes existing Posts', function(done) {
+  it('deletes existing Posts', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -127,7 +127,7 @@ describe('Post Schema', function() {
       .then(newPost => {
         return Post.read({id: post.id});
       })
-      .then(function(newPost) {
+      .then((newPost) => {
         expect(newPost).to.equal(null);
         done();
       });

@@ -5,7 +5,7 @@ router.post('/local', (req, res) => {
   let user = req.body;
 
   User.validate(user)
-    .then(function(validUser) {
+    .then((validUser) => {
       if (validUser) {
         req.session.userId = validUser.id;
         res.json(
