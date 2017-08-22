@@ -2,25 +2,25 @@
   "development": {
       "username": "student",
       "password": "student",
-      "database": "cards",
+      "database": "clansisters",
       "host": "localhost",
       "dialect": "mysql",
-      "logging": "false"
+      "logging": false
   },
   "test": {
       "username": "root",
       "password": null,
-      "database": "cards",
+      "database": "clansisters",
       "host": "localhost",
       "dialect": "mysql",
-      "logging": "false"
+      "logging": false
   },
   "production": {
       "username": "server",
       "password": "serverpass",
-      "database": "cards",
+      "database": "clansisters",
       "host": "localhost",
       "dialect": "mysql",
-      "logging": "false"
+      "logging": false
   }
 }
