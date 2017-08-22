@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router} from 'react-router-dom';
+import Home from './home/home.jsx'
 
-/*Eventually these will need to be dynamic routes. I think that we
 
-
-*/
 
 const App = () => (
   <div>
