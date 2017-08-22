@@ -12,8 +12,11 @@ let post = {
 };
 
 describe('Forums API Endpoint', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
 
   it('should retrieve an array', function(done) {

@@ -14,8 +14,11 @@ let post = {
 };
 
 describe('PostVote Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
 
   it('users can upvote on Posts', function(done) {

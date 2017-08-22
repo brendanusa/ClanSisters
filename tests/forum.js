@@ -7,8 +7,11 @@ let clan = {name: 'test_clan_please_ignore', userId: 0};
 let forum = {name: 'test_forum_please_ignore', clanId: 0};
 
 describe('Forum Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
 
   it('inserts new Forums', function(done) {

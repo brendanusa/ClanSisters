@@ -7,8 +7,11 @@ let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ig
 let clan = {name: 'test_clan_please_ignore', userId: 0};
 
 describe('Member Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
   
   it('inserts new members', function(done) {

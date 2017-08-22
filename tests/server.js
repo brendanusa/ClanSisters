@@ -16,8 +16,11 @@ describe('Express Middleware', function() {
   
   let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
 
   it('should have index.html', function(done) {

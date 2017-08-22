@@ -6,8 +6,11 @@ let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
 
 describe('User Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
 
   it('inserts new users', function(done) {

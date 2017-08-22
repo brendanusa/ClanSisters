@@ -6,8 +6,11 @@ const {db} = require('../database/connection');
 let testClan = {name: 'test_clan_please_ignore'};
 
 describe('Clans API Endpoint', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
 
   it('should retrieve an array', function(done) {

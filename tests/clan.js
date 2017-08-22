@@ -6,8 +6,11 @@ let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 let clan = {name: 'test_clan_please_ignore', userId: 0};
 
 describe('Clan Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
 
   it('inserts new clans', function(done) {

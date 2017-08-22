@@ -13,8 +13,11 @@ let post = {
 };
 
 describe('Post Schema', function() {
-  beforeEach(function() {
-    return db.sync({force: true});
+  beforeEach(function(done) {
+    db.sync({force: true})
+    .then(() => {
+      done();
+    });
   });
 
   it('inserts new Posts', function(done) {
