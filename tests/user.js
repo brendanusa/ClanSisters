@@ -8,9 +8,9 @@ let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ig
 describe('User Schema', function() {
   beforeEach(function(done) {
     db.sync({force: true})
-    .then(() => {
-      done();
-    });
+      .then(() => {
+        done();
+      });
   });
 
   it('inserts new users', function(done) {
