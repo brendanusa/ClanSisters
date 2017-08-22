@@ -10,7 +10,7 @@
   "test": {
       "username": "root",
       "password": null,
-      "database": "clansisters",
+      "database": "test",
       "host": "localhost",
       "dialect": "mysql",
       "logging": false
