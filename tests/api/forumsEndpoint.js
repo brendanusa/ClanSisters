@@ -1,7 +1,7 @@
 const {expect} = require('chai');
-const {app} = require('../server/server');
+const {app} = require('../../server/server');
 const request = require('supertest').agent(app);
-const {db} = require('../database/connection');
+const {db} = require('../../database/connection');
 
 let clan = {name: 'test_clan_please_ignore'};
 let forum = {name: 'test_forum_please_ignore', clanId: 0};

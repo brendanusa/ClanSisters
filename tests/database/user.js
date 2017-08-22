@@ -1,6 +1,6 @@
-const {User} = require('../database');
+const {User} = require('../../database');
 const {expect} = require('chai');
-const {db} = require('../database/connection');
+const {db} = require('../../database/connection');
 
 let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};

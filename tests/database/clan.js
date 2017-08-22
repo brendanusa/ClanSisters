@@ -1,6 +1,6 @@
-const {Clan, User} = require('../database');
+const {Clan, User} = require('../../database');
 const {expect} = require('chai');
-const {db} = require('../database/connection');
+const {db} = require('../../database/connection');
 
 let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 let clan = {name: 'test_clan_please_ignore', userId: 0};
