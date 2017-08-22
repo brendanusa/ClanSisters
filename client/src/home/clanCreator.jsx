@@ -9,30 +9,33 @@ I know that we want to have our state within our redux, but right now we need
 to have the true/false state here. This can be refactored out in the future.
 */
 export default class clanCreator extends React.Component {
-  state = {
-    open: false,
-  };
+  constructor (props ) {
+    super(props)
+    this.state = {
+      open: false,
+    };
 
-  handleOpen = () => {
+  const handleOpen = () => {
     this.setState({open: true});
   };
 
-  handleClose = () => {
+  const handleClose = () => {
     this.setState({open: false});
   };
+}
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.handleClose.bind(this)}
       />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.handleClose.bind(this)}
       />,
     ];
 
@@ -46,7 +49,7 @@ export default class clanCreator extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          Testing, input boxes will be here eventually. 
+          Testing, input boxes will be here eventually.
         </Dialog>
       </div>
     );
