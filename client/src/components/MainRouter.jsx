@@ -29,40 +29,40 @@ class MainRouter extends React.Component {
         <main>
           <Switch>
             <Route 
-              exact path='/' 
-              component={props => <Home clans={this.props.clans} />} 
-            />
-            <Route 
-              path='/login' 
-              component={props => <Login {...props} loginUser={this.props.loginUser}/>}
-            />
-            <Route 
-              path='/logout' 
-              component={props => <Logout {...props} logoutUser={this.props.logoutUser}/>}
-            />
-            <Route 
-              path='/register' 
-              component={props => <Register {...props} registerUser={this.props.registerUser}/>} 
+              exact path='/'
+              component={props => <Home clans={this.props.clans} />}
             />
             <Route
-              path='/clan' 
+              path='/login'
+              component={props => <Login {...props} loginUser={this.props.loginUser}/>}
+            />
+            <Route
+              path='/logout'
+              component={props => <Logout {...props} logoutUser={this.props.logoutUser}/>}
+            />
+            <Route
+              path='/register'
+              component={props => <Register {...props} registerUser={this.props.registerUser}/>}
+            />
+            <Route
+              path='/clan'
               render={(props) => <ClanRouter {...props} user={this.props.user} clan={this.props.clan}/>}
             />
             <Route
-              path='/about' 
+              path='/about'
               component={About}
             />
             <Route
-              path='/users/*' 
-              render={(props) => <User 
-                user={this.props.user} 
-                clans={this.props.user.clans} 
+              path='/users/*'
+              render={(props) => <User
+                user={this.props.user}
+                clans={this.props.user.clans}
                 addNewClan={this.props.addNewClan}
                 rerender={this.props.fetchUsersClans}
               />}
             />
-            <Route 
-              path='/:id' 
+            <Route
+              path='/:id'
               component={props => <ClanRouter user={this.props.user} {...props} />}
             />
           </Switch>

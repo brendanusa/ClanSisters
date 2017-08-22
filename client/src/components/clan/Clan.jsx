@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 import { Button, ButtonToolbar, ControlLabel, Form, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
 import axios from 'axios';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 
 import NewClan from './NewClan.jsx';
 
@@ -18,7 +18,7 @@ class Clan extends Component {
       display: 'inline-block',
       height: '140px',
       width: '140px',
-    }; 
+    };
 
     this.deleteClan = this.deleteClan.bind(this);
     this.editClan = this.editClan.bind(this);
@@ -54,8 +54,8 @@ class Clan extends Component {
       <div className="row">
         <div className="col-sm-6 col-md-4">
           <div className="thumbnail">
-            <img 
-              src={this.props.avatar} 
+            <img
+              src={this.props.avatar}
               alt="Clan's avatar picture"
               style={this.divStyle}
             />

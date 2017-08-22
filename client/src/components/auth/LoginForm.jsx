@@ -6,7 +6,7 @@ import { Button, ControlLabel, Form, FormGroup, FormControl, HelpBlock } from 'r
  * Class representing the React Login Component.
  * @extends Login
  */
- 
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +33,7 @@ class LoginForm extends React.Component {
     if (length > 5) {
       return 'success';
     } else if (length > 0) {
-      return 'error'; 
+      return 'error';
     }
   }
 
