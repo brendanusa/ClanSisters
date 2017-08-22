@@ -5,16 +5,16 @@ const { User, Clan, Member } = require('../database');
 const {db} = require('../database/connection');
 const {expect} = require('chai');
 
-var user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-var user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
-var clan = {name: 'test_clan_please_ignore', userId: 0};
+let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
+let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
+let clan = {name: 'test_clan_please_ignore', userId: 0};
 
 /**
  * @todo Double check with the database that changes went through.
  */
 describe('Express Middleware', function() {
   
-  var user = {username: 'fred_zirdung', password: 'fred_zirdung'};
+  let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 
   beforeEach(function() {
     return db.sync({force: true});
@@ -70,7 +70,7 @@ describe('Express Middleware', function() {
   });
 
   it('should remove membership with delete to /users/:user/members/:member', function() {
-    var userId;
+    let userId;
     return User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;

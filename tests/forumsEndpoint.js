@@ -3,9 +3,9 @@ const {app} = require('../server/server');
 const request = require('supertest').agent(app);
 const {db} = require('../database/connection');
 
-var clan = {name: 'test_clan_please_ignore'};
-var forum = {name: 'test_forum_please_ignore', clanId: 0};
-var post = {
+let clan = {name: 'test_clan_please_ignore'};
+let forum = {name: 'test_forum_please_ignore', clanId: 0};
+let post = {
   forumId: 0,
   title: 'test_post_please_ignore', 
   body: 'test_body_please_ignore',
@@ -53,7 +53,7 @@ describe('Forums API Endpoint', function() {
           .send(forum);
       })
       .then(res => {
-        var name = res.body.name;
+        let name = res.body.name;
         return request.get('/api/forums')
           .query({name});
       })
@@ -72,7 +72,7 @@ describe('Forums API Endpoint', function() {
   });
   
   it('should update existing clans', function() {
-    var id;
+    let id;
     return request.post('/api/clans')
       .send(clan)
       .then(res => {
@@ -101,7 +101,7 @@ describe('Forums API Endpoint', function() {
   });
 
   it('should delete existing forums', function() {
-    var id;
+    let id;
     return request.post('/api/clans')
       .send(clan)
       .then(res => {

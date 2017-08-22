@@ -11,7 +11,7 @@ const PostVoteModel = db.define('postVote', {
   }
 });
 
-var PostVote = {model: PostVoteModel};
+let PostVote = {model: PostVoteModel};
 
 /**
  * If a user votes on a post, the two foreign keys are added to the PostVote join table
@@ -65,8 +65,8 @@ PostVote.count = function({postId}) {
       if (!doc) {
         return null;
       }
-      var array = [0, 0];
-      for (var i = 0; i < doc.length; i++) {
+      let array = [0, 0];
+      for (let i = 0; i < doc.length; i++) {
         if (doc[i].upvote) {
           array[0]++;
         } else {

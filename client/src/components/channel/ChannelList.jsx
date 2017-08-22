@@ -15,7 +15,7 @@ class ChannelList extends React.Component {
 
   render () {
 
-    var messages = this.props.messages.map((message, i) => { 
+    let messages = this.props.messages.map((message, i) => { 
       return <ChannelListEntry message={message} key={i} />;
     });
 

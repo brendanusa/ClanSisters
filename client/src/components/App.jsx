@@ -97,7 +97,7 @@ class App extends React.Component {
   fetchUsersMemberships(userId) {
     return axios.get(`/api/users/${userId}/members/`)
       .then(({data}) => {
-        var newUser = this.state.user;
+        let newUser = this.state.user;
         newUser.clans = data.results;
         this.setState(
           {
@@ -139,7 +139,7 @@ class App extends React.Component {
     console.log('(Client) Registering New User');
     return axios.post('/api/users', user)
       .then(result => {
-        var newUser = this.state.user;
+        let newUser = this.state.user;
         newUser.userId = result.data.id;
         newUser.username = user.username;
         this.setState(
@@ -165,7 +165,7 @@ class App extends React.Component {
     return axios.post('/api/clans/', clan)
       .then(({data}) => {
         // console.log('(Client) Success! Registered New clan', data);
-        var newUser = this.state.user;
+        let newUser = this.state.user;
         newUser.clans = this.state.user.clans.concat(data);
         this.setState({user: newUser}, () => {
           // console.log('Registered New Clan', this.state.user.clans);

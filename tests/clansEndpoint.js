@@ -3,7 +3,7 @@ const {app} = require('../server/server');
 const request = require('supertest').agent(app);
 const {db} = require('../database/connection');
 
-var testClan = {name: 'test_clan_please_ignore'};
+let testClan = {name: 'test_clan_please_ignore'};
 
 describe('Clans API Endpoint', function() {
   beforeEach(function() {
@@ -29,7 +29,7 @@ describe('Clans API Endpoint', function() {
   });
 
   it('should retrieve existing clans', function() {
-    var newClan;
+    let newClan;
 
     return request.post('/api/clans')
       .send(testClan)
@@ -81,7 +81,7 @@ describe('Clans API Endpoint', function() {
   });
   
   it('should update existing clans', function() {
-    var row;
+    let row;
 
     return request.post('/api/clans/1')
       .send({name: 'Fred\'s Club'})
@@ -108,7 +108,7 @@ describe('Clans API Endpoint', function() {
   });
 
   it('should delete existing clans', function() {
-    var row;
+    let row;
 
     return request.delete('/api/clans/1')
       .expect(400)

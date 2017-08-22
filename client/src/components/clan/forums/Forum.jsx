@@ -38,14 +38,14 @@ class Forum extends React.Component {
   // }
 
   componentDidMount() {
-    var forumId = parseInt(this.props.match.params.id);
+    let forumId = parseInt(this.props.match.params.id);
     this.props.fetchPosts(forumId);
   }
 
   render() {
     if (this.props.forums) {
-      var forumId = parseInt(this.props.match.params.id);
-      var forum = this.props.forums.filter((forum) => { return forum.id === forumId; });
+      let forumId = parseInt(this.props.match.params.id);
+      let forum = this.props.forums.filter((forum) => { return forum.id === forumId; });
     }
     return (
       <div>

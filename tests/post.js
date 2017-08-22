@@ -2,10 +2,10 @@ const {Clan, Forum, Post, User} = require('../database');
 const {expect} = require('chai');
 const {db} = require('../database/connection');
 
-var user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-var clan = {name: 'test_clan_please_ignore', userId: 0};
-var forum = {name: 'test_forum_please_ignore', clanId: 0};
-var post = {
+let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
+let clan = {name: 'test_clan_please_ignore', userId: 0};
+let forum = {name: 'test_forum_please_ignore', clanId: 0};
+let post = {
   userId: 0, 
   forumId: 0,
   title: 'test_post_please_ignore', 

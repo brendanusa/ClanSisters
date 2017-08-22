@@ -2,9 +2,9 @@ const {Clan, Forum, User} = require('../database');
 const {expect} = require('chai');
 const {db} = require('../database/connection');
 
-var user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-var clan = {name: 'test_clan_please_ignore', userId: 0};
-var forum = {name: 'test_forum_please_ignore', clanId: 0};
+let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
+let clan = {name: 'test_clan_please_ignore', userId: 0};
+let forum = {name: 'test_forum_please_ignore', clanId: 0};
 
 describe('Forum Schema', function() {
   beforeEach(function() {
@@ -29,7 +29,7 @@ describe('Forum Schema', function() {
   });
 
   it('limits the number of new Forums', function() {
-    var name = forum.name;
+    let name = forum.name;
     return User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -40,31 +40,31 @@ describe('Forum Schema', function() {
         return Forum.create(forum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);
       })
       .then(() => {
-        var newForum = forum;
+        let newForum = forum;
         name += 'x';
         newForum.name = name;
         return Forum.create(newForum);

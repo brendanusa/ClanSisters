@@ -71,7 +71,7 @@ class Post extends React.Component {
   
   render() {
     if (this.props.posts.length) {
-      var currentPost = this.props.posts.filter((post) => { return post.id === parseInt(this.props.match.params.id); });
+      let currentPost = this.props.posts.filter((post) => { return post.id === parseInt(this.props.match.params.id); });
       currentPost = currentPost[0];
       console.log('Current POst', currentPost);
       let timeSinceSubmission = this.getTimeSincePost(currentPost.createdAt);
