@@ -18,9 +18,9 @@ describe('Express Middleware', function() {
 
   beforeEach(function(done) {
     db.sync({force: true})
-    .then(() => {
-      done();
-    });
+      .then(() => {
+        done();
+      });
   });
 
   it('should have index.html', function(done) {

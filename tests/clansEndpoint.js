@@ -8,9 +8,9 @@ let testClan = {name: 'test_clan_please_ignore'};
 describe('Clans API Endpoint', function() {
   beforeEach(function(done) {
     db.sync({force: true})
-    .then(() => {
-      done();
-    });
+      .then(() => {
+        done();
+      });
   });
 
   it('should retrieve an array', function(done) {

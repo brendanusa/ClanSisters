@@ -16,9 +16,9 @@ let post = {
 describe('PostVote Schema', function() {
   beforeEach(function(done) {
     db.sync({force: true})
-    .then(() => {
-      done();
-    });
+      .then(() => {
+        done();
+      });
   });
 
   it('users can upvote on Posts', function(done) {

@@ -15,9 +15,9 @@ let post = {
 describe('Post Schema', function() {
   beforeEach(function(done) {
     db.sync({force: true})
-    .then(() => {
-      done();
-    });
+      .then(() => {
+        done();
+      });
   });
 
   it('inserts new Posts', function(done) {

@@ -9,9 +9,9 @@ let clan = {name: 'test_clan_please_ignore', userId: 0};
 describe('Member Schema', function() {
   beforeEach(function(done) {
     db.sync({force: true})
-    .then(() => {
-      done();
-    });
+      .then(() => {
+        done();
+      });
   });
   
   it('inserts new members', function(done) {

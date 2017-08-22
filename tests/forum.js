@@ -9,9 +9,9 @@ let forum = {name: 'test_forum_please_ignore', clanId: 0};
 describe('Forum Schema', function() {
   beforeEach(function(done) {
     db.sync({force: true})
-    .then(() => {
-      done();
-    });
+      .then(() => {
+        done();
+      });
   });
 
   it('inserts new Forums', function(done) {
