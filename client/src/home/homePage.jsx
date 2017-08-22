@@ -24,19 +24,19 @@ const menuProps = {
 };
 
 const Home = (props) => {
-  <div>
-    <div className = 'clanSearchBox'>
-      <AutoComplete
-      hintText="Find a clan!!"
-      dataSource={colors}
-      menuProps={menuProps}
-      />
+  return (  <div>
+      <div className = 'clanSearchBox'>
+        <AutoComplete
+        hintText="Find a clan!!"
+        dataSource={testClans}
+        menuProps={menuProps}
+        />
+      </div>
+      <div className = 'clanCreator' >
+        <clanCreator />
+      </div>
     </div>
-    <div className = 'clanCreator' >
-      <clanCreator />
-    </div>
-  </div>
-
+  )
 }
 
 export default Home
