@@ -17,8 +17,8 @@ describe('Post Schema', function() {
     return db.sync({force: true});
   });
 
-  it('inserts new Posts', function() {
-    return User.create(user)
+  it('inserts new Posts', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -38,11 +38,12 @@ describe('Post Schema', function() {
         expect(newPost.body).to.equal(post.body);
         expect(newPost.userId).to.equal(post.userId);
         expect(newPost.forumId).to.equal(post.forumId);
+        done();
       });
   });
 
-  it('reads existing Posts', function() {
-    return User.create(user)
+  it('reads existing Posts', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -65,11 +66,12 @@ describe('Post Schema', function() {
         expect(newPost.body).to.equal(post.body);
         expect(newPost.userId).to.equal(post.userId);
         expect(newPost.forumId).to.equal(post.forumId);
+        done();
       });
   });
 
-  it('updates existing Posts', function() {
-    return User.create(user)
+  it('updates existing Posts', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -96,11 +98,12 @@ describe('Post Schema', function() {
         expect(newPost.body).to.equal(post.body);
         expect(newPost.userId).to.equal(post.userId);
         expect(newPost.forumId).to.equal(post.forumId);
+        done();
       });
   });
 
-  it('deletes existing Posts', function() {
-    return User.create(user)
+  it('deletes existing Posts', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -123,6 +126,7 @@ describe('Post Schema', function() {
       })
       .then(function(newPost) {
         expect(newPost).to.equal(null);
+        done();
       });
   });
 });

@@ -16,17 +16,18 @@ describe('Forums API Endpoint', function() {
     return db.sync({force: true});
   });
 
-  it('should retrieve an array', function() {
-    return request.get('/api/clans')
+  it('should retrieve an array', function(done) {
+    request.get('/api/clans')
       .expect(200)
       .then(res => {
         expect(res.body.results).to.exist;
         expect(res.body.results).to.be.an('array');
+        done();
       });
   });
 
-  it('should insert new forum', function() {
-    return request.post('/api/clans')
+  it('should insert new forum', function(done) {
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -41,11 +42,12 @@ describe('Forums API Endpoint', function() {
         expect(res.body.results).to.be.an('object');
         expect(res.body.results.name).to.equal(forum.name);
         expect(res.body.results.clanId).to.equal(forum.clanId);
+        done();
       });
   });
 
-  it('should retrieve existing forums with a query', function() {
-    return request.post('/api/clans')
+  it('should retrieve existing forums with a query', function(done) {
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -68,12 +70,13 @@ describe('Forums API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.results.length).to.equal(0);
+        done();
       });
   });
   
-  it('should update existing clans', function() {
+  it('should update existing clans', function(done) {
     let id;
-    return request.post('/api/clans')
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -97,12 +100,13 @@ describe('Forums API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.results.name).to.equal('Fred\'s Club');
+        done();
       });
   });
 
-  it('should delete existing forums', function() {
+  it('should delete existing forums', function(done) {
     let id;
-    return request.post('/api/clans')
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -125,11 +129,12 @@ describe('Forums API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.results).to.equal(undefined);
+        done();
       });
   });
 
-  it('should create posts', function() {
-    return request.post('/api/clans')
+  it('should create posts', function(done) {
+    request.post('/api/clans')
       .send(clan)
       .then(res => {
         forum.clanId = res.body.id;
@@ -147,7 +152,8 @@ describe('Forums API Endpoint', function() {
       })
       .then(res => {
         expect(res.body.body).to.equal(post.body); 
-        expect(res.body.title).to.equal(post.title); 
+        expect(res.body.title).to.equal(post.title);
+        done();
       });
   });
 });

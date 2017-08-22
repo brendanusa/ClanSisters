@@ -18,8 +18,8 @@ describe('PostVote Schema', function() {
     return db.sync({force: true});
   });
 
-  it('users can upvote on Posts', function() {
-    return User.create(user)
+  it('users can upvote on Posts', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -53,11 +53,12 @@ describe('PostVote Schema', function() {
       .then(votes => {
         expect(votes[0]).to.equal(1);
         expect(votes[1]).to.equal(0);
+        done();
       });
   });
   
-  it('users cant upvote on Posts more than once', function() {
-    return User.create(user)
+  it('users cant upvote on Posts more than once', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -93,11 +94,12 @@ describe('PostVote Schema', function() {
       .then(votes => {
         expect(votes[0]).to.equal(1);
         expect(votes[1]).to.equal(0);
+        done();
       });
   });
 
-  it('users can downboat Posts they have upboated', function() {
-    return User.create(user)
+  it('users can downboat Posts they have upboated', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         post.userId = newUser.id;
@@ -133,6 +135,7 @@ describe('PostVote Schema', function() {
       .then(votes => {
         expect(votes[0]).to.equal(0);
         expect(votes[1]).to.equal(1);
+        done();
       });
   });
 });

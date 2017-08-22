@@ -10,28 +10,30 @@ describe('User Schema', function() {
     return db.sync({force: true});
   });
 
-  it('inserts new users', function() {
-    return User.model.create(user)
+  it('inserts new users', function(done) {
+    User.model.create(user)
       .then(function(newUser) {
         expect(newUser.id).to.exist;
         expect(newUser.username).to.exist;
         expect(newUser.salt).to.exist;
         expect(newUser.password).to.not.equal(user.password);
+        done();
       });
   });
 
-  it('does not allow duplicate users', function() {
-    return User.create(user)
+  it('does not allow duplicate users', function(done) {
+    User.create(user)
       .then(function(newUser) {
         return User.create(user);
       })
       .catch(function(error) {
         expect(error.message).to.equal('User already exists');
+        done();
       });
   });
 
-  it ('validates existing users', function() {
-    return User.create(user)
+  it ('validates existing users', function(done) {
+    User.create(user)
       .then(function() {
         return User.validate(user);
       })
@@ -40,8 +42,8 @@ describe('User Schema', function() {
       });
   });
 
-  it ('sanitizes user data on create', function() {
-    return User.create(user)
+  it ('sanitizes user data on create', function(done) {
+    User.create(user)
       .then(function(newUser) {
         expect(newUser.id).to.exist;
         expect(newUser.username).to.exist;
@@ -50,8 +52,8 @@ describe('User Schema', function() {
       });
   });
 
-  it ('sanitizes user data on read', function() {
-    return User.create(user)
+  it ('sanitizes user data on read', function(done) {
+    User.create(user)
       .then(({id}) => {
         return User.read({id});
       })
@@ -63,8 +65,8 @@ describe('User Schema', function() {
       });
   });
 
-  it ('sanitizes user data on findAll', function() {
-    return User.create(user)
+  it ('sanitizes user data on findAll', function(done) {
+    User.create(user)
       .then(() => {
         return User.create(user2);
       })

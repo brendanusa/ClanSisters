@@ -11,8 +11,8 @@ describe('Forum Schema', function() {
     return db.sync({force: true});
   });
 
-  it('inserts new Forums', function() {
-    return User.create(user)
+  it('inserts new Forums', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -25,12 +25,13 @@ describe('Forum Schema', function() {
         expect(newForum).to.exist;
         expect(newForum.name).to.equal(forum.name);
         expect(newForum.clanId).to.equal(forum.clanId);
+        done();
       });
   });
 
-  it('limits the number of new Forums', function() {
+  it('limits the number of new Forums', function(done) {
     let name = forum.name;
-    return User.create(user)
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -74,11 +75,12 @@ describe('Forum Schema', function() {
       })
       .catch(error => {
         expect(error.message).to.equal('A clan can only have 5 forums!');
+        done();
       });
   });
 
-  it('reads existing Forums', function() {
-    return User.create(user)
+  it('reads existing Forums', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -94,11 +96,12 @@ describe('Forum Schema', function() {
         expect(newForum).to.exist;
         expect(newForum.name).to.equal(forum.name);
         expect(newForum.clanId).to.equal(forum.clanId);
+        done();
       });
   });
 
-  it('updates existing forums', function() {
-    return User.create(user)
+  it('updates existing forums', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -118,11 +121,12 @@ describe('Forum Schema', function() {
         expect(newForum).to.exist;
         expect(newForum.name).to.equal('TEST');
         expect(newForum.clanId).to.equal(forum.clanId);
+        done();
       });
   });
 
-  it('deletes existing Forums', function() {
-    return User.create(user)
+  it('deletes existing Forums', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -140,6 +144,7 @@ describe('Forum Schema', function() {
       })
       .then(newForum => {
         expect(newForum).to.equal(null);
+        done();
       });
   });
 });

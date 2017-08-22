@@ -20,43 +20,58 @@ describe('Express Middleware', function() {
     return db.sync({force: true});
   });
 
-  it('should have index.html', function() {
-    return request.get('/')
+  it('should have index.html', function(done) {
+    request.get('/')
       .expect(200)
-      .expect('Content-Type', /html/);
+      .expect('Content-Type', /html/)
+      .then(() => {
+        done();
+      });
   });
 
-  it('should have users', function() {
-    return request.get('/api/users')
-      .expect(200);
+  it('should have users', function(done) {
+    request.get('/api/users')
+      .expect(200)
+      .then(() => {
+        done();
+      });
   });
 
-  it('should return users from get to /users/:user', function() {
-    return User.create(user)
+  it('should return users from get to /users/:user', function(done) {
+    User.create(user)
       .then(newUser => {
         return request.get(`/api/users/${newUser.id}`)
           .expect(200)
           .expect('Content-Type', /json/);
+      })
+      .then(() => {
+        done();
       });
   });
 
-  it('should create a new user with post to /users ', function() {
-    return request.post('/api/users')
+  it('should create a new user with post to /users ', function(done) {
+    request.post('/api/users')
       .send({username: 'foo', password: 'bar'})
       .set('Content-Type', 'application/json')
-      .expect(200);
+      .expect(200)
+      .then(() => {
+        done();
+      });
   });
 
-  it('should delete a new user with delete to /users ', function() {
-    return User.create(user)
+  it('should delete a new user with delete to /users ', function(done) {
+    User.create(user)
       .then(newUser => {
         return request.delete(`/api/users/${newUser.id}`)
           .expect(200);
+      })
+      .then(() => {
+        done();
       });
   });
 
-  it('should create a new member with post to /users/:user/members/ ', function() {
-    return User.create(user)
+  it('should create a new member with post to /users/:user/members/ ', function(done) {
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.create(clan);
@@ -66,12 +81,15 @@ describe('Express Middleware', function() {
           .send({clanId: newClan.id})
           .set('Content-Type', 'application/json')
           .expect(200);
+      })
+      .then(() => {
+        done();
       });
   });
 
-  it('should remove membership with delete to /users/:user/members/:member', function() {
+  it('should remove membership with delete to /users/:user/members/:member', function(done) {
     let userId;
-    return User.create(user)
+    User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.create(clan);
@@ -89,6 +107,7 @@ describe('Express Middleware', function() {
       .then(response => {
         expect(response.body.clanId).to.equal(String(clan.id));
         expect(response.body.userId).to.equal(String(clan.userId));
+        done();
       });
   });
 });
