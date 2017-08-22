@@ -1,5 +1,4 @@
 import React from 'react';
-import Express from 'express';
 import AutoComplete from 'material-ui/AutoComplete';
 import clanCreator from './clanCreator.jsx'
 
@@ -35,8 +34,7 @@ const Home = (props) => {
     </div>
     <div className = 'clanCreator' >
       <clanCreator />
-
-
+    </div>
   </div>
 
 }
