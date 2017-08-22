@@ -1,20 +1,20 @@
-const {User, Clan, Member} = require('../database');
+const {User, Clan, Member} = require('../../database');
 const {expect} = require('chai');
-const {db} = require('../database/connection');
+const {db} = require('../../database/connection');
 
 let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
 let clan = {name: 'test_clan_please_ignore', userId: 0};
 
-describe('Member Schema', function() {
-  beforeEach(function(done) {
+describe('Member Schema', () => {
+  beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
         done();
       });
   });
   
-  it('inserts new members', function(done) {
+  it('inserts new members', (done) => {
     User.create(user)
       .then(newUser => {
         user.id = newUser.id;
@@ -30,7 +30,7 @@ describe('Member Schema', function() {
       });
   });
 
-  it('reads a member', function(done) {
+  it('reads a member', (done) => {
     User.create(user)
       .then(newUser => {
         user.id = newUser.id;
@@ -52,7 +52,7 @@ describe('Member Schema', function() {
       });
   });
 
-  it('reads members', function(done) {
+  it('reads members', (done) => {
     User.create(user)
       .then(newUser => {
         user.id = newUser.id;

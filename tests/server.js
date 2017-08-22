@@ -12,18 +12,18 @@ let clan = {name: 'test_clan_please_ignore', userId: 0};
 /**
  * @todo Double check with the database that changes went through.
  */
-describe('Express Middleware', function() {
+describe('Express Middleware', () => {
   
   let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
 
-  beforeEach(function(done) {
+  beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
         done();
       });
   });
 
-  it('should have index.html', function(done) {
+  it('should have index.html', (done) => {
     request.get('/')
       .expect(200)
       .expect('Content-Type', /html/)
@@ -32,7 +32,7 @@ describe('Express Middleware', function() {
       });
   });
 
-  it('should have users', function(done) {
+  it('should have users', (done) => {
     request.get('/api/users')
       .expect(200)
       .then(() => {
@@ -40,7 +40,7 @@ describe('Express Middleware', function() {
       });
   });
 
-  it('should return users from get to /users/:user', function(done) {
+  it('should return users from get to /users/:user', (done) => {
     User.create(user)
       .then(newUser => {
         return request.get(`/api/users/${newUser.id}`)
@@ -52,7 +52,7 @@ describe('Express Middleware', function() {
       });
   });
 
-  it('should create a new user with post to /users ', function(done) {
+  it('should create a new user with post to /users ', (done) => {
     request.post('/api/users')
       .send({username: 'foo', password: 'bar'})
       .set('Content-Type', 'application/json')
@@ -62,7 +62,7 @@ describe('Express Middleware', function() {
       });
   });
 
-  it('should delete a new user with delete to /users ', function(done) {
+  it('should delete a new user with delete to /users ', (done) => {
     User.create(user)
       .then(newUser => {
         return request.delete(`/api/users/${newUser.id}`)
@@ -73,7 +73,7 @@ describe('Express Middleware', function() {
       });
   });
 
-  it('should create a new member with post to /users/:user/members/ ', function(done) {
+  it('should create a new member with post to /users/:user/members/ ', (done) => {
     User.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
@@ -90,7 +90,7 @@ describe('Express Middleware', function() {
       });
   });
 
-  it('should remove membership with delete to /users/:user/members/:member', function(done) {
+  it('should remove membership with delete to /users/:user/members/:member', (done) => {
     let userId;
     User.create(user)
       .then(newUser => {

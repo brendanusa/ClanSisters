@@ -1,7 +1,7 @@
 const {expect} = require('chai');
-const {app} = require('../server/server');
+const {app} = require('../../server/server');
 const request = require('supertest').agent(app);
-const {db} = require('../database/connection');
+const {db} = require('../../database/connection');
 
 let clan = {name: 'test_clan_please_ignore'};
 let forum = {name: 'test_forum_please_ignore', clanId: 0};
@@ -11,15 +11,15 @@ let post = {
   body: 'test_body_please_ignore',
 };
 
-describe('Forums API Endpoint', function() {
-  beforeEach(function(done) {
+describe('Forums API Endpoint', () => {
+  beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
         done();
       });
   });
 
-  it('should retrieve an array', function(done) {
+  it('should retrieve an array', (done) => {
     request.get('/api/clans')
       .expect(200)
       .then(res => {
@@ -29,7 +29,7 @@ describe('Forums API Endpoint', function() {
       });
   });
 
-  it('should insert new forum', function(done) {
+  it('should insert new forum', (done) => {
     request.post('/api/clans')
       .send(clan)
       .then(res => {
@@ -49,7 +49,7 @@ describe('Forums API Endpoint', function() {
       });
   });
 
-  it('should retrieve existing forums with a query', function(done) {
+  it('should retrieve existing forums with a query', (done) => {
     request.post('/api/clans')
       .send(clan)
       .then(res => {
@@ -77,7 +77,7 @@ describe('Forums API Endpoint', function() {
       });
   });
   
-  it('should update existing clans', function(done) {
+  it('should update existing clans', (done) => {
     let id;
     request.post('/api/clans')
       .send(clan)
@@ -107,7 +107,7 @@ describe('Forums API Endpoint', function() {
       });
   });
 
-  it('should delete existing forums', function(done) {
+  it('should delete existing forums', (done) => {
     let id;
     request.post('/api/clans')
       .send(clan)
@@ -136,7 +136,7 @@ describe('Forums API Endpoint', function() {
       });
   });
 
-  it('should create posts', function(done) {
+  it('should create posts', (done) => {
     request.post('/api/clans')
       .send(clan)
       .then(res => {

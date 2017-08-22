@@ -16,7 +16,7 @@ const MemberModel = db.define('member', {
 
 let Member = {model: MemberModel};
 
-Member.create = Member.joinUserToClan = function(userId, clanId, confirmed = false) {
+Member.create = Member.joinUserToClan = (userId, clanId, confirmed = false) => {
   return User.find({id: userId})
     .then(user => {
       if (!user) { throw new Error('No such user! ' + userId); }
@@ -28,19 +28,19 @@ Member.create = Member.joinUserToClan = function(userId, clanId, confirmed = fal
     });
 };
 
-Member.read = Member.find = function(query) {
+Member.read = Member.find = (query) => {
   return Member.model.findOne(query);
 };
 
-Member.readAll = Member.findAll = function(query = {}) {
+Member.readAll = Member.findAll = (query = {}) => {
   return Member.model.findAll({where: query});
 };
 
-Member.confirm = function({userId, clanId}) {
+Member.confirm = ({userId, clanId}) => {
   return Member.model.update({confirmed: true}, {userId, clanId});
 };
 
-Member.delete = function({userId, clanId}) {
+Member.delete = ({userId, clanId}) => {
   return Member.model.destroy({where: {userId, clanId}});
 };
 

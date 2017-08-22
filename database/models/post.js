@@ -19,7 +19,7 @@ const PostModel = db.define('post', {
 
 const Post = {model: PostModel};
 
-Post.findAll = function(query = {}) {
+Post.findAll = (query = {}) => {
   return PostModel.findAll({where: {}});
 };
 
@@ -36,11 +36,11 @@ Post.create = ({title, body, pinned, userId, forumId}) => {
   return PostModel.create({title, body, pinned, userId, forumId});
 };
 
-Post.read = Post.find = function(query) {
+Post.read = Post.find = (query) => {
   return PostModel.findOne({where: query});
 };
 
-Post.update = function(query, values) {
+Post.update = (query, values) => {
   return Post.find(query)
     .then(post => {
       if (!post) {
@@ -50,7 +50,7 @@ Post.update = function(query, values) {
     });
 };
 
-Post.delete = Post.destroy = function(query) {
+Post.delete = Post.destroy = (query) => {
   return PostModel.destroy({where: query});
 };
 

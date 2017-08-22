@@ -7,7 +7,7 @@ const {Sequelize, db} = require('../connection');
 const Clan = require('./clan');
 const Post = require('./post');
 
-const hashData = function(data, salt = '') {
+const hashData = (data, salt = '') => {
   let shasum = crypto.createHash('sha256');
   shasum.update(data + salt);
   return shasum.digest('hex');
@@ -28,9 +28,8 @@ const UserModel = db.define('user', {
   }
 }, {
   hooks: {
-    beforeCreate: function(user) {
+    beforeCreate: (user) => {
       user.salt = crypto.randomBytes(32).toString('hex');
-
       user.password = hashData(user.password, user.salt);
     }
   }
@@ -60,12 +59,12 @@ const joinArray = [
   },
 ];
 
-User.create = function({username, password}) {
+User.create = ({username, password}) => {
   return UserModel.findOrCreate({
     where: {username},
     defaults: {password}
   })
-    .spread(function(user, created) {
+    .spread((user, created) => {
       if (!created) {
         throw new Error('User already exists');
       }
@@ -77,9 +76,9 @@ User.create = function({username, password}) {
     .then(user => user.toJSON());
 };
 
-User.validate = function({username, password}) {
+User.validate = ({username, password}) => {
   return UserModel.findOne({where: {username}})
-    .then(function(user) {
+    .then((user) => {
       if (user && user.password === hashData(password, user.salt)) {
         return user.reload({
           include: joinArray
@@ -91,7 +90,7 @@ User.validate = function({username, password}) {
     });
 };
 
-User.findAll = function(query = {}) {
+User.findAll = (query = {}) => {
   return UserModel.findAll({
     where: query,
     attributes: {
@@ -102,7 +101,7 @@ User.findAll = function(query = {}) {
     .map(user => user.toJSON());
 };
 
-User.read = User.find = function(query = {}) {
+User.read = User.find = (query = {}) => {
   return UserModel.findOne({
     where: query,
     attributes: {
@@ -119,14 +118,14 @@ User.read = User.find = function(query = {}) {
  * Model.update returns an array with the affected row count and the rows affected.
  * It should be decided how that is returned later.
  */
-User.update = function(query, values) {
+User.update = (query, values) => {
   return UserModel.update({values: values}, {where: query});
 };
 
 /**
  * Model.destroy returns the rows affected and does not need to be sanitized.
  */
-User.delete = function(query) {
+User.delete = (query) => {
   return UserModel.destroy({where: query});
 };
 

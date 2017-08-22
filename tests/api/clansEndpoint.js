@@ -1,19 +1,19 @@
 const {expect} = require('chai');
-const {app} = require('../server/server');
+const {app} = require('../../server/server');
 const request = require('supertest').agent(app);
-const {db} = require('../database/connection');
+const {db} = require('../../database/connection');
 
 let testClan = {name: 'test_clan_please_ignore'};
 
-describe('Clans API Endpoint', function() {
-  beforeEach(function(done) {
+describe('Clans API Endpoint', () => {
+  beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
         done();
       });
   });
 
-  it('should retrieve an array', function(done) {
+  it('should retrieve an array', (done) => {
     request.get('/api/clans')
       .expect(200)
       .then(res => {
@@ -23,7 +23,7 @@ describe('Clans API Endpoint', function() {
       });
   });
 
-  it('should insert new clans', function(done) {
+  it('should insert new clans', (done) => {
     request.post('/api/clans')
       .send(testClan)
       .expect(201)
@@ -33,7 +33,7 @@ describe('Clans API Endpoint', function() {
       });
   });
 
-  it('should retrieve existing clans', function(done) {
+  it('should retrieve existing clans', (done) => {
     let newClan;
 
     request.post('/api/clans')
@@ -62,7 +62,7 @@ describe('Clans API Endpoint', function() {
       });
   });
 
-  it('should retrieve existing clans with a query', function(done) {
+  it('should retrieve existing clans with a query', (done) => {
     request.post('/api/clans')
       .send(testClan)
       .expect(201)
@@ -87,7 +87,7 @@ describe('Clans API Endpoint', function() {
       });
   });
   
-  it('should update existing clans', function(done) {
+  it('should update existing clans', (done) => {
     let row;
 
     request.post('/api/clans/1')
@@ -115,7 +115,7 @@ describe('Clans API Endpoint', function() {
       });
   });
 
-  it('should delete existing clans', function(done) {
+  it('should delete existing clans', (done) => {
     let row;
 
     request.delete('/api/clans/1')

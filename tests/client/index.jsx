@@ -1,4 +1,4 @@
-describe('App', function() {
+describe('App', () => {
   let {
     Simulate,
     renderIntoDocument,
@@ -8,13 +8,13 @@ describe('App', function() {
 
   let app;
 
-  beforeEach(function() {
+  beforeEach(() => {
     app = renderIntoDocument(
       <App />
     );
   });
 
-  it('should be a stateful class component', function() {
+  it('should be a stateful class component', () => {
     expect(React.Component.isPrototypeOf(App)).to.be.true;
   });
 });

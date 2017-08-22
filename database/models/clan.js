@@ -43,7 +43,7 @@ const joinArray = [
   }
 ];
 
-Clan.findAll = function(query = {}) {
+Clan.findAll = (query = {}) => {
   return ClanModel.findAll({
     where: query,
     include: joinArray
@@ -56,9 +56,9 @@ const MAX_CLANS_PER_USER = 5;
 /**
  * Clan crud methods.
  */
-Clan.create = function({name, creatorId, tag, avatar, description}) {
+Clan.create = ({name, creatorId, tag, avatar, description}) => {
   return ClanModel.findOne({where: {name}})
-    .then(function(clan) {
+    .then((clan) => {
       if (clan) {
         throw new Error('Clan already exists');
       }
@@ -77,7 +77,7 @@ Clan.create = function({name, creatorId, tag, avatar, description}) {
     .then(clan => clan.toJSON());
 };
 
-Clan.read = Clan.find = function(query) {
+Clan.read = Clan.find = (query) => {
   return ClanModel.findOne({
     where: query,
     include: joinArray
@@ -85,11 +85,11 @@ Clan.read = Clan.find = function(query) {
     .then(clan => clan && clan.toJSON());
 };
 
-Clan.update = function(query, values) {
+Clan.update = (query, values) => {
   return ClanModel.update(values, {where: query});
 };
 
-Clan.delete = function(query) {
+Clan.delete = (query) => {
   return ClanModel.destroy({where: query});
 };
 

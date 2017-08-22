@@ -199,7 +199,7 @@ class App extends React.Component {
           }
         );
       })
-      .catch(function(error) {
+      .catch((error) => {
         console.log(error);
       });
   }
