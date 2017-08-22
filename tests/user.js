@@ -39,6 +39,7 @@ describe('User Schema', function() {
       })
       .then(function(user) {
         expect(user).to.exist;
+        done();
       });
   });
 
@@ -49,6 +50,7 @@ describe('User Schema', function() {
         expect(newUser.username).to.exist;
         expect(newUser.salt).to.not.exist;
         expect(newUser.password).to.not.exist;
+        done();
       });
   });
 
@@ -62,6 +64,7 @@ describe('User Schema', function() {
         expect(newUser.username).to.exist;
         expect(newUser.salt).to.not.exist;
         expect(newUser.password).to.not.exist;
+        done();
       });
   });
 
@@ -80,6 +83,7 @@ describe('User Schema', function() {
           expect(user.salt).to.not.exist;
           expect(user.password).to.not.exist;
         });
+        done();
       });
   });
 });
