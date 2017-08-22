@@ -6,7 +6,7 @@ import { Route, Redirect } from 'react-router';
 
 /**
  * This component manages the majority of the total state.
- * 
+ *
  */
 class App extends React.Component {
 
@@ -38,12 +38,12 @@ class App extends React.Component {
     this.fetchClans();
     // TODO: Get all Messages
   }
- 
+
   /**
    * Reset application state to default.
-   * 
+   *
    * @param {String} message - Message to log when done
-   * @param {Boolean} hard - Leave data available to unauthenticated users 
+   * @param {Boolean} hard - Leave data available to unauthenticated users
    */
   setDefaultState(message, hard = false) {
     this.setState(
@@ -53,7 +53,7 @@ class App extends React.Component {
           username: undefined,
           clans: [],
           posts: [],
-        }, 
+        },
         clans: hard ? [] : this.state.clans
       }, () => {
         console.log(message);
@@ -104,8 +104,8 @@ class App extends React.Component {
             user: newUser
           }, () => {
             console.log(
-              `${this.state.user.clans.length ? ('You are a member of ' + 
-              this.state.user.clans.map(c => c.name).join(', ')) : 
+              `${this.state.user.clans.length ? ('You are a member of ' +
+              this.state.user.clans.map(c => c.name).join(', ')) :
                 'you haven\'t joined any clans yet!'}`);
           });
       })
@@ -116,8 +116,8 @@ class App extends React.Component {
 
   /**
    * Fetch the clans created by a given user.
-   *  
-   * @param {object} query 
+   *
+   * @param {object} query
    */
   fetchUsersClans(query = {creatorId: this.state.user.userId}) {
     return axios.get('/api/clans/', {query})
@@ -178,7 +178,7 @@ class App extends React.Component {
 
   /**
    * Attempt to login a user object. On success, fetch user's clans and friends.
-   * 
+   *
    * @param {Object} user Has a `username` and `password` property
    * @todo Redirect on success or inform user on failure
    */
@@ -206,7 +206,7 @@ class App extends React.Component {
 
   /**
    * Logout by clearing all state back to default conditions.
-   * @param {object} - User object 
+   * @param {object} - User object
    */
   logoutUser(user) {
     console.log('Logging out...');
@@ -223,7 +223,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header 
+        <Header
           username={this.state.user.username}
           clans={this.state.user.clans || []}
         />

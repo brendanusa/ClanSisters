@@ -9,7 +9,7 @@ class About extends Component {
     };
     this.h = this.h.bind(this);
   }
-  
+
   h() {
     this.setState({c: ++this.state.c});
   }

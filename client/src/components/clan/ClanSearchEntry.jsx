@@ -6,7 +6,7 @@ import { Button, ButtonToolbar, ButtonGroup, Glyphicon } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 /**
- * 
+ *
  * @todo Add User as Friend
  * @todo Inform user to successful friend add
  * @todo Need to show Add friend when not looking own profile
