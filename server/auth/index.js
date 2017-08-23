@@ -1,7 +1,12 @@
 const router = require('express').Router();
 const {User} = require('../../database');
+const steamAuth = require('./strategies/steam');
+const userSerialization = require('./user');
 
-module.exports = (passport) => {
+module.exports = (passport, userModel) => {
+  userSerialization(passport, userModel);
+  steamAuth(passport, userModel);
+
   // For local auth
   router.post('/login', (req, res) => {
     // TODO - Implement with passport

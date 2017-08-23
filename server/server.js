@@ -3,34 +3,32 @@ const bodyParser = require('body-parser');
 const User = require('../database/models/user');
 const session = require('express-session');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
 const Store = require('connect-session-sequelize')(session.Store);
 const { db } = require('../database/connection');
 const app = express();
 const path = require('path');
 
-/**
- * Create the mySql store; passing in the database connection
- */
-const store = new Store({
-  db: db
-});
+// Create the mySQL store, passing in the database connection
+const store = new Store({db});
 
 if (process.env.MORGAN_LOGGING) {
   app.use(require('morgan')('dev'));
 }
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
-/**
- * Creates a new session
- */
+// Creates a new session
 app.use(session({
   name: 'MustardTigers',
   secret: '5 dollar gold club special',
   resave: true,
   saveUninitialized: true,
-  store: store
+  store
 }));
 
 
@@ -40,8 +38,8 @@ app.use('/api', express.Router()
 .use('/forums', require('./forums'))
 );
 
-// Authentication middleware
-app.use('/', require('./auth')(passport));
+// Authentication middleware and passport strategy initialization
+app.use('/', require('./auth')(passport, User.model));
 
 // Serve static files
 app.get('*/bundle.js', (req, res) => {

@@ -8,7 +8,6 @@ const UserModel = db.define('user', {
   },
   email: {
     type: Sequelize.STRING(40),
-    allowNull: false,
     unique: true
   },
   password: {
