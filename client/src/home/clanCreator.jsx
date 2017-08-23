@@ -5,7 +5,14 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 /*
 This clanCreator will NOT work without Redux, as it is dependent upon props being passed to it. 
-A refactor 
+A refactor with redux will probably do the following things. 
+First, it will put our open state within the state tree.
+Second, it will put place our handleOpen/Close functions into our actions.
+Third, it will use forms to send data back to our database when a new clan is created.
+
+
+Right now the click events don't work correctly, however I don't see the need to invest time into fixing this--
+when this will be refactored anyway. 
 */
 export default class ClanCreator extends React.Component {
   constructor (props ) {
@@ -56,7 +63,7 @@ export default class ClanCreator extends React.Component {
           Testing, input boxes will be here eventually.
         </Dialog>
 
-        
+
       </div>
     );
   }
