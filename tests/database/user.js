@@ -18,11 +18,11 @@ describe('User Schema', () => {
     User.model.create(user)
       .then((newUser) => {
         expect(newUser.id).to.exist;
-        expect(newUser.steam_id).to.exist;
-        expect(newUser.steam_avatar_image_url).to.exist;
-        expect(newUser.steam_profile_url).to.exist;
-        expect(newUser.steam_screen_name).to.exist;
-        expect(newUser.steam_real_name).to.exist;
+        expect(newUser.steamId).to.exist;
+        expect(newUser.steamAvatarImageUrl).to.exist;
+        expect(newUser.steamProfileUrl).to.exist;
+        expect(newUser.steamScreenName).to.exist;
+        expect(newUser.steamRealName).to.exist;
         done();
       });
   });
