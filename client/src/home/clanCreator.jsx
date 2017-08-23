@@ -55,6 +55,8 @@ export default class ClanCreator extends React.Component {
         >
           Testing, input boxes will be here eventually.
         </Dialog>
+
+        
       </div>
     );
   }

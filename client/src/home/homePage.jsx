@@ -25,6 +25,7 @@ const menuProps = {
 
 const Home = (props) => {
   return (  <div>
+    <h3> Welcome to ClanSisters!! </h3>
       <div className = 'clanSearchBox'>
         <AutoComplete
         hintText="Find a clan!!"
