@@ -8,21 +8,21 @@ import Clan from './page-components/ClanPage.jsx';
 import Forum from './page-components/ForumPage.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './styles.css';
-/* 
+/*
 Captains Log: StarDate 8/22/2017-9:50PM.
-As of right now there are a few pages scaffoled with fake data. 
-They are not really formatted in any way, I have just added in the 
+As of right now there are a few pages scaffoled with fake data.
+They are not really formatted in any way, I have just added in the
 Material-UI components, along with instructions as to how they should be
-hooked up to live data. Page formatting and visual organization is not implemented. 
-Doing css styling is merely cosmetic and can be added later after we get functional. 
+hooked up to live data. Page formatting and visual organization is not implemented.
+Doing css styling is merely cosmetic and can be added later after we get functional.
 
-note: Disabled dynamic routing for testing purposes. 
+note: Disabled dynamic routing for testing purposes.
 
-Captains Log: StarDate 8/23/2017-3:36PM. 
+Captains Log: StarDate 8/23/2017-3:36PM.
 Scaffolding progress is probably about 2/3 finished. The clans and forum pages still need to
 be added. I am quite happy with the way that the material-ui looks so far, but I do think
-that the forum page might need a different ui, as I'm not sure that there's really a good 
-material-ui component for this. 
+that the forum page might need a different ui, as I'm not sure that there's really a good
+material-ui component for this.
 */
 
 
@@ -51,9 +51,9 @@ const App = () => (
 
 /** Render App using React Router. */
 ReactDOM.render((
-  <MuiThemeProvider>    
+  <MuiThemeProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
-  </MuiThemeProvider>    
+  </MuiThemeProvider>
 ), document.getElementById('root'));

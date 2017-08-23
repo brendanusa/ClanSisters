@@ -1,7 +1,12 @@
 import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
+<<<<<<< HEAD:client/src/page-components/homePage.jsx
 import ClanCreator from '../components/ClanCreator.jsx'
 import AllClans from '../components/AllClans.jsx'
+=======
+import ClanCreator from './clanCreator.jsx'
+import AllClans from './allClans.jsx'
+>>>>>>> Added clans list.:client/src/home/homePage.jsx
 /*
 Dear Brendan/Others. I am using the material-ui autocomplete.
 It takes in a datasource array. That array should be a list of clan names.
