@@ -3,14 +3,16 @@ const Clan = require('./clan');
 const Post = require('./post');
 
 const UserModel = db.define('user', {
+  steam_id: {
+    type: Sequelize.STRING(40)
+  },
   email: {
     type: Sequelize.STRING(40),
     allowNull: false,
     unique: true
   },
   password: {
-    type: Sequelize.STRING(64),
-    allowNull: false
+    type: Sequelize.STRING(64)
   },
   screen_name: {
     type: Sequelize.STRING(40),
