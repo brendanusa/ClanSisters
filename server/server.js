@@ -33,9 +33,9 @@ app.use(session({
 
 
 app.use('/api', express.Router()
-.use('/users', require('./users'))
-.use('/clans', require('./clans'))
-.use('/forums', require('./forums'))
+  .use('/users', require('./users'))
+  .use('/clans', require('./clans'))
+  .use('/forums', require('./forums'))
 );
 
 // Authentication middleware and passport strategy initialization

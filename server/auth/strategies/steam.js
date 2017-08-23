@@ -24,28 +24,28 @@ module.exports = (passport, userModel) => {
       process.nextTick(() => {
         User.findOne({
           where: {
-            steam_id: profile.id
+            steamId: profile.id
           }
         })
-        .then((user) => {
-          if (user) {
-            return done(null, user);
-          } else {
-            User.create({
-              steam_id: profile.id,
-              steam_avatar_image_url: profile._json.avatarfull,
-              steam_profile_url: profile._json.profileurl,
-              steam_screen_name: profile._json.personaname,
-              steam_real_name: profile._json.realname
-            })
-            .then((newUser) => {
-              return done(null, newUser);
-            });
-          }
-        })
-        .catch((err) => {
-          return done(err);
-        });
+          .then((user) => {
+            if (user) {
+              return done(null, user);
+            } else {
+              User.create({
+                steamId: profile.id,
+                steamAvatarImageUrl: profile._json.avatarfull,
+                steamProfileUrl: profile._json.profileurl,
+                steamScreenName: profile._json.personaname,
+                steamRealName: profile._json.realname
+              })
+                .then((newUser) => {
+                  return done(null, newUser);
+                });
+            }
+          })
+          .catch((err) => {
+            return done(err);
+          });
       });
     }
   ));
