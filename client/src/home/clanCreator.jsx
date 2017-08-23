@@ -4,21 +4,25 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
 /*
-I know that we want to have our state within our redux, but right now we need
-to have the true/false state here. This can be refactored out in the future.
+This clanCreator will NOT work without Redux, as it is dependent upon props being passed to it. 
+A refactor 
 */
-export default class clanCreator extends React.Component {
+export default class ClanCreator extends React.Component {
   constructor (props ) {
     super(props)
     this.state = {
       open: false,
     };
 
+
+
   const handleOpen = () => {
+    console.log('opening')
     this.setState({open: true});
   };
 
   const handleClose = () => {
+    console.log('closing')
     this.setState({open: false});
   };
 }
@@ -28,18 +32,19 @@ export default class clanCreator extends React.Component {
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose.bind(this)}
+        onClick={this.handleClose}
       />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose.bind(this)}
+        onClick={this.handleClose}
       />,
     ];
 
     return (
       <div>
+
         <RaisedButton label="Create your own clan!!!" onClick={this.handleOpen} />
         <Dialog
           title="Create a new clan"
@@ -50,6 +55,8 @@ export default class clanCreator extends React.Component {
         >
           Testing, input boxes will be here eventually.
         </Dialog>
+
+        
       </div>
     );
   }

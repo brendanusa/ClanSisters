@@ -1,6 +1,6 @@
 import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
-import clanCreator from './clanCreator.jsx'
+import ClanCreator from './clanCreator.jsx'
 
 /*
 Dear Brendan/Others. I am using the material-ui autocomplete.
@@ -25,6 +25,7 @@ const menuProps = {
 
 const Home = (props) => {
   return (  <div>
+    <h3> Welcome to ClanSisters!! </h3>
       <div className = 'clanSearchBox'>
         <AutoComplete
         hintText="Find a clan!!"
@@ -32,9 +33,7 @@ const Home = (props) => {
         menuProps={menuProps}
         />
       </div>
-      <div className = 'clanCreator' >
-        <clanCreator />
-      </div>
+        <ClanCreator />
     </div>
   )
 }
