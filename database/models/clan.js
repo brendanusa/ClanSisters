@@ -56,7 +56,7 @@ const MAX_CLANS_PER_USER = 5;
 /**
  * Clan crud methods.
  */
-Clan.create = ({name, tag, avatar, description}, creator) => {
+Clan.create = (creator, {name, tag, avatar, description}) => {
   let creatorId = creator.id;
   return ClanModel.findOne({where: {name}})
     .then((clan) => {

@@ -18,7 +18,7 @@ describe('Clan Schema', () => {
     User.model.create(user)
       .then(newUser => {
         clan.creatorId = newUser.id;
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then((newClan) => {
         expect(newClan).to.exist;
@@ -32,10 +32,10 @@ describe('Clan Schema', () => {
     User.model.create(user)
       .then((newUser) => {
         clan.userId = newUser.id;
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .catch((error) => {
         expect(error.message).to.equal('Clan already exists');
@@ -47,7 +47,7 @@ describe('Clan Schema', () => {
     User.model.create(user)
       .then((newUser) => {
         clan.userId = newUser.id;
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(({id}) => {
         return Clan.read({id});
@@ -63,7 +63,7 @@ describe('Clan Schema', () => {
     User.model.create(user)
       .then((newUser) => {
         clan.userId = newUser.id;
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(({id}) => {
         clan.id = id;
@@ -83,7 +83,7 @@ describe('Clan Schema', () => {
     User.model.create(user)
       .then((newUser) => {
         clan.userId = newUser.id;
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(({id}) => {
         clan.id = id;
@@ -102,27 +102,27 @@ describe('Clan Schema', () => {
     User.model.create(user)
       .then((newUser) => {
         clan.creatorId = newUser.id;
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         clan.name = clan.name + 'x';
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         clan.name = clan.name + 'x';
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         clan.name = clan.name + 'x';
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         clan.name = clan.name + 'x';
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         clan.name = clan.name + 'x';
-        return Clan.create(clan, user);
+        return Clan.create(user, clan);
       })
       .then(() => {
         throw new Error('A clan limit didnt exist!');
