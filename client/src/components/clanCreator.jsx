@@ -16,11 +16,6 @@ when this will be refactored anyway.
 
 The Material-ui Text Field component is probably the best to use within our dialog box.
 I (Sam) have not added this feature yet, but may if I get everything scaffolded.
-=======
-
-The Material-ui Text Field component is probably the best to use within our dialog box.
-I (Sam) have not added this feature yet, but may if I get everything scaffolded.
->>>>>>> Home page scaffolded, user page next.:client/src/home/clanCreator.jsx
 */
 export default class ClanCreator extends React.Component {
   constructor (props ) {
