@@ -8,7 +8,7 @@ associated with the clan would take this to the next level.
 
 Our functions should take us to the forum page of the appropriate clan when clicked upon.
 Right now we just have text in our chips. I am just using a map in order to dynamically create
-our chips right now, I'm not sure if this process can be made easier via redux. 
+our chips right now, I'm not sure if this process can be made easier via redux.
 
 In order to add an avatar to our chips use the following code: <Avatar src="IMAGE_SOURCE" />
 *note Avatar must be imported from material-ui. I have already done this in the UserClanChips component.

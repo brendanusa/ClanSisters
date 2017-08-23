@@ -1,14 +1,10 @@
 import React from 'react'
 <<<<<<< HEAD
 import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
-=======
-import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
->>>>>>> Started scaffolding on clan page
 
 /*
 This component is designed to show all of the userPosts of the current user.
 they will probably need to be throttled in some fashion, as simply showing every
-<<<<<<< HEAD
 single post that a user has ever created is not optimal. I'm going to build this
 with some fake data right now. Data needs to be passed into this component
 via a map/forEach.
