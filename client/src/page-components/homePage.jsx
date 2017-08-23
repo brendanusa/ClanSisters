@@ -1,7 +1,7 @@
 import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
-import ClanCreator from './clanCreator.jsx'
-import AllClans from './allClans.jsx'
+import ClanCreator from '../components/clanCreator.jsx'
+import AllClans from '../components/allClans.jsx'
 /*
 Dear Brendan/Others. I am using the material-ui autocomplete.
 It takes in a datasource array. That array should be a list of clan names.
@@ -9,7 +9,7 @@ Please set this somewhere and pass it in the datasource object.
 Right Now I am just going to pass a test object in to ensure that it works correctly.
 
 
-I have a div for the users online, it just needs to be passed whatever props we will use to populate this box. 
+I have a div for the users online, it just needs to be passed whatever props we will use to populate this box.
 */
 
 
@@ -28,7 +28,7 @@ const menuProps = {
 };
 
 const Home = (props) => {
-  var usersOnlineStyles = {  
+  var usersOnlineStyles = {
   width: '300px',
   border: '25px black',
   padding: '25px',
@@ -47,8 +47,9 @@ const Home = (props) => {
         <AllClans />
       </div>
       <div style= {usersOnlineStyles} >
-        PlaceHolder for Users Online. 
+        PlaceHolder for Users Online.
       </div>
+
     </div>
   )
 }
