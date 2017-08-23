@@ -29,13 +29,13 @@ router.route('/')
   })
   .post((req, res, next) => {
     User.create({
-      username: req.body.username, 
+      email: req.body.email, 
       password: req.body.password
     })
       .then(user => {
         req.session.userId = user.id;
 
-        res.json(user.username);
+        res.json(user.email);
       })
       .catch(except => {
         res.status(400);
@@ -196,7 +196,7 @@ router.route('/:user')
   })
   .post((req, res, next) => {
     User.update({id: req.params.id}, {
-      username: req.body.username,
+      email: req.body.email,
       password: req.body.password,
     })
       .then(doc => {
