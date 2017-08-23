@@ -4,6 +4,10 @@ let STEAM_API_KEY = process.env.STEAM_API_KEY;
 let STEAM_ORIGIN_URL = process.env.STEAM_ORIGIN_URL;
 let STEAM_CALLBACK_URL = process.env.STEAM_CALLBACK_URL;
 
+console.log(STEAM_API_KEY);
+console.log(STEAM_ORIGIN_URL);
+console.log(STEAM_CALLBACK_URL);
+
 if (!(STEAM_API_KEY && STEAM_CALLBACK_URL && STEAM_ORIGIN_URL)) {
   const steamConfig = require('../configs/steam.json');
   STEAM_API_KEY = steamConfig.STEAM_API_KEY;
