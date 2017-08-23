@@ -70,11 +70,4 @@ User.update = (query, values) => {
   return UserModel.update({values: values}, {where: query});
 };
 
-/**
- * Model.destroy returns the rows affected and does not need to be sanitized.
- */
-User.delete = (query) => {
-  return UserModel.destroy({where: query});
-};
-
 module.exports = User;
