@@ -5,8 +5,7 @@ const Member = require('../database/models/member');
   
 /**
  * A get request to the users endpoint returns all users as an array of json
- * objects. A post to users creates a new user and returns the new user's id as 
- * the id property of the reponse.
+ * objects.
  * 
  * @param  {function} (req, res, next) - Request handler 
  */
@@ -21,25 +20,6 @@ router.route('/')
       .catch(except => {
         res.status(400);
         res.end(except.message || 'Unable to fetch users!');
-      })
-      .error(error => {
-        res.status(500);
-        res.end(error.message || 'Internal error');
-      });
-  })
-  .post((req, res, next) => {
-    User.create({
-      email: req.body.email, 
-      password: req.body.password
-    })
-      .then(user => {
-        req.session.userId = user.id;
-
-        res.json(user.email);
-      })
-      .catch(except => {
-        res.status(400);
-        res.end(except.message || 'Unable to create user!');
       })
       .error(error => {
         res.status(500);
