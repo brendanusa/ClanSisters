@@ -90,7 +90,7 @@ class Login extends React.Component {
         <TextField onKeyPress={this.handleKeyPress} floatingLabelText='Password' type='password' value={this.state.password} onChange={this.handleInputChange.bind(this, 'password')} /><br/>
         <RaisedButton className='btn' onClick={this.sendLoginRequest}>Login</RaisedButton>
         <FlatButton className='btn' href='/signup'>Sign Up</FlatButton><br/>
-        <GoogleButton className='btn' onClick={this.googleOAuthRedirect} />
+        <GoogleButton className='btn' onClick={this.googleOAuthRedirect} width={200} />
         <Snackbar open={this.state.showError} message={this.state.errorMessage} autoHideDuration={4000} onRequestClose={this.hideError} />
       </div>
     ) 
