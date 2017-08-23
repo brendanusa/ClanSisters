@@ -13,6 +13,9 @@ Third, it will use forms to send data back to our database when a new clan is cr
 
 Right now the click events don't work correctly, however I don't see the need to invest time into fixing this--
 when this will be refactored anyway. 
+
+The Material-ui Text Field component is probably the best to use within our dialog box. 
+I (Sam) have not added this feature yet, but may if I get everything scaffolded. 
 */
 export default class ClanCreator extends React.Component {
   constructor (props ) {
