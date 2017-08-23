@@ -85,12 +85,34 @@ Clan.read = Clan.find = (query) => {
     .then(clan => clan && clan.toJSON());
 };
 
-Clan.update = (query, values) => {
-  return ClanModel.update(values, {where: query});
+Clan.update = (user, query, values) => {
+  return ClanModel.findOne({
+    where: query
+  })
+    .then((clan) => {
+      if (!clan) {
+        throw new Error('Clan could not be found');
+      }
+      if (clan.creator.id !== user.id) {
+        throw new Error('Users cannot modify clans they do not own');
+      }
+      return ClanModel.update(values, {where: query});
+    });
 };
 
-Clan.delete = (query) => {
-  return ClanModel.destroy({where: query});
+Clan.delete = (user, query) => {
+  return ClanModel.findOne({
+    where: query
+  })
+    .then((clan) => {
+      if (!clan) {
+        throw new Error('Clan could not be found');
+      }
+      if (clan.creator.id !== user.id) {
+        throw new Error('Users cannot delete clans they do not own');
+      }
+      return ClanModel.destroy({where: query});
+    });
 };
 
 module.exports = Clan;

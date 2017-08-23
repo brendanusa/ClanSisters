@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {Clan, User} = require('../database');
+const auth = require('./authMiddleware');
 
 router.get('/', (req, res) => {
   return Clan.findAll(req.query)
@@ -44,9 +45,7 @@ router.get('/:clan/members', (req, res) => {
     });
 });
 
-// Validation middleware goes here
-
-router.post('/', (req, res) => {
+router.post('/', auth.isLoggedIn('redirect'), (req, res) => {
   return Clan.create(req.body)
     .then(newClan => {
       res.status(201).json(newClan);
@@ -56,7 +55,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/:clan', (req, res) => {
+router.post('/:clan', auth.isLoggedIn('redirect'), (req, res) => {
   Clan.update({id: req.params.clan}, req.body)
     .spread(affected => {
       if (affected) {
@@ -70,7 +69,7 @@ router.post('/:clan', (req, res) => {
     });
 });
 
-router.delete('/:clan', (req, res) => {
+router.delete('/:clan', auth.isLoggedIn('redirect'), (req, res) => {
   Clan.delete({id: req.params.clan})
     .then(affected => {
       if (affected) {
