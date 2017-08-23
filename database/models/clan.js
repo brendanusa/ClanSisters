@@ -56,7 +56,8 @@ const MAX_CLANS_PER_USER = 5;
 /**
  * Clan crud methods.
  */
-Clan.create = ({name, creatorId, tag, avatar, description}) => {
+Clan.create = ({name, tag, avatar, description}, creator) => {
+  let creatorId = creator.id;
   return ClanModel.findOne({where: {name}})
     .then((clan) => {
       if (clan) {
@@ -93,7 +94,7 @@ Clan.update = (user, query, values) => {
       if (!clan) {
         throw new Error('Clan could not be found');
       }
-      if (clan.creator.id !== user.id) {
+      if (clan.creatorId !== user.id) {
         throw new Error('Users cannot modify clans they do not own');
       }
       return ClanModel.update(values, {where: query});
@@ -108,7 +109,7 @@ Clan.delete = (user, query) => {
       if (!clan) {
         throw new Error('Clan could not be found');
       }
-      if (clan.creator.id !== user.id) {
+      if (clan.creatorId !== user.id) {
         throw new Error('Users cannot delete clans they do not own');
       }
       return ClanModel.destroy({where: query});

@@ -27,7 +27,7 @@ router.get('/:clan', (req, res) => {
 });
 
 router.get('/:clan/members', (req, res) => {
-  Clan.model.findOne({
+  return Clan.model.findOne({
     include: [{
       model: User.model,
     }],
@@ -45,8 +45,8 @@ router.get('/:clan/members', (req, res) => {
     });
 });
 
-router.post('/', auth.isLoggedIn('redirect'), (req, res) => {
-  return Clan.create(req.body)
+router.post('/', auth.isLoggedIn(), (req, res) => {
+  return Clan.create(req.body, req.user)
     .then(newClan => {
       res.status(201).json(newClan);
     })
@@ -55,8 +55,8 @@ router.post('/', auth.isLoggedIn('redirect'), (req, res) => {
     });
 });
 
-router.post('/:clan', auth.isLoggedIn('redirect'), (req, res) => {
-  Clan.update({id: req.params.clan}, req.body)
+router.post('/:clan', auth.isLoggedIn(), (req, res) => {
+  return Clan.update({id: req.params.clan}, req.body, req.user)
     .spread(affected => {
       if (affected) {
         res.sendStatus(202);
@@ -69,8 +69,8 @@ router.post('/:clan', auth.isLoggedIn('redirect'), (req, res) => {
     });
 });
 
-router.delete('/:clan', auth.isLoggedIn('redirect'), (req, res) => {
-  Clan.delete({id: req.params.clan})
+router.delete('/:clan', auth.isLoggedIn(), (req, res) => {
+  return Clan.delete({id: req.params.clan})
     .then(affected => {
       if (affected) {
         res.sendStatus(202);

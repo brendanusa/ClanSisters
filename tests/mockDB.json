@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "steam_id": 12345678,
+      "steam_avatar_image_url": "http://fakewebsite.com",
+      "steam_profile_url": "http://fakewebsite.com",
+      "steam_screen_name": "Fredex",
+      "steam_real_name": "Freddy Z"
+    }
+  ],
+  "clans": [
+    {
+      "name": "test_clan_name",
+      "userId": 12345678
+    }
+  ]
+}
