@@ -1,6 +1,6 @@
 import React from 'react'
 import UserClans from '../components/UserClans.jsx'
-import UserPosts from '../components/UserPosts.jsx'
+import UserForums from '../components/UserForums.jsx'
 
 /*
 Right now I just plan on having the user profile information in a div box, I don't see anything in-
@@ -34,8 +34,8 @@ const User = (props) => {
           <UserClans />
         </div>
         <div>
-            Post by INSERT_USER_NAME_HERE
-          <UserPosts />
+            INSERT_USER_NAME_HERE'S forums
+          <UserForums />
         </div>
     </div>
     )
