@@ -1,5 +1,5 @@
 import React from 'react';
-import UserClanChips from './userClanChips.jsx';
+import UserClanChips from './UserClanChips.jsx';
 
 /*
 This component is designed to show which clans our user is a member of. 
