@@ -4,17 +4,20 @@ const Post = require('./post');
 
 const UserModel = db.define('user', {
   steam_id: {
-    type: Sequelize.STRING(40)
+    type: Sequelize.STRING
   },
-  email: {
-    type: Sequelize.STRING(40),
-    unique: true
+  steam_avatar_image_url: {
+    type: Sequelize.STRING
   },
-  password: {
-    type: Sequelize.STRING(64)
+  steam_profile_url: {
+    type: Sequelize.STRING
   },
-  screen_name: {
-    type: Sequelize.STRING(40),
+  steam_screen_name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  steam_real_name: {
+    type: Sequelize.STRING,
     allowNull: false
   }
 });

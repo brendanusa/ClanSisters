@@ -33,7 +33,10 @@ module.exports = (passport, userModel) => {
           } else {
             User.create({
               steam_id: profile.id,
-              screen_name: profile._json.personaname
+              steam_avatar_image_url: profile._json.avatarfull,
+              steam_profile_url: profile._json.profileurl,
+              steam_screen_name: profile._json.personaname,
+              steam_real_name: profile._json.realname
             })
             .then((newUser) => {
               return done(null, newUser);
