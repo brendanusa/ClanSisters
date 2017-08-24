@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'redux';
+import configureStore from './configureStore.js';
 import Home from './home/homePage.jsx';
 import Login from './login/index.jsx';
 import User from './users/userPage.jsx';
@@ -8,6 +10,8 @@ import Clan from './clans/clanPage.jsx';
 import Forum from './forum/forumPage.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './styles.css';
+
+const store = configureStore();
 
 const App = () => (
   <div>
@@ -29,14 +33,15 @@ const App = () => (
         </Route>
       </Switch>
   </div>
-
 )
 
 /** Render App using React Router. */
 ReactDOM.render((
-  <MuiThemeProvider>    
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-  </MuiThemeProvider>    
+  <Provider store={store}>
+    <MuiThemeProvider>    
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </MuiThemeProvider>
+  </Provider>
 ), document.getElementById('root'));
