@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pageComponents/HomePage.jsx';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore.js';
-import Login from './login/index.jsx';
+import Login from './pageComponents/LoginPage.jsx';
 import User from './pageComponents/UserPage.jsx';
 import Clan from './pageComponents/ClanPage.jsx';
 import Forum from './pageComponents/ForumPage.jsx';
