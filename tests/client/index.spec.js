@@ -9,15 +9,15 @@ describe('Home Item', () => {
 
   it('should contain the ClanCreator page', () => {
     expect(wrapper.find('.clanSearchBox')).to.have.length(1)
-  
+
   })
-  
+
 })
 
 
 // describe('App item', () => {
 //   const wrapper = shallow(<App />);
-  
+
 //   it('should contain the Home page', () => {
 //     expect(wrapper.contains(<Home />)).to.equal(true);
 //   });
