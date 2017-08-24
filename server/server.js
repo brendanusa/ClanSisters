@@ -40,6 +40,9 @@ app.use('/api', express.Router()
   .use('/users', require('./users'))
   .use('/clans', require('./clans'))
   .use('/forums', require('./forums'))
+  .get('/currentuser', (req, res) => {
+    res.json(req.user || null);
+  })
 );
 
 // Serve static files
