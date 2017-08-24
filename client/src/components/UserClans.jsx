@@ -1,5 +1,6 @@
 import React from 'react';
 import ClanChip from './ClanChip.jsx';
+import { connect } from 'react-redux';
 
 /*
 This component is designed to show which clans our user is a member of.
@@ -23,14 +24,18 @@ const style = {
   overflow: 'auto',
 };
 
+const mapStateToProps = state => ({
+  clans: state.clans
+})
+
 const UserClans = (props) => (
   <div>
     <div style = {style} >
-      {props.clans.map((clan) => {
-        return (<ClanChip clan={clan} key={clan.id} />);
+      {props.clans.map((clan, i) => {
+        return (<div key={i}>{clan.name}</div>);
       })}
     </div>
   </div>
 )
 
-export default UserClans
+export default connect(mapStateToProps)(UserClans);
