@@ -22,9 +22,12 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Authentication middleware and passport strategy initialization
+app.use('/', require('./auth')(passport, User.model));
+
 // Creates a new session
 app.use(session({
-  name: 'MustardTigers',
+  name: 'ClanSisters',
   secret: '5 dollar gold club special',
   resave: true,
   saveUninitialized: true,
@@ -37,9 +40,6 @@ app.use('/api', express.Router()
   .use('/clans', require('./clans'))
   .use('/forums', require('./forums'))
 );
-
-// Authentication middleware and passport strategy initialization
-app.use('/', require('./auth')(passport, User.model));
 
 // Serve static files
 app.get('*/bundle.js', (req, res) => {

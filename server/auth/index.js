@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const userSerialization = require('./user');
 const steamAuth = require('./strategies/steam');
+const auth = require('../authMiddleware');
 
 module.exports = (passport, userModel) => {
   userSerialization(passport, userModel);
@@ -11,6 +12,9 @@ module.exports = (passport, userModel) => {
   router.get('/auth/steam/callback', passport.authenticate('steam', {failureRedirect: '/login'}), (req, res) => {
     res.redirect('/');
   });
+
+  router.get('/', auth.isLoggedIn('redirect'));
+  router.get('/login', auth.isNotLoggedIn('redirect'));
   
   
   // Destroys session for local auth or any OAuth
