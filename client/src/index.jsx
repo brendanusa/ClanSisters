@@ -9,6 +9,7 @@ import Clan from './pageComponents/ClanPage.jsx';
 import Forum from './pageComponents/ForumPage.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './styles.css';
+
 /*
 Captains Log: StarDate 8/22/2017-9:50PM.
 As of right now there are a few pages scaffoled with fake data.
