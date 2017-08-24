@@ -1,5 +1,5 @@
 import React from 'react';
-import UserClanChips from './UserClanChips.jsx';
+import ClanChip from './ClanChip.jsx';
 
 /*
 This component is designed to show which clans our user is a member of.
@@ -16,30 +16,19 @@ In order to add an avatar to our chips use the following code: <Avatar src="IMAG
 It would also be cool if clans could have chip colors associated with them.
 */
 
-
-const fakeClans = [
-  {title: 'Baldurs Gate Crew', id: '001' },
-  {title: 'Witcher 3 clan', id: '002' },
-  {title: 'FDT', id: '003' },
-  {title: 'TEAM BELLA!!', id: '004' },
-  {title: 'Overwatch', id: '005'},
-  {title: 'kool clan', id: '006'},
-]
-
-const clanScrollbox = {
+const style = {
   height: '200px',
   width: '200px',
   border: '5px',
   overflow: 'auto',
-}
+};
 
-
-const UserClans = () => (
+const UserClans = (props) => (
   <div>
-    <div style = {clanScrollbox} >
-      {fakeClans.map(clan =>
-        <UserClanChips chip = {clan} key= {clan.id} />
-      )}
+    <div style = {style} >
+      {props.clans.map((clan) => {
+        return (<ClanChip clan={clan} key={clan.id} />);
+      })}
     </div>
   </div>
 )
