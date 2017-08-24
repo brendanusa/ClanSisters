@@ -1,5 +1,5 @@
 import React from 'react'
-import ShowForums from '../components/ShowForums.jsx';
+import ForumList from '../components/ForumList.jsx';
 import AutoComplete from 'material-ui/AutoComplete';
 import ForumUserList from '../components/ForumUserList.jsx';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -48,7 +48,7 @@ const Clan = (props) => {
             />
             </div>
         <div>
-           <ShowForums /> 
+           <ForumList forums={[]} /> 
         </div>
         <div>
             <AutoComplete         
