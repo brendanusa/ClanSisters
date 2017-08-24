@@ -18,30 +18,30 @@ It would also be cool if clans could have chip colors associated with them.
 
 
 const fakeClans = [
-    {title: 'Baldurs Gate Crew', id: '001' },
-    {title: 'Witcher 3 clan', id: '002' },
-    {title: 'FDT', id: '003' },
-    {title: 'TEAM BELLA!!', id: '004' },
-    {title: 'Overwatch', id: '005'},
-    {title: 'kool clan', id: '006'},
+  {title: 'Baldurs Gate Crew', id: '001' },
+  {title: 'Witcher 3 clan', id: '002' },
+  {title: 'FDT', id: '003' },
+  {title: 'TEAM BELLA!!', id: '004' },
+  {title: 'Overwatch', id: '005'},
+  {title: 'kool clan', id: '006'},
 ]
 
 const clanScrollbox = {
-    height: '200px',
-    width: '200px',
-    border: '5px',
-    overflow: 'auto',
+  height: '200px',
+  width: '200px',
+  border: '5px',
+  overflow: 'auto',
 }
 
 
 const UserClans = () => (
-    <div>
-      <div style = {clanScrollbox} >
-        {fakeClans.map(clan =>
+  <div>
+    <div style = {clanScrollbox} >
+      {fakeClans.map(clan =>
         <UserClanChips chip = {clan} key= {clan.id} />
-        )}
-      </div>
+      )}
     </div>
+  </div>
 )
 
 export default UserClans
