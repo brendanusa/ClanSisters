@@ -14,27 +14,27 @@ Eventually, a lot of stuff here may need re-written with redux.
 */
 
 const clanForums = [
-    {title: 'Test', heading: 'Test Heading', id:'001'},
-    {title: 'Test2', heading: 'Test Heading 2', id: '002'},
-    {title: 'Test3', heading: 'Test Heading 3', id: '003'}
+  {title: 'Test', heading: 'Test Heading', id:'001'},
+  {title: 'Test2', heading: 'Test Heading 2', id: '002'},
+  {title: 'Test3', heading: 'Test Heading 3', id: '003'}
 
 ]
 
 
 const forumScrollbox = {
-    height: '200px',
-    width: '500px',
-    border: '5px',
-    overflow: 'auto',
+  height: '200px',
+  width: '500px',
+  border: '5px',
+  overflow: 'auto',
 }
 
 
 export default class ShowForums extends React.Component {
-    constructor (props ) {
-      super(props)
-      this.state = {
-        open: false,
-      };
+  constructor (props ) {
+    super(props)
+    this.state = {
+      open: false,
+    };
 
       
   const handleOpen = () => {
