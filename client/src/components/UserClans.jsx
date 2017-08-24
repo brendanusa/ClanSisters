@@ -31,8 +31,15 @@ const mapStateToProps = state => ({
 const UserClans = (props) => (
   <div>
     <div style = {style} >
+      {/*
+      The map below accesses the Chip component; the uncommented version is a placeholder
+      //{props.clans.map((clan) => {
+        //return (<ClanChip clan={clan} key={clan.id} />);  
+      */}
       {props.clans.map((clan, i) => {
         return (<div key={i}>{clan.name}</div>);
+      //{props.clans.map((clan) => {
+        //return (<ClanChip clan={clan} key={clan.id} />);  
       })}
     </div>
   </div>
