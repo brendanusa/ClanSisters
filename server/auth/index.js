@@ -9,22 +9,15 @@ module.exports = (passport, userModel) => {
   
   // Steam OAuth
   router.get('/auth/steam', passport.authenticate('steam'));
-  router.get('/auth/steam/callback', passport.authenticate('steam', {failureRedirect: '/login'}), (req, res) => {
-    res.redirect('/');
-  });
+  router.get('/auth/steam/callback', passport.authenticate('steam', {successRedirect: '/', failureRedirect: '/login'}));
 
-  router.get('/', auth.isLoggedIn('redirect'));
   router.get('/login', auth.isNotLoggedIn('redirect'));
-  
-  
+  router.get('/', auth.isLoggedIn('redirect'));
+
   // Destroys session for local auth or any OAuth
   router.get('/logout', (req, res) => {
-    if (req.user) {
-      req.logout();
-      res.redirect('/hooray');
-    } else {
-      res.status(401).send('User not logged in');
-    }
+    req.logout();
+    res.redirect('/login');
   });
 
   return router;

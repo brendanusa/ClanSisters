@@ -16,6 +16,15 @@ if (process.env.MORGAN_LOGGING) {
   app.use(require('morgan')('dev'));
 }
 
+// Creates a new session
+app.use(session({
+  name: 'ClanSisters',
+  secret: '5 dollar gold club special',
+  resave: true,
+  saveUninitialized: true,
+  store
+}));
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -25,14 +34,6 @@ app.use(passport.session());
 // Authentication middleware and passport strategy initialization
 app.use('/', require('./auth')(passport, User.model));
 
-// Creates a new session
-app.use(session({
-  name: 'ClanSisters',
-  secret: '5 dollar gold club special',
-  resave: true,
-  saveUninitialized: true,
-  store
-}));
 
 
 app.use('/api', express.Router()
