@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pageComponents/HomePage.jsx';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore.js';
@@ -26,7 +25,6 @@ be added. I am quite happy with the way that the material-ui looks so far, but I
 that the forum page might need a different ui, as I'm not sure that there's really a good
 material-ui component for this.
 */
-
 
 let store = configureStore();
 console.log('store: ', store.getState());
