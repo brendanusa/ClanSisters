@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pageComponents/HomePage.jsx';
-import { Provider } from 'redux';
+import { Provider } from 'react-redux';
 import configureStore from './configureStore.js';
 import Login from './login/index.jsx';
 import User from './pageComponents/UserPage.jsx';
@@ -55,9 +55,11 @@ const App = () => (
 
 /** Render App using React Router. */
 ReactDOM.render((
-  <MuiThemeProvider>    
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </MuiThemeProvider>
+  <Provider store={store}>
+    <MuiThemeProvider>    
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </MuiThemeProvider>
+  </Provider>
 ), document.getElementById('root'));
