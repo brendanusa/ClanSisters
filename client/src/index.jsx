@@ -55,11 +55,9 @@ const App = () => (
 
 /** Render App using React Router. */
 ReactDOM.render((
-  <Provider store={store}>
-    <MuiThemeProvider>    
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </MuiThemeProvider>
-  </Provider>
+  <MuiThemeProvider>    
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </MuiThemeProvider>
 ), document.getElementById('root'));
