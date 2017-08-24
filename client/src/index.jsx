@@ -63,3 +63,5 @@ ReactDOM.render((
     </MuiThemeProvider>
   </Provider>
 ), document.getElementById('root'));
+
+export default App
