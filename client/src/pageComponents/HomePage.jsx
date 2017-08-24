@@ -1,7 +1,7 @@
 import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import ClanCreator from '../components/ClanCreator.jsx'
-import AllClans from '../components/AllClans.jsx'
+import ClanList from '../components/ClanList.jsx'
 /*
 Dear Brendan/Others. I am using the material-ui autocomplete.
 It takes in a datasource array. That array should be a list of clan names.
@@ -44,7 +44,7 @@ const Home = (props) => {
       </div>
         <ClanCreator />
       <div>
-        <AllClans />
+        <ClanList clans={[]} />
       </div>
       <div style= {usersOnlineStyles} >
         PlaceHolder for Users Online.
