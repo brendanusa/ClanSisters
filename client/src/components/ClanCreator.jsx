@@ -2,6 +2,7 @@ import React from 'react'
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 /*
 This clanCreator will NOT work without Redux, as it is dependent upon props being passed to it.
@@ -22,23 +23,12 @@ export default class ClanCreator extends React.Component {
     super(props)
     this.state = {
       open: false,
+      clanName: ''
     };
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
 
-
-
-  const handleOpen = () => {
-    console.log('opening')
-    this.setState({open: true});
-  };
-
-  const handleClose = () => {
-    console.log('closing')
-    this.setState({open: false});
-  };
-}
-
-  render() {
-    const actions = [
+    this.actions = [
       <FlatButton
         label="Cancel"
         primary={true}
@@ -51,21 +41,40 @@ export default class ClanCreator extends React.Component {
         onClick={this.handleClose}
       />,
     ];
+  }
 
+  handleInputChange (property, e) {
+    let stateChange = {};
+    stateChange[property] = e.target.value;
+    this.setState(stateChange);
+  }
+  handleKeyPress (e) {
+    if (e.key === 'Enter') {
+      this.sendRequest();
+    }
+  }
+
+  handleOpen () {
+    this.setState({open: true});
+  };
+
+  handleClose () {
+    this.setState({open: false});
+  };
+
+  render() {
     return (
       <div>
-
         <RaisedButton label="Create your own clan!!!" onClick={this.handleOpen} />
         <Dialog
           title="Create a new clan"
-          actions={actions}
+          actions={this.actions}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          Testing, input boxes will be here eventually.
+        <TextField onKeyPress={this.handleKeyPress} hintText='hello@world.com' floatingLabelText='Clan Name' type='text' value={this.state.clanName} onChange={this.handleInputChange.bind(this, 'clanName')} />
         </Dialog>
-
       </div>
     );
   }
