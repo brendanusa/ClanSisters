@@ -1,4 +1,4 @@
-import { fetchAllClans, fetchUserClans, types } from '../actions/actions.js';
+import { fetchAllClans, fetchUserClans, types } from '../actions/clanActions.js';
 
 const initialState = {
   clans: null,
