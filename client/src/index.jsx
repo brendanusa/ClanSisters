@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pageComponents/HomePage.jsx';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore.js';
@@ -25,6 +26,7 @@ Scaffolding progress is probably about 2/3 finished. The clans and forum pages s
 be added. I am quite happy with the way that the material-ui looks so far, but I do think
 that the forum page might need a different ui, as I'm not sure that there's really a good
 material-ui component for this.
+
 */
 
 let store = configureStore();
@@ -43,10 +45,10 @@ const App = () => (
           <User />
         </Route>
         <Route exact path = '/clan' >
-        <Clan />
+          <Clan />
         </Route>
         <Route exact path ='/forum' >
-        <Forum />
+          <Forum />
         </Route>
       </Switch>
   </div>
