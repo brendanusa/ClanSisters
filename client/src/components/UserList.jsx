@@ -6,10 +6,10 @@ I'm not sure how this will mesh with redux, so have fun.
 */
 
 const style = {
-    height: '200px',
-    width: '200px',
-    border: '5px',
-    overflow: 'auto',
+  height: '200px',
+  width: '200px',
+  border: '5px',
+  overflow: 'auto',
 }
 
 const UserList = () => (
