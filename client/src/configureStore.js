@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { rootReducer } from './reducers/clanReducers.js'
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { rootReducer } from './reducers/clanReducers.js';
 
 const initialState = {
   chatrooms: [],
@@ -12,13 +12,13 @@ const initialState = {
   currentChatroom: null,
   membersOnline: [],
   posts: []
-}
+};
 
 export default function configureStore() {
-  let store =  createStore(
+  let store = createStore(
     rootReducer,
     initialState,
     applyMiddleware(thunk)
-  )
+  );
   return store;
 }

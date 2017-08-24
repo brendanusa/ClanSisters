@@ -3,7 +3,7 @@ import axios from 'axios';
 export const types = {
   FETCH_ALL_CLANS: 'FETCH_ALL_CLANS',
   FETCH_USER_CLANS: 'FETCH_USER_CLANS'
-}
+};
 
 //fetchAllClans is an action cretor
 //note that action creators in redux are always 
@@ -21,8 +21,8 @@ export const fetchAllClans = () => {
     .catch(err => {
       console.log('error getting all clans');
       throw err;
-    })
-}
+    });
+};
 
  
 export const fetchUserClans = (userId) => {
@@ -32,12 +32,12 @@ export const fetchUserClans = (userId) => {
       dispatch({
         type: types.FETCH_USER_CLANS,
         payload: memberships
-      })
+      });
     })
     .catch(err => {
       console.log('error getting user clans');
       throw err;
-    })
-}
+    });
+};
 
 
