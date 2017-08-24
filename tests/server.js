@@ -22,7 +22,7 @@ describe('Express Middleware', () => {
   });
 
   it('should have index.html', (done) => {
-    request.get('/')
+    request.get('/login') // Using login because the '/' route is auth protected
       .expect(200)
       .expect('Content-Type', /html/)
       .then(() => {
