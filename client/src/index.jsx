@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './page-components/HomePage.jsx';
+import Home from './pageComponents/HomePage.jsx';
 import Login from './login/index.jsx';
-import User from './page-components/UserPage.jsx';
-import Clan from './page-components/ClanPage.jsx';
-import Forum from './page-components/ForumPage.jsx';
+import User from './pageComponents/UserPage.jsx';
+import Clan from './pageComponents/ClanPage.jsx';
+import Forum from './pageComponents/ForumPage.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './styles.css';
 /*
