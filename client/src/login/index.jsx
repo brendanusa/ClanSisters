@@ -13,7 +13,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className='center vertical-center'>
+      <div className='center'>
         <h1>Login</h1>
         <SteamButton className='btn' onClick={this.steamOpenIDRedirect} width={200} />
       </div>
