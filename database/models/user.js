@@ -18,7 +18,7 @@ const UserModel = db.define('user', {
   },
   steamRealName: {
     type: Sequelize.STRING,
-    allowNull: false
+    defaultValue: 'newUser'
   }
 });
 
