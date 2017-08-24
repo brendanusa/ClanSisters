@@ -1,6 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #FBFBFB;
+  background-color: white;
 }
 
 .center {
@@ -11,4 +11,27 @@ body {
 
 .btn {
   margin: 0.2em;
+}
+
+.homePageTitle {
+  text-align: center;
+}
+
+.clanSearchBox {
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+  margin-left: 2cm;
+}
+
+.usersOnlineStyle  {
+  margin-left: 2cm;
+  margin-top: 4cm;
+  width: '300px';
+  border: '25px black';
+  padding: '25px';
+  margin: '25px';
+}
+
+.clanCreatorButton {
+  margin-left: 2cm
 }
