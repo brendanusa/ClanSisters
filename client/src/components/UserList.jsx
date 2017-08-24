@@ -1,9 +1,5 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
-/*
-As several times before, I am going to use a map here.
-I'm not sure how this will mesh with redux, so have fun.
-*/
 
 const style = {
   height: '200px',
