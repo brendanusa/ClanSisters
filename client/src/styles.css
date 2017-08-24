@@ -35,3 +35,33 @@ body {
 .clanCreatorButton {
   margin-left: 2cm
 }
+
+.userClanScrollBox {
+  margin-left: 2cm;
+  float: 'left';
+  height: '200px';
+  width: '200px';
+  border: '5px';
+  overflow: 'auto';
+}
+
+.userForumListBox {
+  float: right;
+  height: '200px';
+  width: '200px';
+  border: '5px';
+  overflow: 'auto';
+
+}
+
+.profileData {
+  margin-left: 2cm;
+  margin-top: 2cm;
+  margin-bottom: 2cm;
+  float: 'left';
+  height: '500px';
+  width: '300px';
+  border: '50px black';
+  padding: '50px';
+  margin: '50px';
+}
