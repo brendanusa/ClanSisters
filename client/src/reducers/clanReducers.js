@@ -1,12 +1,15 @@
 import { fetchAllClans, fetchUserClans, types } from '../actions/clanActions.js';
 
 const initialState = {
-  clans: null,
-  members: null,
-  user: {
-    email: null, 
-    password: null
-  }
+  chatrooms: [],
+  users: [],
+  currentUser: null,
+  clans: [],
+  currentClan: null,
+  chatrooms: [],
+  currentChatroom: null,
+  membersOnline: [],
+  posts: []
 }
 
 export const rootReducer = (state=initialState, action) => {
@@ -29,9 +32,4 @@ export const rootReducer = (state=initialState, action) => {
   }
   return newState
 }
-
-const store = createStore(
-  rootReducer
-);
-store.dispatch(FETCH_ALL_CLANS);
 
