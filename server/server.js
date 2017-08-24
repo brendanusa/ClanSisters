@@ -16,20 +16,24 @@ if (process.env.MORGAN_LOGGING) {
   app.use(require('morgan')('dev'));
 }
 
+// Creates a new session
+app.use(session({
+  name: 'ClanSisters',
+  secret: '5 dollar gold club special',
+  resave: true,
+  saveUninitialized: true,
+  store
+}));
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Creates a new session
-app.use(session({
-  name: 'MustardTigers',
-  secret: '5 dollar gold club special',
-  resave: true,
-  saveUninitialized: true,
-  store
-}));
+// Authentication middleware and passport strategy initialization
+app.use('/', require('./auth')(passport, User.model));
+
 
 
 app.use('/api', express.Router()
@@ -37,9 +41,6 @@ app.use('/api', express.Router()
   .use('/clans', require('./clans'))
   .use('/forums', require('./forums'))
 );
-
-// Authentication middleware and passport strategy initialization
-app.use('/', require('./auth')(passport, User.model));
 
 // Serve static files
 app.get('*/bundle.js', (req, res) => {
