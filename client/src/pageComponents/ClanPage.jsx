@@ -3,6 +3,7 @@ import ForumList from '../components/ForumList.jsx';
 import AutoComplete from 'material-ui/AutoComplete';
 import UserList from '../components/UserList.jsx';
 import RaisedButton from 'material-ui/RaisedButton';
+import Nav from '../components/Nav.jsx';
 
 /*
 The find clans component is the same as the one on the home page. 
@@ -51,6 +52,7 @@ const testUsers = [
 const Clan = (props) => {
     return (
         <div>
+          <Nav/>
           <div className = 'textCenter'>
            <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
             <RaisedButton

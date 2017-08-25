@@ -1,6 +1,6 @@
 import React from 'react'
 import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
-
+import Nav from '../components/Nav.jsx';
 
 /*
 As before, I have used the map method in order to populate the forums page. 
@@ -26,6 +26,7 @@ const style = {
 const Forum = () => {
     return (
     <div style={style}>
+      <Nav/>
       {fakePosts.map((post) => {
         return (
           <div key={post.id}>

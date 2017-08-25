@@ -12,7 +12,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import NavBar from './components/Nav.jsx';
 import './styles.css';
 
 /*
@@ -45,24 +44,23 @@ console.log('store: ', store.getState());
 
 const App = () => (
   <div>
-    <NavBar />
-      <Switch>
-        <Route exact path = '/' >
-          <Home />
-        </Route>
-        <Route exact path = '/login' >
-          <Login />
-        </Route>
-        <Route exact path = '/user' >
-          <User />
-        </Route>
-        <Route exact path = '/clan' >
-          <Clan />
-        </Route>
-        <Route exact path ='/forum' >
-          <Forum />
-        </Route>
-      </Switch>
+    <Switch>
+      <Route exact path = '/' >
+        <Home />
+      </Route>
+      <Route exact path = '/login' >
+        <Login />
+      </Route>
+      <Route exact path = '/user' >
+        <User />
+      </Route>
+      <Route exact path = '/clan' >
+        <Clan />
+      </Route>
+      <Route exact path ='/forum' >
+        <Forum />
+      </Route>
+    </Switch>
   </div>
 )
 

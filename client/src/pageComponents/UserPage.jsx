@@ -1,6 +1,7 @@
 import React from 'react';
 import UserClans from '../components/UserClans.jsx';
-import ForumList from '../components/ForumList.jsx'
+import ForumList from '../components/ForumList.jsx';
+import Nav from '../components/Nav.jsx';
 
 /*
 Right now I just plan on having the user profile information in a div box, I don't see anything in-
@@ -13,12 +14,10 @@ posts will need to be loaded.
 
 */
 
-
-
-
 const User = (props) => {
     return (
     <div>
+        <Nav/>
         <div className = 'userForumListBox'>
             INSERT_USER_NAME_HERE'S forums
           <ForumList forums={[]} />
