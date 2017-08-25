@@ -25,13 +25,6 @@ const mapStateToProps = state => ({
 })
 
 
-var fakeClans = [
-  {title: 'testClan001', id: '001'},
-  {title: 'testClan002', id: '002'},
-  {title: 'testClan003', id: '003'}
-]
-
-
 const UserClans = () => (
   <div>
 
@@ -42,7 +35,7 @@ const UserClans = () => (
         //return (<ClanChip clan={clan} key={clan.id} />);
 
       */}
-      {fakeClans.map((clan, i) => {
+      {this.props.clans.map((clan, i) => {
         return (<div key={i}>{clan.name}</div>);
       //{props.clans.map((clan) => {
         //return (<ClanChip clan={clan} key={clan.id} />);
