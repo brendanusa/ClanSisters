@@ -23,21 +23,3 @@ export const fetchAllClans = () => {
       throw err;
     });
 };
-
- 
-export const fetchUserClans = (userId) => {
-  axios.get('/:userId/members')
-    .then(memberships => {
-      console.log('we got the memberships: ', memberships);
-      dispatch({
-        type: types.FETCH_USER_CLANS,
-        payload: memberships
-      });
-    })
-    .catch(err => {
-      console.log('error getting user clans');
-      throw err;
-    });
-};
-
-
