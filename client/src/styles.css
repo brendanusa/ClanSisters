@@ -13,7 +13,7 @@ body {
   margin: 0.2em;
 }
 
-.homePageTitle {
+.textCenter {
   text-align: center;
 }
 
@@ -64,4 +64,8 @@ body {
   border: '50px black';
   padding: '50px';
   margin: '50px';
+}
+
+.floatLeft {
+  float:left;
 }
