@@ -27,7 +27,7 @@ module.exports = {
         query: {
           presets: ['react', 'es2015', 'stage-2'],
           "plugins": [
-          ["transform-object-rest-spread", { "useBuiltIns": true }]
+            ["transform-object-rest-spread", { "useBuiltIns": true }]
           ]
         }
       },
