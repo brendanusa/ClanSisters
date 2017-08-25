@@ -62,47 +62,55 @@ const mapDispatchToProps = dispatch => {
 }
 
 class Clan extends React.Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this)
+  constructor (props) {
+    super (props)
+    this.state = {
+      open : false
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
-  handleClick() {
-    this.props.addClan()
-  }
+  handleOpen () {
+    this.setState({open: true});
+  };
 
-  // componentDidMount() {
-  //   this.props.addClan();
-  // }
+  handleClose () {
+    this.setState({open: false});
+  };
 
-
-
-  render() {
+  render () {
     return (
       <div>
-          WURLDZ BIGGEST BORDERLANDS 1 CLAN!!
-          <div>
-          <h2>THE CLANS: {this.props.clans && this.props.clans.length ? this.props.clans[0].type : ''}</h2>
-            <RaisedButton
-            label = 'JOIN THIS CLAN'
-            onClick = {() => this.handleClick()}
-            />
-          </div>
-      <div>
-         <ForumList forums={[]} /> 
-      </div>
-      <div>
-          <AutoComplete         
-            hintText="Find a clan!!"
+        <div className = 'textCenter'>
+          <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
+          <RaisedButton
+          label = 'JOIN THIS CLAN'
+          onClick = {joinClan}
+        />
+        <div>
+        <AutoComplete         
+            hintText="Find a different clan!!"
             dataSource={testClans}
             menuProps={menuProps}
-            />
+        />
+        </div>
+        </div>
+        <div className = 'floatLeft'>
+          Current Clan Forums
+          <ForumList
+          handleClose = {this.handleClose} 
+          handleOpen = {this.handleOpen} 
+          open = {this.state.open}
+          forums = {testForums} 
+        /> 
+        </div>
+        <div className ='userForumListBox'>
+          <UserList users ={testUsers} /> 
+        </div>
       </div>
-      <div>
-        <ClanList clans={this.props.clans}/>
-      </div>
-      </div>
-  )}
+    )
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clan);

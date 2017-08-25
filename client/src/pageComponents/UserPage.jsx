@@ -14,30 +14,60 @@ the api for more posts once you scroll past a certain number of posts (say 25), 
 posts will need to be loaded.
 
 
+Note, our testClans are the same in several different places. 
 */
 
-const profileDataStyles = {
-    width: '300px',
-    border: '50px black',
-    padding: '50px',
-    margin: '50px,'
+
+const testForums = [
+  {title: 'test001', heading: 'test001', id: 'test001'},
+  {title: 'test002', heading: 'test002', id: 'test002'},
+  {title: 'test003', heading: 'test003', id: 'test003'}
+]
+
+const testClanList  = [
+  {name: 'StarCraft', description: 'StarCraft Talk', id: '001'},
+  {name: 'Mass Effect', description: 'salkdfjl', id: '003'}
+]
+
+class User extends React.Component {
+  constructor (props ) {
+    super(props)
+    this.state = {
+      open: false,
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+  }
+
+  handleOpen () {
+    this.setState({open: true});
+  };
+
+  handleClose () {
+    this.setState({open: false});
+  };
+
+
+  render () {
+      return (
+      <div>
+          <div className = 'userForumListBox'>
+              INSERT_USER_NAME_HERE'S forums
+            <ForumList 
+            handleClose = {this.handleClose} 
+            handleOpen = {this.handleOpen} 
+            open = {this.state.open}
+            forums = {testForums} />
+          </div>      
+          <div className = 'profileData'>
+          This box here is designed to hold our user profile data.
+          </div>
+          <div>
+            <UserClans clans = {testClanList} />
+          </div>
+      </div>
+      )
+  }
 }
-
-const User = (props) => {
-    return (
-    <div>
-        <div className = 'userForumListBox'>
-            INSERT_USER_NAME_HERE'S forums
-          <ForumList forums={[]} />
-        </div>      
-        <div className = 'profileData'>
-        This box here is designed to hold our user profile data.
-        </div>
-        <div>
-          <UserClans  />
-        </div>
-    </div>
-)}
-
 
 export default User;
