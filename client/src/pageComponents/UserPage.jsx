@@ -36,8 +36,8 @@ const User = (props) => {
         <div>
           <UserClans  />
         </div>
-    )}
-}
+    </div>
+)}
 
 
 export default User;

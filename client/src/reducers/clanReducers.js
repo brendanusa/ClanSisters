@@ -7,7 +7,7 @@ export const rootReducer = (state, action) => {
     newState = {...state, clans: action.payload};
   } else if (action.type === types.FETCH_USER_CLANS) {
     newState = {...state, members: action.payload};
-  } else if (action.type === types.ADD_CLAN) {x
+  } else if (action.type === types.ADD_CLAN) {
     newState = {...state, clans: action.payload};
   }
   return newState || state;

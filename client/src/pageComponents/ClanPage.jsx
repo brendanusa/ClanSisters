@@ -1,8 +1,3 @@
-import ClanList from '../components/ClanList.jsx';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { fetchAllClans, addClan } from  '../actions/clanActions'
-
 import React from 'react'
 import ForumList from '../components/ForumList.jsx';
 import AutoComplete from 'material-ui/AutoComplete';
