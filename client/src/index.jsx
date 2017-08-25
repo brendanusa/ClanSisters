@@ -37,6 +37,11 @@ Adding in the darkbase theme to everthing seems to conflict with the AutoComplet
 As of right now, I'm not adding this to our app. At a later time this may be worth revisiting.
 I have some serious concerns about our page looking pretty sparse at this point.
 
+Captains Log: Stardate 8/25/2017-11-25AM.
+
+Going to rewrite components as I have more clarity today about how we are going to implement redux. 
+
+
 */
 
 
