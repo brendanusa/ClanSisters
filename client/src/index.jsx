@@ -67,7 +67,7 @@ const App = () => (
 )
 
 /** Render App using React Router. */
-ReactDOM.render((
+ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider>
       <BrowserRouter>
@@ -75,6 +75,6 @@ ReactDOM.render((
       </BrowserRouter>
     </MuiThemeProvider>
   </Provider>
-), document.getElementById('root'));
+, document.getElementById('root') || document.createElement('div'))
 
 export default App
