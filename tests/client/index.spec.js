@@ -12,8 +12,6 @@ import { shallow } from 'enzyme';
 Notes on enzyme testing. If you want to test a component within 
 another component, you need to import both of them. 
 
-
-
 */
 
 
