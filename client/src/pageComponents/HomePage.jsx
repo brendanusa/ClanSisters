@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoComplete from 'material-ui/AutoComplete';
+import AutoComplete from 'material-ui/AutoComplete'
 import ClanCreator from '../components/ClanCreator.jsx'
 import ClanList from '../components/ClanList.jsx'
 /*
@@ -27,7 +27,7 @@ const menuProps = {
   disableAutoFocus: true,
 };
 
-const Home = (props) => {
+const Home = () => {
   var usersOnlineStyles = {
   width: '300px',
   border: '25px black',
@@ -49,9 +49,10 @@ const Home = (props) => {
       <div style= {usersOnlineStyles} >
         PlaceHolder for Users Online.
       </div>
-
     </div>
   )
 }
+
+
 
 export default Home

@@ -30,7 +30,6 @@ material-ui component for this.
 */
 
 let store = configureStore();
-console.log('store: ', store.getState());
 
 const App = () => (
   <div>
