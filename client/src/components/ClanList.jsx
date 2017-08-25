@@ -13,7 +13,11 @@ const ClanList = (props) => {
   return (
     <div>
       <div>Clan List</div>
+<<<<<<< HEAD
       {props.clans ? props.clans.map((clan, i) => {
+=======
+      {props.clans.length ? props.clans.map((clan, i) => {
+>>>>>>> 650912c9b96bfeae4fca23107eb8438d978edee1
         return (
           <Card key={i} className='clan-list'>
             <CardHeader

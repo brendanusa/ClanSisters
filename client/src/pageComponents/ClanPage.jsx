@@ -7,7 +7,11 @@ import React from 'react'
 import ForumList from '../components/ForumList.jsx';
 import AutoComplete from 'material-ui/AutoComplete';
 import UserList from '../components/UserList.jsx';
+import ClanList from '../components/ClanList.jsx';
 import RaisedButton from 'material-ui/RaisedButton';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchAllClans, addClan } from  '../actions/clanActions'
 
 /*
 The find clans component is the same as the one on the home page. 
@@ -24,9 +28,10 @@ the autocomplete from the home page.
 
 */
 
-const joinClan = () => {
-    alert('NUCLEAR LAUNCH IN 5, 4, 3...')
-}
+// const joinClan = () => {
+//   alert('NUCLEAR LAUNCH IN 5, 4, 3...')
+//   this.props.dispatch(addClan)
+// }
 
 const testForums = [
   {title: 'test001', heading: 'test001', id: 'test001'},
@@ -48,11 +53,6 @@ const menuProps = {
   disableAutoFocus: true,
 };
 
-const testUsers = [
-
-  {name: 'Test001', id: '001'}
-]
-
 const mapStateToProps = (state) => {
   return {
     clans: state.clans
@@ -73,9 +73,14 @@ class Clan extends React.Component {
   }
 
   handleClick() {
-    console.log('props: ', this.props);
     this.props.addClan()
   }
+
+  // componentDidMount() {
+  //   this.props.addClan();
+  // }
+
+
 
   render() {
     return (

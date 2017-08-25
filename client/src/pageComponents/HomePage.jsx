@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoComplete from 'material-ui/AutoComplete';
+import AutoComplete from 'material-ui/AutoComplete'
 import ClanCreator from '../components/ClanCreator.jsx'
 import ClanList from '../components/ClanList.jsx'
 /*
@@ -55,9 +55,10 @@ const Home = (props) => {
       <div className = 'usersOnlineStyle' >
         PlaceHolder for Users Online.
       </div>
-
     </div>
   )
 }
+
+
 
 export default Home

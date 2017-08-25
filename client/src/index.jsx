@@ -41,7 +41,6 @@ I have some serious concerns about our page looking pretty sparse at this point.
 
 
 let store = configureStore();
-console.log('store: ', store.getState());
 
 const App = () => (
   <div>
