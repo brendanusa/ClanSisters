@@ -2,12 +2,6 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
-/*
-I felt like a NavBar might be of value to us, as it would make the page a little nicer.
-Right now it doesn't really have a ton of functionality, but I think this is something
-that we can really add onto at a later date. 
-
-*/
 
 class Navbar extends React.Component {
   constructor (props) {
