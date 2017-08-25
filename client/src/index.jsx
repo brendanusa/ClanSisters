@@ -9,7 +9,12 @@ import User from './pageComponents/UserPage.jsx';
 import Clan from './pageComponents/ClanPage.jsx';
 import Forum from './pageComponents/ForumPage.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import NavBar from './components/Nav.jsx';
 import './styles.css';
+
 /*
 Captains Log: StarDate 8/22/2017-9:50PM.
 As of right now there are a few pages scaffoled with fake data.
@@ -25,6 +30,13 @@ Scaffolding progress is probably about 2/3 finished. The clans and forum pages s
 be added. I am quite happy with the way that the material-ui looks so far, but I do think
 that the forum page might need a different ui, as I'm not sure that there's really a good
 material-ui component for this.
+
+Captains Log: StarDate 8/24/2017-3:00PM.
+
+Adding in the darkbase theme to everthing seems to conflict with the AutoComplete components.
+As of right now, I'm not adding this to our app. At a later time this may be worth revisiting.
+I have some serious concerns about our page looking pretty sparse at this point.
+
 */
 
 
@@ -33,6 +45,7 @@ console.log('store: ', store.getState());
 
 const App = () => (
   <div>
+    <NavBar />
       <Switch>
         <Route exact path = '/' >
           <Home />
@@ -44,10 +57,10 @@ const App = () => (
           <User />
         </Route>
         <Route exact path = '/clan' >
-        <Clan />
+          <Clan />
         </Route>
         <Route exact path ='/forum' >
-        <Forum />
+          <Forum />
         </Route>
       </Switch>
   </div>
@@ -56,10 +69,12 @@ const App = () => (
 /** Render App using React Router. */
 ReactDOM.render((
   <Provider store={store}>
-    <MuiThemeProvider>    
+    <MuiThemeProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </MuiThemeProvider>
   </Provider>
 ), document.getElementById('root'));
+
+export default App
