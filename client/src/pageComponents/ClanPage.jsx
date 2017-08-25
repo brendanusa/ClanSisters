@@ -57,22 +57,21 @@ const Clan = (props) => {
             label = 'JOIN THIS CLAN'
             onClick = {joinClan}
           />
+          <div>
+          <AutoComplete         
+              hintText="Find a different clan!!"
+              dataSource={testClans}
+              menuProps={menuProps}
+          />
+          </div>
           </div>
           <div className = 'floatLeft'>
             Current Clan Forums
            <ForumList forums={testForums} /> 
           </div>
-          <div>
-            <AutoComplete         
-              hintText="Find a clan!!"
-              dataSource={testClans}
-              menuProps={menuProps}
-              />
-          </div>
           <div className ='userForumListBox'>
             <UserList users ={testUsers} /> 
           </div>
-
         </div>
     )
 }

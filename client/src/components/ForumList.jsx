@@ -47,7 +47,7 @@ class ForumList extends React.Component {
   };
 
   handleClose () {
-    this.setState({ope0n: false});
+    this.setState({open: false});
   };
 
   render () {

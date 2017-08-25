@@ -46,6 +46,7 @@ body {
 }
 
 .userForumListBox {
+  margin-right: 2cm;
   float: right;
   height: '200px';
   width: '200px';
@@ -68,4 +69,10 @@ body {
 
 .floatLeft {
   float:left;
+  margin-left: 2cm;
+}
+
+.clanAutoComplete {
+  margin-left: 2cm;
+  margin-top: 2cm;
 }
