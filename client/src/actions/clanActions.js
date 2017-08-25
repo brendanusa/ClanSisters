@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const types = {
   FETCH_ALL_CLANS: 'FETCH_ALL_CLANS',
-  FETCH_USER_CLANS: 'FETCH_USER_CLANS'
+  ADD_CLAN: 'ADD_CLAN'
 };
 
 //fetchAllClans is an action cretor
@@ -23,3 +23,10 @@ export const fetchAllClans = () => {
       throw err;
     });
 };
+
+export const addClan = () => {
+  return {
+    type: types.ADD_CLAN,
+    payload: [{key: 1, type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'}]
+  };
+}

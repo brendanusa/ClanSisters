@@ -1,3 +1,8 @@
+import ClanList from '../components/ClanList.jsx';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchAllClans, addClan } from  '../actions/clanActions'
+
 import React from 'react'
 import ForumList from '../components/ForumList.jsx';
 import AutoComplete from 'material-ui/AutoComplete';
@@ -48,32 +53,56 @@ const testUsers = [
   {name: 'Test001', id: '001'}
 ]
 
-const Clan = (props) => {
-    return (
-        <div>
-          <div className = 'textCenter'>
-           <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
-            <RaisedButton
-            label = 'JOIN THIS CLAN'
-            onClick = {joinClan}
-          />
-          <div>
-          <AutoComplete         
-              hintText="Find a different clan!!"
-              dataSource={testClans}
-              menuProps={menuProps}
-          />
-          </div>
-          </div>
-          <div className = 'floatLeft'>
-            Current Clan Forums
-           <ForumList forums={testForums} /> 
-          </div>
-          <div className ='userForumListBox'>
-            <UserList users ={testUsers} /> 
-          </div>
-        </div>
-    )
+const mapStateToProps = (state) => {
+  return {
+    clans: state.clans
+  }
 }
 
-export default Clan;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    fetchAllClans,
+    addClan
+  }, dispatch)
+}
+
+class Clan extends React.Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    console.log('props: ', this.props);
+    this.props.addClan()
+  }
+
+  render() {
+    return (
+      <div>
+          WURLDZ BIGGEST BORDERLANDS 1 CLAN!!
+          <div>
+          <h2>THE CLANS: {this.props.clans && this.props.clans.length ? this.props.clans[0].type : ''}</h2>
+            <RaisedButton
+            label = 'JOIN THIS CLAN'
+            onClick = {() => this.handleClick()}
+            />
+          </div>
+      <div>
+         <ForumList forums={[]} /> 
+      </div>
+      <div>
+          <AutoComplete         
+            hintText="Find a clan!!"
+            dataSource={testClans}
+            menuProps={menuProps}
+            />
+      </div>
+      <div>
+        <ClanList clans={this.props.clans}/>
+      </div>
+      </div>
+  )}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Clan);
