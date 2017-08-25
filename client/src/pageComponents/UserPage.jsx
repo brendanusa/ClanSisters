@@ -14,12 +14,6 @@ posts will need to be loaded.
 */
 
 
-var fakeClans = [
-  {title: 'testClan001', id: '001'},
-  {title: 'testClan002', id: '002'},
-  {title: 'testClan003', id: '003'}
-]
-
 
 
 const User = (props) => {
@@ -33,7 +27,7 @@ const User = (props) => {
         This box here is designed to hold our user profile data.
         </div>
         <div>
-          <UserClans clans= {fakeClans} />
+          <UserClans  />
         </div>
     </div>
     )

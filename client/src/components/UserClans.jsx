@@ -15,6 +15,8 @@ In order to add an avatar to our chips use the following code: <Avatar src="IMAG
 *note Avatar must be imported from material-ui. I have already done this in the UserClanChips component.
 
 It would also be cool if clans could have chip colors associated with them.
+
+Added testArray just to make the map work.
 */
 
 
@@ -22,11 +24,15 @@ const mapStateToProps = state => ({
   clans: state.clans
 })
 
-const mapStateToProps = state => ({
-  clans: state.clans
-})
 
-const UserClans = (props) => (
+var fakeClans = [
+  {title: 'testClan001', id: '001'},
+  {title: 'testClan002', id: '002'},
+  {title: 'testClan003', id: '003'}
+]
+
+
+const UserClans = () => (
   <div>
 
     <div className = 'userClanScrollBox' >
@@ -36,7 +42,7 @@ const UserClans = (props) => (
         //return (<ClanChip clan={clan} key={clan.id} />);
 
       */}
-      {props.clans.map((clan, i) => {
+      {fakeClans.map((clan, i) => {
         return (<div key={i}>{clan.name}</div>);
       //{props.clans.map((clan) => {
         //return (<ClanChip clan={clan} key={clan.id} />);
