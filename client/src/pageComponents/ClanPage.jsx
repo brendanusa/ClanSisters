@@ -48,32 +48,56 @@ const testUsers = [
   {name: 'Test001', id: '001'}
 ]
 
-const Clan = (props) => {
+class Clan extends React.Component {
+  constructor (props) {
+    super (props)
+    this.state = {
+      open : false
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+  }
+
+  handleOpen () {
+    this.setState({open: true});
+  };
+
+  handleClose () {
+    this.setState({open: false});
+  };
+
+  render () {
     return (
+      <div>
+        <div className = 'textCenter'>
+          <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
+          <RaisedButton
+          label = 'JOIN THIS CLAN'
+          onClick = {joinClan}
+        />
         <div>
-          <div className = 'textCenter'>
-           <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
-            <RaisedButton
-            label = 'JOIN THIS CLAN'
-            onClick = {joinClan}
-          />
-          <div>
-          <AutoComplete         
-              hintText="Find a different clan!!"
-              dataSource={testClans}
-              menuProps={menuProps}
-          />
-          </div>
-          </div>
-          <div className = 'floatLeft'>
-            Current Clan Forums
-           <ForumList forums={testForums} /> 
-          </div>
-          <div className ='userForumListBox'>
-            <UserList users ={testUsers} /> 
-          </div>
+        <AutoComplete         
+            hintText="Find a different clan!!"
+            dataSource={testClans}
+            menuProps={menuProps}
+        />
         </div>
+        </div>
+        <div className = 'floatLeft'>
+          Current Clan Forums
+          <ForumList
+          handleClose = {this.handleClose} 
+          handleOpen = {this.handleOpen} 
+          open = {this.state.open}
+          forums = {testForums} 
+        /> 
+        </div>
+        <div className ='userForumListBox'>
+          <UserList users ={testUsers} /> 
+        </div>
+      </div>
     )
+  }
 }
 
 export default Clan;

@@ -1,10 +1,5 @@
 import React from 'react';
 import ClanChip from './ClanChip.jsx';
-import { connect } from 'react-redux';
-
-const mapStateToProps = state => ({
-  clans: state.clans
-})
 
 
 const UserClans = (props) => (
@@ -18,4 +13,4 @@ const UserClans = (props) => (
   </div>
 )
 
-export default connect(mapStateToProps)(UserClans);
+export default UserClans;
