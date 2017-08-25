@@ -10,6 +10,7 @@ import Clan from './pageComponents/ClanPage.jsx';
 import Forum from './pageComponents/ForumPage.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './styles.css';
+
 /*
 Captains Log: StarDate 8/22/2017-9:50PM.
 As of right now there are a few pages scaffoled with fake data.
@@ -25,8 +26,8 @@ Scaffolding progress is probably about 2/3 finished. The clans and forum pages s
 be added. I am quite happy with the way that the material-ui looks so far, but I do think
 that the forum page might need a different ui, as I'm not sure that there's really a good
 material-ui component for this.
-*/
 
+*/
 
 let store = configureStore();
 console.log('store: ', store.getState());
@@ -44,10 +45,10 @@ const App = () => (
           <User />
         </Route>
         <Route exact path = '/clan' >
-        <Clan />
+          <Clan />
         </Route>
         <Route exact path ='/forum' >
-        <Forum />
+          <Forum />
         </Route>
       </Switch>
   </div>
