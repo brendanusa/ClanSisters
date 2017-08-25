@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from '../../client/src/pageComponents/HomePage.jsx'
+import Home from '../../client/src/pageComponents/HomePage.jsx';
 import { shallow } from 'enzyme';
 
 

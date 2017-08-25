@@ -1,10 +1,10 @@
 import React from 'react';
-import Home from '../../client/src/pageComponents/HomePage.jsx'
-import User from '../../client/src/pageComponents/UserPage.jsx'
-import Clan from '../../client/src/pageComponents/ClanPage.jsx'
-import Forum from '../../client/src/pageComponents/ForumPage.jsx'
+import Home from '../../client/src/pageComponents/HomePage.jsx';
+import User from '../../client/src/pageComponents/UserPage.jsx';
+import Clan from '../../client/src/pageComponents/ClanPage.jsx';
+import Forum from '../../client/src/pageComponents/ForumPage.jsx';
 import App from '../../client/src/index.jsx';
-import Login from '../../client/src/login/index.jsx';
+import Login from '../../client/src/pageComponents/LoginPage.jsx';
 import NavBar from '../../client/src/components/Nav.jsx';
 import { shallow } from 'enzyme';
 
