@@ -22,18 +22,25 @@ const mapStateToProps = state => ({
   clans: state.clans
 })
 
+const mapStateToProps = state => ({
+  clans: state.clans
+})
+
 const UserClans = (props) => (
   <div>
+
     <div className = 'userClanScrollBox' >
       {/*
       The map below accesses the Chip component; the uncommented version is a placeholder
       //{props.clans.map((clan) => {
         //return (<ClanChip clan={clan} key={clan.id} />);
+
       */}
       {props.clans.map((clan, i) => {
         return (<div key={i}>{clan.name}</div>);
       //{props.clans.map((clan) => {
         //return (<ClanChip clan={clan} key={clan.id} />);
+
       })}
     </div>
   </div>
