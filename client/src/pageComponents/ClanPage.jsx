@@ -81,7 +81,7 @@ class Clan extends React.Component {
   };
 
   handleClick () {
-    this.props.addClan();
+    this.props.fetchAllClans();
   };
 
   render () {
