@@ -60,7 +60,6 @@ const mapDispatchToProps = dispatch => {
     addClan
   }, dispatch)
 }
-// this.props.fetchAllClans
 
 
 class Clan extends React.Component {
@@ -83,6 +82,7 @@ class Clan extends React.Component {
   };
 
   handleClick () {
+    console.log('clicked!');
     this.props.fetchAllClans();
   };
 
@@ -104,6 +104,7 @@ class Clan extends React.Component {
         </div>
 
         </div>
+          clans: {this.props.clans}
 
         <div>
           <h2>YOUR CLAN LIST:</h2>

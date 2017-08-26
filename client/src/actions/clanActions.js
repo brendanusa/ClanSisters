@@ -14,11 +14,10 @@ export const fetchAllClans = () => {
   return (dispatch) => {
     getClans
       .then(clans => {
-        // console.log('should be all of the clans: ', clans);
-        
+        console.log('should be all of the clans: ', clans.data.results);
         dispatch({
           type: types.FETCH_ALL_CLANS,
-          payload: clans
+          payload: JSON.stringify(clans.data.results)
         });
       })
       .catch(err => {
