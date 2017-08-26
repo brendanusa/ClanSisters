@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {Forum, Post} = require('../database');
 
 router.get('/', (req, res) => {
-  return Forum.findAll(req.query)
+  return Forum.findAll(req.query.id)
     .then(forums => {
       res.json({results: forums});
     })

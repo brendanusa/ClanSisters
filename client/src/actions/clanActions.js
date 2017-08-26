@@ -89,9 +89,11 @@ export const fetchUserForums = (user) => {
   };
 };
 
-export const fetchClanForums = (clan) => {
-  console.log('hi');
-  const getClanForums = axios.get('/api/forums');
+export const fetchClanForums = (clanId) => {
+  //below, the template string will append the clanId query to the end of the 
+  //request URL, otherwise, just render to an empty string, not changing the 
+  //request query to just get all clans
+  const getClanForums = axios.get(`/api/forums${clanId ? `?id=${clanId}` : ''}`);
   return (dispatch) => {
     getClanForums
       .then(forums => {

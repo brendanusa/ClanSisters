@@ -38,6 +38,10 @@ class ClanPage extends React.Component {
     super (props)
   }
 
+  componentDidMount() {
+    this.props.fetchClanForums();
+  }
+
   render () {
     return (
       <div>
