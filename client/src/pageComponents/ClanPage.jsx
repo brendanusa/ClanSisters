@@ -9,40 +9,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchAllClans, addClan } from  '../actions/clanActions';
 
-/*
-The find clans component is the same as the one on the home page. 
-
-I think this has been mentioned before, but it would be super cool if we 
-could have clans have their own avatars. 
-
-When the button is pressed we should be able to join the clan. 
-More styling can be added pretty easily, look at the Material-ui docs. 
-
-The Autocomplete that we have here should return the same results as the
-the autocomplete from the home page. 
-
-
-*/
-
 const joinClan = () => {
-  alert('NUCLEAR LAUNCH IN 5, 4, 3...')
   this.props.dispatch(addClan)
 }
-
-const testForums = [
-  {title: 'test001', heading: 'test001', id: 'test001'},
-  {title: 'test002', heading: 'test002', id: 'test002'},
-  {title: 'test003', heading: 'test003', id: 'test003'}
-]
-
-const testClans = [
-  'Starcraft',
-  'Mass Effect',
-  'FIFA',
-  'Crysis',
-  'Battlefield',
-  'Destiny'
-]
 
 const menuProps = {
   desktop: true,
@@ -72,7 +41,6 @@ class Clan extends React.Component {
     };
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleOpen () {
@@ -83,42 +51,37 @@ class Clan extends React.Component {
     this.setState({open: false});
   };
 
-  handleClick () {
-    this.props.fetchAllClans();
-  };
-
   render () {
     return (
       <div>
         <Nav/>
         <div className = 'textCenter'>
-          <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
           <RaisedButton
-          label = 'JOIN THIS CLAN'
-          onClick = {() => this.handleClick()}
+          label = 'Join Clan'
+          onClick = {() => this.props.fetchAllClans()}
           />
           <AutoComplete         
               hintText="Find a different clan!!"
-              dataSource={testClans}
+              dataSource={this.props.clans}
               menuProps={menuProps}
           />
         </div>
         <h2>YOUR CLAN LIST:</h2>
-        <ClanList clans={this.props.clans}/>
+        <ClanList clans={this.props.clans || []}/>
         <div className = 'floatLeft'>
           Current Clan Forums
           <ForumList
-          handleClose = {this.handleClose} 
-          handleOpen = {this.handleOpen} 
-          open = {this.state.open}
-          forums = {testForums} 
+            handleClose = {this.handleClose} 
+            handleOpen = {this.handleOpen} 
+            open = {this.state.open}
+            forums = {this.props.forums || []} 
           />
         </div>
         <div className ='userForumListBox'>
-          <UserList users ={[]} />
+          <UserList users ={this.props.users || []} />
         </div>
       </div>
-    )
+    );
   }
 }
 

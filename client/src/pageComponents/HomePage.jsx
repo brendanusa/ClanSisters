@@ -3,26 +3,6 @@ import AutoComplete from 'material-ui/AutoComplete';
 import ClanCreator from '../components/ClanCreator.jsx';
 import ClanList from '../components/ClanList.jsx';
 import Nav from '../components/Nav.jsx';
-/*
-Dear Brendan/Others. I am using the material-ui autocomplete.
-It takes in a datasource array. That array should be a list of clan names.
-Please set this somewhere and pass it in the datasource object.
-Right Now I am just going to pass a test object in to ensure that it works correctly.
-I have a div for the users online, it just needs to be passed whatever props we will use to populate this box.
-*/
-
-const testClans = [
-  'Starcraft',
-  'Mass Effect',
-  'FIFA',
-  'Crysis',
-  'Battlefield',
-  'Destiny'
-]
-const testClanList  = [
-  {name: 'StarCraft', description: 'StarCraft Talk', id: '001'},
-  {name: 'Mass Effect', description: 'salkdfjl', id: '003'}
-]
 
 const style = {
   height: '375px',
@@ -75,7 +55,7 @@ class Home extends React.Component {
         <div className = 'clanSearchBox'>
           You can search for an existing clan... <AutoComplete
           hintText="Find a clan!!"
-          dataSource={testClans}
+          dataSource={this.state.clans || []}
           menuProps={menuProps}
           />
         </div>
@@ -92,7 +72,7 @@ class Home extends React.Component {
         </div>
         <div style= {style} >
           Existing clans
-          <ClanList clans={testClanList} />
+          <ClanList clans={this.state.clans || []} />
         </div>
         <div className = 'usersOnlineStyle' >
           PlaceHolder for Users Online.
