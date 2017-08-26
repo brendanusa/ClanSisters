@@ -5,7 +5,8 @@ export const types = {
   FETCH_USER_CLANS: 'FETCH_USER_CLANS',
   ADD_CLAN: 'ADD_CLAN',
   FETCH_CURRENT_USER: 'FETCH_CURRENT_USER',
-  FETCH_USER_FORUMS: 'FETCH_USER_FORUMS'
+  FETCH_USER_FORUMS: 'FETCH_USER_FORUMS',
+  FETCH_CLAN_FORUMS: 'FETCH_CLAN_FORUMS'
 };
 
 //fetchAllClans is an action cretor
@@ -19,7 +20,7 @@ export const fetchAllClans = () => {
         console.log('should be all of the clans: ', clans.data.results);
         dispatch({
           type: types.FETCH_ALL_CLANS,
-          payload: JSON.stringify(clans.data.results)
+          payload: clans.data.results
         });
       })
       .catch(err => {
@@ -57,12 +58,6 @@ export const fetchUserClans = (user) => {
         throw err;
       });
   };
-
-  // Placeholder
-  // return {
-  //   type: types.FETCH_USER_CLANS,
-  //   payload: [{name: 'clan1'}, {name: 'clan2'}]
-  // }
 };
 
 export const fetchCurrentUser = () => {
@@ -91,5 +86,23 @@ export const fetchUserForums = (user) => {
   return {
     type: types.FETCH_USER_FORUMS,
     payload: [{name: 'forum1'}, {name: 'forum2'}]
+  };
+};
+
+export const fetchClanForums = (clan) => {
+  console.log('hi');
+  const getClanForums = axios.get('/api/forums');
+  return (dispatch) => {
+    getClanForums
+      .then(forums => {
+        dispatch({
+          type: types.FETCH_CLAN_FORUMS,
+          payload: forums.data.results
+        });
+      })
+      .catch(err => {
+        console.log('error getting all forums');
+        throw err;
+      });
   };
 };

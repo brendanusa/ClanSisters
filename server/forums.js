@@ -15,7 +15,7 @@ router.get('/:forum', (req, res) => {
   return Forum.read({id: req.params.forum})
     .then(forum => {
       if (forum) {
-        res.json({results: forum.toJSON()});
+        res.json({results: forum});
       } else {
         res.status(400).send('Forum doesn\'t exist');
       }

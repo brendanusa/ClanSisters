@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Nav from '../components/Nav.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllClans, addClan } from  '../actions/clanActions';
+import { fetchAllClans, addClan, fetchClanForums } from  '../actions/clanActions';
 
 const joinClan = () => {
   this.props.dispatch(addClan)
@@ -20,37 +20,23 @@ const menuProps = {
 
 const mapStateToProps = (state) => {
   return {
-    clans: state.clans
+    clans: state.clans,
+    forums: state.forums
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchAllClans,
-    addClan
+    addClan,
+    fetchClanForums
   }, dispatch)
 }
 
 class ClanPage extends React.Component {
   constructor (props) {
     super (props)
-    this.state = {
-      open : false
-    };
   }
-
-  handleOpen () {
-    this.setState({open: true});
-  };
-
-  handleClose () {
-    this.setState({open: false});
-  };
-
-  handleClick () {
-    console.log('clicked!');
-    this.props.fetchAllClans();
-  };
 
   render () {
     return (
@@ -59,7 +45,7 @@ class ClanPage extends React.Component {
         <div className = 'textCenter'>
           <RaisedButton
           label = 'Join Clan'
-          onClick = {() => this.props.fetchAllClans()}
+          onClick = {() => this.props.fetchClanForums()}
           />
           <AutoComplete         
               hintText="Find a different clan!!"
@@ -71,9 +57,7 @@ class ClanPage extends React.Component {
         <ClanList clans={this.props.clans || []}/>
         <div className = 'floatLeft'>
           Current Clan Forums
-          <ForumList
-            forums = {this.props.forums || []} 
-          />
+          <ForumList forums = {this.props.forums} />
         </div>
         <div className ='userForumListBox'>
           <UserList users ={this.props.users || []} />
