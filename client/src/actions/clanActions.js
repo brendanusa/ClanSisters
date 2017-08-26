@@ -46,12 +46,12 @@ export const addClan = () => {
     type: types.ADD_CLAN,
     payload: [{key: 1, type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'}]
   };
-}
-  // axios.post('/', {type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'})
-  //   .then(res => {
-  //     fetchAllClans();
-  //   })
-  //   .catch(err => console.log('error in addClan: ', err));
+};
+// axios.post('/', {type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'})
+//   .then(res => {
+//     fetchAllClans();
+//   })
+//   .catch(err => console.log('error in addClan: ', err));
 
 
 
