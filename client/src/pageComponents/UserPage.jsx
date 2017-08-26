@@ -1,15 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD
-import UserClans from '../components/UserClans.jsx';
-import ForumList from '../components/ForumList.jsx';
-import Nav from '../components/Nav.jsx';
-=======
 import UserClans from '../components/UserClans.jsx'
 import ForumList from '../components/ForumList.jsx'
+import Nav from '../components/Nav.jsx';
 import { connect } from 'react-redux'
-import { fetchUserClans } from  '../actions/clanActions'
-
->>>>>>> 1c551dc17cf4d87e2d6ce94e17719ddd7d580b82
+import { fetchUserClans } from  '../actions/clanActions';
 
 /*
 Right now I just plan on having the user profile information in a div box, I don't see anything in-
