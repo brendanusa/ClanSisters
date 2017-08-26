@@ -12,7 +12,7 @@ const UserList = (props) => (
 	<div>
 		<div>User List</div>
 		<div style = {style} >
-			{props.users.map(user =>
+			{props.users.length ? props.users.map(user =>
 				<Card key= {user.id}>
 					<CardHeader
 						title= {user.name}
@@ -21,7 +21,7 @@ const UserList = (props) => (
 						User Test text. 
 					</CardText>
         </Card>
-			)}
+			) : null}
 		</div>
   </div>
 );

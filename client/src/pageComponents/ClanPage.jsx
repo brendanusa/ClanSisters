@@ -23,10 +23,10 @@ the autocomplete from the home page.
 
 */
 
-// const joinClan = () => {
-//   alert('NUCLEAR LAUNCH IN 5, 4, 3...')
-//   this.props.dispatch(addClan)
-// }
+const joinClan = () => {
+  alert('NUCLEAR LAUNCH IN 5, 4, 3...')
+  this.props.dispatch(addClan)
+}
 
 const testForums = [
   {title: 'test001', heading: 'test001', id: 'test001'},
@@ -69,6 +69,7 @@ class Clan extends React.Component {
     };
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleOpen () {
@@ -79,6 +80,10 @@ class Clan extends React.Component {
     this.setState({open: false});
   };
 
+  handleClick () {
+    this.props.addClan();
+  };
+
   render () {
     return (
       <div>
@@ -86,7 +91,7 @@ class Clan extends React.Component {
           <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
           <RaisedButton
           label = 'JOIN THIS CLAN'
-          onClick = {joinClan}
+          onClick = {() => this.handleClick()}
         />
         <div>
         <AutoComplete         
@@ -95,7 +100,14 @@ class Clan extends React.Component {
             menuProps={menuProps}
         />
         </div>
+
         </div>
+
+        <div>
+          <h2>YOUR CLAN LIST:</h2>
+          <ClanList clans={this.props.clans}/>
+        </div>
+
         <div className = 'floatLeft'>
           Current Clan Forums
           <ForumList
@@ -106,7 +118,7 @@ class Clan extends React.Component {
         /> 
         </div>
         <div className ='userForumListBox'>
-          <UserList users ={testUsers} /> 
+          <UserList users ={[]} /> 
         </div>
       </div>
     )
