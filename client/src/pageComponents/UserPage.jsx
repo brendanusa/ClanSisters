@@ -1,5 +1,5 @@
 import React from 'react';
-import ForumList from '../components/ForumList.jsx'
+import ForumList from '../components/ForumList.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchCurrentUser, fetchUserClans, fetchUserForums } from '../actions/clanActions.js';
@@ -19,87 +19,86 @@ Note, our testClans are the same in several different places.
 
 */
 
-
 const testForums = [
   {title: 'test001', heading: 'test001', id: 'test001'},
   {title: 'test002', heading: 'test002', id: 'test002'},
   {title: 'test003', heading: 'test003', id: 'test003'}
-]
+];
 
-const testClanList  = [
+const testClanList = [
   {name: 'StarCraft', description: 'StarCraft Talk', id: '001'},
   {name: 'Mass Effect', description: 'salkdfjl', id: '003'}
-]
+];
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
   clans: state.clans,
   forums: state.forums,
-})
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchCurrentUser,
   fetchUserClans,
   fetchUserForums
-}, dispatch)
+}, dispatch);
 
 class User extends React.Component {
 
-    constructor(props) {
-        super(props);
-        var profileDataStyles = {
-            width: '300px',
-            border: '50px black',
-            padding: '50px',
-            margin: '50px,'
-        }
-        this.state = {
-          open: false,
-        };
-        this.handleClose = this.handleClose.bind(this);
-        this.handleOpen = this.handleOpen.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    var profileDataStyles = {
+      width: '300px',
+      border: '50px black',
+      padding: '50px',
+      margin: '50px,'
+    };
+    this.state = {
+      open: false,
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+  }
 
-    handleOpen () {
-        this.setState({open: true});
-      };
+  handleOpen () {
+    this.setState({open: true});
+  }
 
-      handleClose () {
-        this.setState({open: false});
-      };
+  handleClose () {
+    this.setState({open: false});
+  }
 
 
-    componentWillMount() {
-        this.props.fetchCurrentUser()
-        this.props.fetchUserClans()
-        this.props.fetchUserForums()
-    }
+  componentWillMount() {
+    this.props.fetchCurrentUser();
+    this.props.fetchUserClans();
+    this.props.fetchUserForums();
+  }
 
-    render() {
-        return (
-            <div>
-                <div className = 'profileData'>
-                PROFILE!
-                <br />
-                    <UserProfile user={this.props.currentUser}/>
-                <br />
-                </div>
-                <div>
-                    CLANS!<br />
-                  <UserClans clans={this.props.clans}/>
-                </div>
-                <div className = 'userForumListBox'>
-                    FORUMS! <br />
-                    <UserForums 
-                        forums={this.props.forums}
-                        handleClose = {this.handleClose} 
-                        handleOpen = {this.handleOpen} 
-                        open = {this.state.open}
-                    />
-                </div>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <div className = 'profileData'>
+        PROFILE!
+        <br />
+          <UserProfile user={this.props.currentUser}/>
+        <br />
+        </div>
+        <div>
+          CLANS!<br />
+          <UserClans clans={this.props.clans}/>
+        </div>
+        <div className = 'userForumListBox'>
+          FORUMS! <br />
+          <UserForums 
+            forums={this.props.forums}
+            handleClose = {this.handleClose} 
+            handleOpen = {this.handleOpen} 
+            open = {this.state.open}
+          />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);
