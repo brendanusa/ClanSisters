@@ -10,7 +10,7 @@ export const types = {
 //note that action creators in redux are always 
 //ran with dispatch, a method of redux
 export const fetchAllClans = () => {
-  const getClans = axios.get('api/clans')
+  const getClans = axios.get('api/clans');
   return (dispatch) => {
     getClans
       .then(clans => {
@@ -25,7 +25,7 @@ export const fetchAllClans = () => {
         console.log('error getting all clans');
         throw err;
       });
-  }
+  };
 };
 
 

@@ -60,6 +60,8 @@ const mapDispatchToProps = dispatch => {
     addClan
   }, dispatch)
 }
+// this.props.fetchAllClans
+
 
 class Clan extends React.Component {
   constructor (props) {
