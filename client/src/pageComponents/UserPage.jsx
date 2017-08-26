@@ -60,4 +60,4 @@ class UserPage extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
+export default UserPage;
