@@ -4,6 +4,10 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
+// Props needed:
+//
+// onSubmit() - Function that will be called with the name of the new clan upon user submission
+
 class ClanCreator extends React.Component {
   constructor (props) {
     super(props);
@@ -11,6 +15,10 @@ class ClanCreator extends React.Component {
       clanName: '',
       open: false
     };
+    if (!props.onSubmit) {
+      throw new Error('No onSubmit function was passed in');
+    }
+    this.onSubmit = props.onSubmit;
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -53,10 +61,13 @@ class ClanCreator extends React.Component {
   submit () {
     if (this.state.clanName !== '') {
       this.handleClose();
+      this.onSubmit(this.state.clanName);
+      this.setState({clanName: ''});
     }
   }
   cancel () {
     this.handleClose();
+    this.setState({clanName: ''});
   }
 
   render () {

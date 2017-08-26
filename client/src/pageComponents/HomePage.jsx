@@ -34,7 +34,7 @@ class Home extends React.Component {
         </div>
         <div className = 'clanCreatorButton'>
           Or simply create your own!! 
-          <ClanCreator/>
+          <ClanCreator onSubmit={() => {}}/>
         </div>
         <div style= {style} >
           Existing clans
