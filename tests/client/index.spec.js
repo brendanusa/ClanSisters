@@ -26,10 +26,6 @@ describe('Index Page', () => {
     expect(wrapper.contains(<Login />)).to.equal(true);
   });
 
-  it('Should contain the NavBar', () => {
-    expect(wrapper.contains(<NavBar />)).to.equal(true);
-  });
-
   it('Should contain the user page', () => {
     expect(wrapper.contains(<User />)).to.equal(true);
   });

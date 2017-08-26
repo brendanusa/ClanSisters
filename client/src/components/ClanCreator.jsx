@@ -4,50 +4,88 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-/*
-This clanCreator will NOT work without Redux, as it is dependent upon props being passed to it.
-A refactor with redux will probably do the following things.
-First, it will put our open state within the state tree.
-Second, it will put place our handleOpen/Close functions into our actions.
-Third, it will use forms to send data back to our database when a new clan is created.
+// Props needed:
+//
+// onSubmit() - Function that will be called with the name of the new clan upon user submission
 
-
-Right now the click events don't work correctly, however I don't see the need to invest time into fixing this--
-when this will be refactored anyway.
-
-The Material-ui Text Field component is probably the best to use within our dialog box.
-I (Sam) have not added this feature yet, but may if I get everything scaffolded.
-*/
-
-
-  const ClanCreator = (props) =>  {
-    const actions = [
+class ClanCreator extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      clanName: '',
+      open: false
+    };
+    if (!props.onSubmit) {
+      throw new Error('No onSubmit function was passed in');
+    }
+    this.onSubmit = props.onSubmit;
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.submit = this.submit.bind(this);
+    this.cancel = this.cancel.bind(this);
+    this.actions = [
       <FlatButton
         label="Cancel"
-        primary={true}
-        onClick={props.handleClose}
+        primary={false}
+        onClick={this.cancel}
       />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={props.handleClose}
-      />,
+        onClick={this.submit}
+      />
     ];
+  }
+
+  handleOpen () {
+    this.setState({open: true});
+  }
+  handleClose () {
+    this.setState({open: false});
+  }
+
+  handleInputChange (property, e)  {
+    let stateChange = {};
+    stateChange[property] = e.target.value;
+    this.setState(stateChange);
+  }
+  handleKeyPress (e) {
+    if (e.key === 'Enter') {
+      this.submit();
+    }
+  }
+
+  submit () {
+    if (this.state.clanName !== '') {
+      this.handleClose();
+      this.onSubmit(this.state.clanName);
+      this.setState({clanName: ''});
+    }
+  }
+  cancel () {
+    this.handleClose();
+    this.setState({clanName: ''});
+  }
+
+  render () {
     return (
       <div>
-        <RaisedButton label="Clan Builder" onClick={props.handleOpen} />
+        <RaisedButton label="Clan Builder" onClick={this.handleOpen} />
         <Dialog
-          title="Create a new clan"
-          actions={actions}
+          title="Create a New Clan"
+          actions={this.actions}
           modal={false}
-          open={props.open}
-          onRequestClose={props.handleClose}
+          open={this.state.open}
+          onRequestClose={this.cancel}
         >
-        <TextField onKeyPress={props.handleKeyPress} hintText='hello@world.com' floatingLabelText='Clan Name' type='text' value={props.clanName} onChange={props.handleInputChange.bind(this, 'clanName')} />
+        <TextField onKeyPress={this.handleKeyPress} floatingLabelText='Clan Name' type='text' value={this.state.clanName} onChange={this.handleInputChange.bind(this, 'clanName')} />
         </Dialog>
       </div>
     );
   }
+}
 
-  export default ClanCreator;
+export default ClanCreator;
