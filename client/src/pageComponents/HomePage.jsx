@@ -19,35 +19,8 @@ const menuProps = {
 
 class Home extends React.Component {
   constructor (props) {
-    super (props)
-    this.state = {
-      open: false,
-      clanName: ''
-    };
-    this.handleClose = this.handleClose.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
+    super(props);
   };
-
-  handleInputChange (property, e)  {
-    let stateChange = {};
-    stateChange[property] = e.target.value;
-    this.setState(stateChange);
-  }
-  handleKeyPress (e) {
-    if (e.key === 'Enter') {
-      this.sendRequest();
-    }
-  }
-
-  handleOpen () {
-    this.setState({open: true});
-  }
-
-  handleClose () {
-    this.setState({open: false});
-  }
 
   render () {
     return (  <div>
@@ -55,24 +28,17 @@ class Home extends React.Component {
         <div className = 'clanSearchBox'>
           You can search for an existing clan... <AutoComplete
           hintText="Find a clan!!"
-          dataSource={this.state.clans || []}
+          dataSource={[]}
           menuProps={menuProps}
           />
         </div>
         <div className = 'clanCreatorButton'>
           Or simply create your own!! 
-          <ClanCreator 
-            handleClose = {this.handleClose} 
-            handleOpen = {this.handleOpen} 
-            handleInputChange = {this.handleInputChange}
-            handleKeyPress = {this.handleKeyPress}  
-            open = {this.state.open}
-            clanName = {this.state.clanName}
-          />
+          <ClanCreator/>
         </div>
         <div style= {style} >
           Existing clans
-          <ClanList clans={this.state.clans || []} />
+          <ClanList clans={[]} />
         </div>
         <div className = 'usersOnlineStyle' >
           PlaceHolder for Users Online.
