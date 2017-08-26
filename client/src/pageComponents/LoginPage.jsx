@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import SteamButton from '../components/SteamButton/index.jsx';
 
-class Login extends React.Component {
+class LoginPage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -21,4 +21,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default LoginPage;
