@@ -2,7 +2,6 @@ import React from 'react';
 import Nav from '../components/Nav.jsx';
 import { connect } from 'react-redux'
 import ForumList from '../components/ForumList.jsx';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchCurrentUser, fetchUserClans, fetchUserForums } from '../actions/clanActions.js';
 import UserClans from '../components/UserClans.jsx';
