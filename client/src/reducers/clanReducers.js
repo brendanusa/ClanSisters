@@ -13,7 +13,7 @@ export const rootReducer = (state, action) => {
   } else if (action.type === types.FETCH_USER_FORUMS) {
     newState = {...state, forums: action.payload};
   } else if (action.type === types.FETCH_CLAN_FORUMS) {
-    newState = {...state, forums: action.payload}
+    newState = {...state, forums: action.payload};
   }
   return newState || state;
 };
