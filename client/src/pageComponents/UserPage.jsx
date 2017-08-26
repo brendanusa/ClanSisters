@@ -17,7 +17,7 @@ posts will need to be loaded.
 Note, our testClans are the same in several different places. 
 */
 
-class User extends React.Component {
+class UserPage extends React.Component {
   constructor (props ) {
     super(props)
     this.state = {
@@ -57,4 +57,4 @@ class User extends React.Component {
   }
 }
 
-export default User;
+export default UserPage;

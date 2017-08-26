@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import ForumList from '../components/ForumList.jsx';
 import AutoComplete from 'material-ui/AutoComplete';
 import UserList from '../components/UserList.jsx';
@@ -30,26 +30,14 @@ const mapDispatchToProps = dispatch => {
     addClan
   }, dispatch)
 }
-// this.props.fetchAllClans
 
-
-class Clan extends React.Component {
+class ClanPage extends React.Component {
   constructor (props) {
     super (props)
     this.state = {
       open : false
     };
-    this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
   }
-
-  handleOpen () {
-    this.setState({open: true});
-  };
-
-  handleClose () {
-    this.setState({open: false});
-  };
 
   render () {
     return (
@@ -66,14 +54,11 @@ class Clan extends React.Component {
               menuProps={menuProps}
           />
         </div>
-        <h2>YOUR CLAN LIST:</h2>
+        <h2>Your Clans</h2>
         <ClanList clans={this.props.clans || []}/>
         <div className = 'floatLeft'>
           Current Clan Forums
           <ForumList
-            handleClose = {this.handleClose} 
-            handleOpen = {this.handleOpen} 
-            open = {this.state.open}
             forums = {this.props.forums || []} 
           />
         </div>
@@ -85,4 +70,4 @@ class Clan extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Clan);
+export default connect(mapStateToProps, mapDispatchToProps)(ClanPage);

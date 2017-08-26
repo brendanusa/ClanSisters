@@ -17,7 +17,7 @@ const menuProps = {
   disableAutoFocus: true,
 };
 
-class Home extends React.Component {
+class HomePage extends React.Component {
   constructor (props) {
     super(props);
   };
@@ -49,4 +49,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default HomePage;

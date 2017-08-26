@@ -9,7 +9,7 @@ const style = {
   overflow: 'auto',
 }
 
-class ForumPage {
+class ForumPage extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
