@@ -36,14 +36,19 @@ export const addClan = () => {
   };
 };
 export const fetchUserClans = (user) => {
-  let getClans = axios.get(`/${user}/members`);
+  let getClans = axios.get(`/api/users/${user}/members`);
+  let userClans = [];
   return (dispatch) => {
     getClans
       .then(memberships => {
-        dispatch({
-          type: types.FETCH_USER_CLANS,
-          payload: memberships
+        // dispatch({
+        //   type: types.FETCH_USER_CLANS,
+        //   payload: memberships.data
+        // });
+        memberships.data.results.forEach(membership => {
+          userClans.push(membership.clanId);
         });
+        console.log(userClans);
       })
       .catch(err => {
         console.log('error getting user clans');
@@ -52,11 +57,21 @@ export const fetchUserClans = (user) => {
   };
 };
 
-export const fetchCurrentUser = () => {
-  // Placeholder - returns hardcoded object
-  return {
-    type: types.FETCH_CURRENT_USER,
-    payload: {steamScreenName: 'brendanusa1', steamRealName: 'Brendan Bansavage'}
+export const fetchCurrentUser = (user) => {
+  let getUser = axios.get(`/api/users/${user}`);
+  return (dispatch) => {
+    getUser
+      .then(user => {
+        console.log('behold, the user: ', user);
+        dispatch({
+          type: types.FETCH_CURRENT_USER,
+          payload: user.data.results
+        });
+      })
+      .catch(err => {
+        console.log('error getting current user');
+        throw err;
+      });
   };
 };
 

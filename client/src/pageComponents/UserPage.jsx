@@ -8,8 +8,20 @@ import UserClans from '../components/UserClans.jsx';
 import UserForums from '../components/UserForums.jsx';
 import UserProfile from '../components/UserProfile.jsx';
 
+const mapStateToProps = state => ({
+  currentUser: state.currentUser,
+  clans: state.clans,
+  forums: state.forums,
+});
+ 
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchCurrentUser,
+  fetchUserClans,
+  fetchUserForums
+}, dispatch);
+
 class UserPage extends React.Component {
-  constructor (props ) {
+  constructor (props) {
     super(props)
     var profileDataStyles = {
       width: '300px',
@@ -32,9 +44,9 @@ class UserPage extends React.Component {
     this.setState({open: false});
   }
 
-
   componentWillMount() {
-    this.props.fetchCurrentUser();
+    //Need to replace hard-coded id
+    this.props.fetchCurrentUser(1);
     this.props.fetchUserClans();
     this.props.fetchUserForums();
   }
@@ -42,22 +54,25 @@ class UserPage extends React.Component {
   render() {
     return (
       <div>
-          <div className = 'userForumListBox'>
-            <ForumList 
+        <div className = 'profileData'>
+          <UserProfile user={this.props.currentUser}/><br />
+        </div>
+        <div>
+          CLANS<br />
+          <UserClans clans={this.props.clans}/>
+        </div>
+        <div className = 'userForumListBox'>
+          FORUMS<br />
+          <ForumList 
+            forums={this.props.forums}
             handleClose = {this.handleClose} 
             handleOpen = {this.handleOpen} 
             open = {this.state.open}
-            forums = {[]} />
-          </div>      
-          <div className = 'profileData'>
-            This box here is designed to hold our user profile data.
-          </div>
-          <div>
-            <UserClans clans = {[]} />
+          />
           </div>
       </div>
     );
   }
 }
 
-export default UserPage;
+export default connect(mapStateToProps, mapDispatchToProps)(User);
