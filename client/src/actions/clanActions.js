@@ -46,17 +46,17 @@ export const fetchUserClans = (user) => {
   let getClans = axios.get(`/${user}/members`);
   return (dispatch) => {
     getClans
-    .then(memberships => {
-      console.log('we got the memberships: ', memberships);
-      dispatch({
-        type: types.FETCH_USER_CLANS,
-        payload: memberships
+      .then(memberships => {
+        console.log('we got the memberships: ', memberships);
+        dispatch({
+          type: types.FETCH_USER_CLANS,
+          payload: memberships
+        });
+      })
+      .catch(err => {
+        console.log('error getting user clans');
+        throw err;
       });
-    })
-    .catch(err => {
-      console.log('error getting user clans');
-      throw err;
-    });
   };
 
   // Placeholder
