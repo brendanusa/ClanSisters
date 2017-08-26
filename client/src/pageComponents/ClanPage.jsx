@@ -2,8 +2,12 @@ import React from 'react'
 import ForumList from '../components/ForumList.jsx';
 import AutoComplete from 'material-ui/AutoComplete';
 import UserList from '../components/UserList.jsx';
+import ClanList from '../components/ClanList.jsx';
 import RaisedButton from 'material-ui/RaisedButton';
 import Nav from '../components/Nav.jsx';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchAllClans, addClan } from  '../actions/clanActions';
 
 /*
 The find clans component is the same as the one on the home page. 
@@ -21,7 +25,8 @@ the autocomplete from the home page.
 */
 
 const joinClan = () => {
-    alert('NUCLEAR LAUNCH IN 5, 4, 3...')
+  alert('NUCLEAR LAUNCH IN 5, 4, 3...')
+  this.props.dispatch(addClan)
 }
 
 const testForums = [
@@ -44,38 +49,77 @@ const menuProps = {
   disableAutoFocus: true,
 };
 
-const testUsers = [
+const mapStateToProps = (state) => {
+  return {
+    clans: state.clans
+  }
+}
 
-  {name: 'Test001', id: '001'}
-]
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    fetchAllClans,
+    addClan
+  }, dispatch)
+}
+// this.props.fetchAllClans
 
-const Clan = (props) => {
+
+class Clan extends React.Component {
+  constructor (props) {
+    super (props)
+    this.state = {
+      open : false
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleOpen () {
+    this.setState({open: true});
+  };
+
+  handleClose () {
+    this.setState({open: false});
+  };
+
+  handleClick () {
+    this.props.fetchAllClans();
+  };
+
+  render () {
     return (
-        <div>
-          <Nav/>
-          <div className = 'textCenter'>
-           <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
-            <RaisedButton
-            label = 'JOIN THIS CLAN'
-            onClick = {joinClan}
+      <div>
+        <Nav/>
+        <div className = 'textCenter'>
+          <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
+          <RaisedButton
+          label = 'JOIN THIS CLAN'
+          onClick = {() => this.handleClick()}
           />
-          <div>
           <AutoComplete         
               hintText="Find a different clan!!"
               dataSource={testClans}
               menuProps={menuProps}
           />
-          </div>
-          </div>
-          <div className = 'floatLeft'>
-            Current Clan Forums
-           <ForumList forums={testForums} /> 
-          </div>
-          <div className ='userForumListBox'>
-            <UserList users ={testUsers} /> 
-          </div>
         </div>
+        <h2>YOUR CLAN LIST:</h2>
+        <ClanList clans={this.props.clans}/>
+        <div className = 'floatLeft'>
+          Current Clan Forums
+          <ForumList
+          handleClose = {this.handleClose} 
+          handleOpen = {this.handleOpen} 
+          open = {this.state.open}
+          forums = {testForums} 
+          />
+        </div>
+        <div className ='userForumListBox'>
+          <UserList users ={[]} />
+        </div>
+      </div>
     )
+  }
 }
 
-export default Clan;
+export default connect(mapStateToProps, mapDispatchToProps)(Clan);

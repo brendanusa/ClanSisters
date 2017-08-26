@@ -13,9 +13,9 @@ const ClanList = (props) => {
   return (
     <div>
       <div>Clan List</div>
-      {props.clans.map((clan) => {
+      {props.clans.length ? props.clans.map((clan, i) => {
         return (
-          <Card className='clan-list'>
+          <Card key={i} className='clan-list'>
             <CardHeader
               title={clan.name}
               subtitle={clan.description}
@@ -25,7 +25,7 @@ const ClanList = (props) => {
             </CardActions>
           </Card>
         );
-      })}
+      }) : null}
     </div>
   );
 }

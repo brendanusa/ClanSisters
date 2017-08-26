@@ -18,64 +18,36 @@ when this will be refactored anyway.
 The Material-ui Text Field component is probably the best to use within our dialog box.
 I (Sam) have not added this feature yet, but may if I get everything scaffolded.
 */
-export default class ClanCreator extends React.Component {
-  constructor (props ) {
-    super(props)
-    this.state = {
-      open: false,
-      clanName: ''
-    };
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
 
-    this.actions = [
+
+  const ClanCreator = (props) =>  {
+    const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose}
+        onClick={props.handleClose}
       />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={props.handleClose}
       />,
     ];
-  }
-
-  handleInputChange (property, e) {
-    let stateChange = {};
-    stateChange[property] = e.target.value;
-    this.setState(stateChange);
-  }
-  handleKeyPress (e) {
-    if (e.key === 'Enter') {
-      this.sendRequest();
-    }
-  }
-
-  handleOpen () {
-    this.setState({open: true});
-  };
-
-  handleClose () {
-    this.setState({open: false});
-  };
-
-  render() {
     return (
       <div>
-        <RaisedButton label="Clan Builder" onClick={this.handleOpen} />
+        <RaisedButton label="Clan Builder" onClick={props.handleOpen} />
         <Dialog
           title="Create a new clan"
-          actions={this.actions}
+          actions={actions}
           modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
+          open={props.open}
+          onRequestClose={props.handleClose}
         >
-        <TextField onKeyPress={this.handleKeyPress} hintText='hello@world.com' floatingLabelText='Clan Name' type='text' value={this.state.clanName} onChange={this.handleInputChange.bind(this, 'clanName')} />
+        <TextField onKeyPress={props.handleKeyPress} hintText='hello@world.com' floatingLabelText='Clan Name' type='text' value={props.clanName} onChange={props.handleInputChange.bind(this, 'clanName')} />
         </Dialog>
       </div>
     );
   }
-}
+
+  export default ClanCreator;
