@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../database/models/user');
 const Member = require('../database/models/member');
+const Forum = require('../database/models/forum');
+const Post = require('../database/models/post');
   
 /**
  * A get request to the users endpoint returns all users as an array of json
@@ -207,6 +209,38 @@ router.route('/:user')
       .error(error => {
         res.status(500);
         res.end(error.message || 'Internal error');
+      });
+  });
+
+/**
+ * Get all forums that the user has posted in
+ * 
+ * @param  {function} (req, res, next) - Request handler 
+ */
+router.route('/:user/forums')
+  .get((req, res, next) => {
+    Post.findAll({
+      userId: req.params.user
+    })
+      .then((posts) => {
+        let promises = [];
+        let clans = [];
+        posts.forEach((post) => {
+          promises.push(
+            Forum.read({
+              clanId: post.clanId
+            })
+              .then((clan) => {
+                if (clans.filter((clanElement) => {return clan.id === clanElement.id}).length === 0) {
+                  clans.push(clan);
+                }
+              })
+          );
+        });
+        return Promise.all(promises)
+          .then(() => {
+            res.json(clans);
+          });
       });
   });
 
