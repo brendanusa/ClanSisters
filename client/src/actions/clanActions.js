@@ -41,14 +41,16 @@ export const fetchUserClans = (user) => {
   return (dispatch) => {
     getClans
       .then(memberships => {
+        console.log('memberships: ', memberships);
         // dispatch({
         //   type: types.FETCH_USER_CLANS,
         //   payload: memberships.data
         // });
         memberships.data.results.forEach(membership => {
+          console.log('membership', membership);
           userClans.push(membership.clanId);
         });
-        console.log(userClans);
+        console.log('userclans', userClans);
       })
       .catch(err => {
         console.log('error getting user clans');

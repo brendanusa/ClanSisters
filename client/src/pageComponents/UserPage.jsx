@@ -1,11 +1,10 @@
 import React from 'react';
 import Nav from '../components/Nav.jsx';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import ForumList from '../components/ForumList.jsx';
 import { bindActionCreators } from 'redux';
 import { fetchCurrentUser, fetchUserClans, fetchUserForums } from '../actions/clanActions.js';
-import UserClans from '../components/UserClans.jsx';
-import UserForums from '../components/UserForums.jsx';
+import ClanList from '../components/ClanList.jsx';
 import UserProfile from '../components/UserProfile.jsx';
 
 const mapStateToProps = state => ({
@@ -22,7 +21,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 class UserPage extends React.Component {
   constructor (props) {
-    super(props)
+    super(props);
     var profileDataStyles = {
       width: '300px',
       border: '50px black',
@@ -47,8 +46,8 @@ class UserPage extends React.Component {
   componentWillMount() {
     //Need to replace hard-coded id
     this.props.fetchCurrentUser(1);
-    this.props.fetchUserClans();
-    this.props.fetchUserForums();
+    this.props.fetchUserClans(1);
+    this.props.fetchUserForums(1);
   }
 
   render() {
@@ -59,7 +58,7 @@ class UserPage extends React.Component {
         </div>
         <div>
           CLANS<br />
-          <UserClans clans={this.props.clans}/>
+          <ClanList clans={this.props.clans}/>
         </div>
         <div className = 'userForumListBox'>
           FORUMS<br />
@@ -69,10 +68,10 @@ class UserPage extends React.Component {
             handleOpen = {this.handleOpen} 
             open = {this.state.open}
           />
-          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(User);
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
