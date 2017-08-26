@@ -17,7 +17,6 @@ export const fetchAllClans = () => {
   return (dispatch) => {
     getClans
       .then(clans => {
-        console.log('should be all of the clans: ', clans.data.results);
         dispatch({
           type: types.FETCH_ALL_CLANS,
           payload: clans.data.results
@@ -36,18 +35,11 @@ export const addClan = () => {
     payload: [{key: 1, type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'}]
   };
 };
-// axios.post('/', {type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'})
-//   .then(res => {
-//     fetchAllClans();
-//   })
-//   .catch(err => console.log('error in addClan: ', err));
- 
 export const fetchUserClans = (user) => {
   let getClans = axios.get(`/${user}/members`);
   return (dispatch) => {
     getClans
       .then(memberships => {
-        console.log('we got the memberships: ', memberships);
         dispatch({
           type: types.FETCH_USER_CLANS,
           payload: memberships
@@ -61,19 +53,6 @@ export const fetchUserClans = (user) => {
 };
 
 export const fetchCurrentUser = () => {
-  // axios.get('/api/currentUser')
-  //   .then(user => {
-  //     console.log('behold, the current user: ', user);
-  //     dispatch({
-  //       type: FETCH_CURRENT_USER,
-  //       payload: user
-  //     });
-  //   })
-  //   .catch(err => {
-  //     console.log('error getting current user');
-  //     throw err;
-  //   });
-
   // Placeholder - returns hardcoded object
   return {
     type: types.FETCH_CURRENT_USER,
