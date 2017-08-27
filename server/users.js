@@ -231,7 +231,7 @@ router.route('/:user/forums')
               clanId: post.clanId
             })
               .then((clan) => {
-                if (clans.filter((clanElement) => {return clan.id === clanElement.id}).length === 0) {
+                if (clans.filter((clanElement) => { return clan.id === clanElement.id; }).length === 0) {
                   clans.push(clan);
                 }
               })
