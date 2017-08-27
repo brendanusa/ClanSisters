@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Nav from '../components/Nav.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllClans, addClan, fetchClanForums } from  '../actions/clanActions';
+import { fetchAllClans, addClan, fetchClanForums } from  '../actions/actions';
 
 const joinClan = () => {
   this.props.dispatch(addClan)

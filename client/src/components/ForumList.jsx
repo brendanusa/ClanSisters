@@ -51,12 +51,8 @@ class ForumList extends React.Component {
               title= {forum.title}
               subtitle = {forum.heading}
               />
-              <CardText>
-                If we want to add more information about the forum, this would be place to make it happen!!!!
-              </CardText>
               <CardActions>
                 <FlatButton label="View Forum" onClick = {console.log} />
-                <FlatButton label="Join Forum" onClick = {console.log} />
               </CardActions>
             </Card>
           ) : null}

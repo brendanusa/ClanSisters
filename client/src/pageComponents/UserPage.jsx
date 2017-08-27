@@ -3,7 +3,7 @@ import Nav from '../components/Nav.jsx';
 import { connect } from 'react-redux';
 import ForumList from '../components/ForumList.jsx';
 import { bindActionCreators } from 'redux';
-import { fetchCurrentUser, fetchUserClans, fetchUserForums } from '../actions/clanActions.js';
+import { fetchUserClans, fetchUserForums, fetchCurrentUser } from '../actions/actions.js';
 import ClanList from '../components/ClanList.jsx';
 import UserProfile from '../components/UserProfile.jsx';
 
@@ -51,6 +51,7 @@ class UserPage extends React.Component {
   }
 
   render() {
+    console.log('props: ', this.props);
     return (
       <div>
         <div className = 'profileData'>
