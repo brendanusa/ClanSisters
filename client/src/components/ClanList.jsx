@@ -16,6 +16,7 @@ const ClanList = (props) => (
       return (
         <Card key={i} className='clan-list'>
           <CardHeader
+            avatar={clan.avatar}
             title={clan.name}
             subtitle={clan.description}
           />
