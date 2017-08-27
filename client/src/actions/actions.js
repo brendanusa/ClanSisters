@@ -37,31 +37,20 @@ export const fetchAllClans = () => {
 };
 
 export const fetchUserClans = (user) => {
-  let getClans = axios.get(`/api/users/${user}/members`);
-  let userClans = [];
+  const getUserClans = axios.get(`/api/users/${user}/clans`);
+  const userClans = [];
   return (dispatch) => {
-    getClans
-      .then(memberships => {
-        // dispatch({
-        //   type: types.FETCH_USER_CLANS,
-        //   payload: memberships.data
-        // });
-        memberships.data.results.forEach(membership => {
-          userClans.push(membership.clanId);
-        });
+    getUserClans
+      .then(clans => {
+        dispatch({
+          type: types.FETCH_USER_CLANS,
+          payload: clans.data
+        })
       })
       .catch(err => {
         console.log('error getting user clans');
         throw err;
       });
-  };
-};
-
-export const fetchUserForums = (user) => {
-  // Placeholder
-  return {
-    type: types.FETCH_USER_FORUMS,
-    payload: [{name: 'forum1'}, {name: 'forum2'}]
   };
 };
 
@@ -87,7 +76,7 @@ export const fetchClanForums = (clanId) => {
 
 // **********USER ACTIONS**********
 
-module.exports.fetchAllUsers = () => {
+export const fetchAllUsers = () => {
   axios.get('/users')
     .then((users) => {
       dispatch({
@@ -97,7 +86,7 @@ module.exports.fetchAllUsers = () => {
     });
 };
 
-module.exports.fetchCurrentUser = (user) => {
+export const fetchCurrentUser = (user) => {
   const getUser = axios.get(`/api/users/${user}`);
   return (dispatch) => {
     getUser
@@ -116,7 +105,7 @@ module.exports.fetchCurrentUser = (user) => {
 
 // **********FORUM ACTIONS**********
 
-module.exports.fetchAllForums = () => {
+export const fetchAllForums = () => {
   axios.get('/forums')
     .then((forums) => {
       dispatch({
@@ -128,6 +117,23 @@ module.exports.fetchAllForums = () => {
       console.log('Error fetching all forums');
       throw err;
     });
+};
+
+export const fetchUserForums = (user) => {
+  const getUserForums = axios.get(`/api/users/${user}/forums`);
+  return (dispatch) => {
+    getUserForums
+      .then(forums => {
+        dispatch({
+          type: types.FETCH_USER_FORUMS,
+          payload: forums.data
+        });
+      })
+      .catch(err => {
+        console.log('Error getting user forums');
+        throw err;
+      });
+  };
 };
 
 module.exports.fetchById = (forumId) => {
