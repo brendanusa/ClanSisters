@@ -84,7 +84,7 @@ router.route('/:user/clans')
       userId: req.params.user
     })
       .then((members) => {
-        console.log('members', members)
+        console.log('members', members);
         let promises = [];
         let clans = [];
         members.forEach((member) => {
@@ -93,7 +93,7 @@ router.route('/:user/clans')
               id: member.clanId
             })
               .then((clanId) => {
-                console.log('clans?', clanId)
+                console.log('clans?', clanId);
                 if (clans.filter((clanElement) => { return clan.id === clanElement.id; }).length === 0) {
                   clans.push(clanId);
                 }
