@@ -45,7 +45,7 @@ export const fetchUserClans = (user) => {
         dispatch({
           type: types.FETCH_USER_CLANS,
           payload: clans.data
-        })
+        });
       })
       .catch(err => {
         console.log('error getting user clans');
