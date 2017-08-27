@@ -36,10 +36,10 @@ class ForumList extends React.Component {
 
   handleOpen () {
     this.setState({open: true});
-  };
+  }
   handleClose () {
     this.setState({open: false});
-  };
+  }
 
   render () {
     return (
@@ -48,8 +48,8 @@ class ForumList extends React.Component {
           {this.props.forums.length ? this.props.forums.map(forum =>
             <Card key = {forum.id}>
               <CardHeader
-              title= {forum.title}
-              subtitle = {forum.heading}
+                title= {forum.title}
+                subtitle = {forum.heading}
               />
               <CardActions>
                 <FlatButton label="View Forum" onClick = {console.log} />

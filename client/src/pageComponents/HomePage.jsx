@@ -37,13 +37,14 @@ class HomePage extends React.Component {
   }
 
   render () {
-    return (  <div>
-      <h1 className='textCenter'>Welcome to ClanSisters!!</h1>
+    return (
+      <div>
+        <h1 className='textCenter'>Welcome to ClanSisters!!</h1>
         <div className='clanSearchBox'>
           You can search for an existing clan... <AutoComplete
-          hintText="Find a clan!!"
-          dataSource={[]}
-          menuProps={menuProps}
+            hintText="Find a clan!!"
+            dataSource={[]}
+            menuProps={menuProps}
           />
         </div>
         <div className = 'clanCreatorButton'>
@@ -58,7 +59,7 @@ class HomePage extends React.Component {
           PlaceHolder for Users Online.
         </div>
       </div>
-    )
+    );
   }
 }
 
