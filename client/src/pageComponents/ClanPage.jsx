@@ -7,10 +7,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Nav from '../components/Nav.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllClans, addClan, fetchClanForums } from  '../actions/clanActions';
+import { fetchAllClans, addClanMember, fetchClanForums, fetchClanMembers } from  '../actions/clanActions';
 
 const joinClan = () => {
-  this.props.dispatch(addClan)
+  this.props.dispatch(addClanMember)
 }
 
 const menuProps = {
@@ -21,15 +21,17 @@ const menuProps = {
 const mapStateToProps = (state) => {
   return {
     clans: state.clans,
-    forums: state.forums
+    forums: state.forums,
+    members: state.members
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchAllClans,
-    addClan,
-    fetchClanForums
+    addClanMember,
+    fetchClanForums,
+    fetchClanMembers
   }, dispatch)
 }
 
@@ -40,6 +42,7 @@ class ClanPage extends React.Component {
 
   componentDidMount() {
     this.props.fetchClanForums();
+    this.props.fetchClanMembers();
   }
 
   render () {
@@ -48,14 +51,10 @@ class ClanPage extends React.Component {
         <Nav/>
         <div className = 'textCenter'>
           <RaisedButton
-          label = 'Join Clan'
-          onClick = {() => this.props.fetchClanForums()}
+          label = 'Join This Clan'
+          onClick = {() => this.props.addClanMember()}
           />
-          <AutoComplete         
-              hintText="Find a different clan!!"
-              dataSource={this.props.clans}
-              menuProps={menuProps}
-          />
+          
         </div>
         <h2>Your Clans</h2>
         <ClanList clans={this.props.clans || []}/>
@@ -63,8 +62,11 @@ class ClanPage extends React.Component {
           Current Clan Forums
           <ForumList forums = {this.props.forums} />
         </div>
+
+        <h2>Should be the clan members JSON: {this.props.clans || []}</h2>
+
         <div className ='userForumListBox'>
-          <UserList users ={this.props.users || []} />
+          <UserList users ={this.props.members || []} />
         </div>
       </div>
     );

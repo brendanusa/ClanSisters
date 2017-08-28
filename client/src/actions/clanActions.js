@@ -3,10 +3,11 @@ import axios from 'axios';
 export const types = {
   FETCH_ALL_CLANS: 'FETCH_ALL_CLANS',
   FETCH_USER_CLANS: 'FETCH_USER_CLANS',
-  ADD_CLAN: 'ADD_CLAN',
+  ADD_CLAN_MEMBER: 'ADD_CLAN_MEMBER',
   FETCH_CURRENT_USER: 'FETCH_CURRENT_USER',
   FETCH_USER_FORUMS: 'FETCH_USER_FORUMS',
-  FETCH_CLAN_FORUMS: 'FETCH_CLAN_FORUMS'
+  FETCH_CLAN_FORUMS: 'FETCH_CLAN_FORUMS',
+  FETCH_CLAN_FEED: 'FETCH_CLAN_FEED'
 };
 
 //fetchAllClans is an action cretor
@@ -29,12 +30,15 @@ export const fetchAllClans = () => {
   };
 };
 
-export const addClan = () => {
-  return {
-    type: types.ADD_CLAN,
-    payload: [{key: 1, type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'}]
-  };
+export const addClanMember = (userId=3, clanId=2) => {
+  let addMembership = axios.post(`/api/users/${userId}/members/${clanId}`)
+  return dispatch => {
+    addMembership
+      .then(res => console.log('membership should have been added, response: ', res))
+      .catch(err => console.log('failure adding new membership!: ', err));
+  }
 };
+
 export const fetchUserClans = (user) => {
   let getClans = axios.get(`/${user}/members`);
   return (dispatch) => {
@@ -87,3 +91,34 @@ export const fetchClanForums = (clanId) => {
       });
   };
 };
+
+export const fetchClanMembers = (clanId=1) => {
+  const getClanMembers = axios.get(`api/clans/${clanId}/members`);
+  return (dispatch) => {
+    getClanMembers
+      .then(members => {
+        console.log('should be the clan members: ', members);
+        dispatch({
+          type: types.FETCH_CLAN_FEED,
+          payload: members.data.results
+        })
+      })
+      .catch(err => {
+        console.log('error getting the clan members: ');
+        throw err;
+      })
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
