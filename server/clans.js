@@ -31,7 +31,7 @@ router.get('/:clan/members', (req, res) => {
   return Member.model.findAll({})
     .then((members) => {
       if (members) {
-        console.log('i guess these are the members??: ', members)
+        console.log('i guess these are the members??: ', members);
         res.json({results: members});
       } else {
         throw new Error('Clan does not exist');

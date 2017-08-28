@@ -146,7 +146,7 @@ router.route('/:user/members/:clanId')
     Member.create(req.params.user,
       req.params.clanId, 
       req.body.confirmed
-      )
+    )
       .then(doc => {
         res.status(200);
         res.json({id: doc.id});

@@ -12,13 +12,13 @@ export const types = {
 
 // **********CLAN ACTIONS**********
 
-export const addClanMember = (userId=3, clanId=2) => {
-  let addMembership = axios.post(`/api/users/${userId}/members/${clanId}`)
+export const addClanMember = (userId = 3, clanId = 2) => {
+  let addMembership = axios.post(`/api/users/${userId}/members/${clanId}`);
   return dispatch => {
     addMembership
       .then(res => console.log('membership should have been added, response: ', res))
       .catch(err => console.log('failure adding new membership!: ', err));
-  }
+  };
 };
 
 export const fetchAllClans = () => {
@@ -38,7 +38,7 @@ export const fetchAllClans = () => {
   };
 };
 
-export const fetchClanMembers = (clanId=1) => {
+export const fetchClanMembers = (clanId = 1) => {
   const getClanMembers = axios.get(`api/clans/${clanId}/members`);
   return (dispatch) => {
     getClanMembers
@@ -47,14 +47,14 @@ export const fetchClanMembers = (clanId=1) => {
         dispatch({
           type: types.FETCH_CLAN_MEMBERS,
           payload: members.data.results
-        })
+        });
       })
       .catch(err => {
         console.log('error getting the clan members: ');
         throw err;
-      })
-  }
-}
+      });
+  };
+};
 
 
 export const fetchClanForums = (clanId) => {
