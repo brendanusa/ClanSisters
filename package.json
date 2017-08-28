@@ -12,6 +12,7 @@
     "build": "webpack -p",
     "start": "nodemon ./server/index.js",
     "lint": "eslint .",
+    "lint-clean": "eslint --fix .",
     "react-dev": "webpack -dw",
     "server-dev": "nodemon server/index.js",
     "heroku-postbuild": "webpack -p",

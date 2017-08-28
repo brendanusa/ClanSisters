@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => {
 
 class ClanPage extends React.Component {
   constructor (props) {
-    super (props)
+    super (props);
   }
 
   componentDidMount() {
@@ -53,7 +53,6 @@ class ClanPage extends React.Component {
           <RaisedButton
           label = 'Join This Clan'
           onClick = {() => this.props.addClanMember()}
-          />
           
         </div>
         <h2>Your Clans</h2>

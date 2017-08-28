@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('../database/models/user');
 const Member = require('../database/models/member');
+const Forum = require('../database/models/forum');
+const Post = require('../database/models/post');
+const Clan = require('../database/models/clan');
   
 /**
  * A get request to the users endpoint returns all users as an array of json
@@ -71,6 +74,36 @@ router.route('/:user/members')
       .error(error => {
         res.status(500);
         res.end(error.message || 'Internal error');
+      });
+  });
+
+// NEW user clans req handler
+router.route('/:user/clans')
+  .get((req, res, next) => {
+    Member.findAll({
+      userId: req.params.user
+    })
+      .then((members) => {
+        console.log('members', members);
+        let promises = [];
+        let clans = [];
+        members.forEach((member) => {
+          promises.push(
+            Clan.read({
+              id: member.clanId
+            })
+              .then((clanId) => {
+                console.log('clans?', clanId);
+                if (clans.filter((clanElement) => { return clan.id === clanElement.id; }).length === 0) {
+                  clans.push(clanId);
+                }
+              })
+          );
+        });
+        return Promise.all(promises)
+          .then(() => {
+            res.json(clans);
+          });
       });
   });
 
@@ -209,6 +242,38 @@ router.route('/:user')
       .error(error => {
         res.status(500);
         res.end(error.message || 'Internal error');
+      });
+  });
+
+/**
+ * Get all forums that the user has posted in
+ * 
+ * @param  {function} (req, res, next) - Request handler 
+ */
+router.route('/:user/forums')
+  .get((req, res, next) => {
+    Post.findAll({
+      userId: req.params.user
+    })
+      .then((posts) => {
+        let promises = [];
+        let forums = [];
+        posts.forEach((post) => {
+          promises.push(
+            Forum.read({
+              id: post.forumId
+            })
+              .then((forumId) => {
+                if (forums.filter((forumElement) => { return forum.id === forumElement.id; }).length === 0) {
+                  forums.push(forumId);
+                }
+              })
+          );
+        });
+        return Promise.all(promises)
+          .then(() => {
+            res.json(forums);
+          });
       });
   });
 
