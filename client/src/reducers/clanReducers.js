@@ -5,7 +5,8 @@ import {
   FETCH_ALL_USERS,
   FETCH_CURRENT_USER,
   FETCH_USER_FORUMS,
-  FETCH_CLAN_FORUMS
+  FETCH_CLAN_FORUMS,
+  FETCH_CLAN_MEMBERS
 } from '../actions/actions.js';
 
 const types = {
@@ -16,7 +17,8 @@ const types = {
   FETCH_CLAN_FORUMS: 'FETCH_CLAN_FORUMS',
   FETCH_ALL_USERS: 'FETCH_ALL_USERS',
   FETCH_CURRENT_USER: 'FETCH_CURRENT_USER',
-  FETCH_CLAN_FEED: 'FETCH_CLAN_FEED'
+  FETCH_CLAN_FEED: 'FETCH_CLAN_FEED',
+  FETCH_USER_CLANS: 'FETCH_USER_CLANS'
 };
 
 export const rootReducer = (state, action) => {

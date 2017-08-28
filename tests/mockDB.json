@@ -2,11 +2,11 @@
   "users": [
     {
       "id": 1,
-      "steamId": 12345678,
-      "steamAvatarImageUrl": "http://fakewebsite.com",
-      "steamProfileUrl": "http://fakewebsite.com",
-      "steamScreenName": "Fredex",
-      "steamRealName": "Freddy Z"
+      "steamId": 76561198393367971,
+      "steamAvatarImageUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/7e/7eff01722c04fd0ad214bdb179b5440c5a6cd0ff_full.jpg",
+      "steamProfileUrl": "http://steamcommunity.com/profiles/76561198393367971/",
+      "steamScreenName": "brendanusa1",
+      "steamRealName": "Brendan Bansavage"
     },
     {
       "id": 2,

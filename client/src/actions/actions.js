@@ -7,7 +7,8 @@ export const types = {
   FETCH_USER_FORUMS: 'FETCH_USER_FORUMS',
   FETCH_CLAN_FORUMS: 'FETCH_CLAN_FORUMS',
   FETCH_ALL_USERS: 'FETCH_ALL_USERS',
-  FETCH_CURRENT_USER: 'FETCH_CURRENT_USER'
+  FETCH_CURRENT_USER: 'FETCH_CURRENT_USER',
+  FETCH_USER_CLANS: 'FETCH_USER_CLANS'
 };
 
 // **********CLAN ACTIONS**********
@@ -103,6 +104,25 @@ export const fetchCurrentUser = (user) => {
         console.log('error getting current user');
         throw err;
       });
+  };
+};
+
+export const fetchUserClans = (user) => {
+  const getUserClans = axios.get(`/api/users/${user}/clans`);
+  const userClans = [];
+  getUserClans
+  return (dispatch) => {
+    getUserClans
+      .then(clans => {
+        dispatch({
+          type: types.FETCH_USER_CLANS,
+          payload: clans.data
+      });
+    })
+    .catch(err => {
+      console.log('error getting user clans');
+      throw err;
+    });
   };
 };
 

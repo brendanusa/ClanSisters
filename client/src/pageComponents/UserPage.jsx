@@ -45,9 +45,10 @@ class UserPage extends React.Component {
 
   componentWillMount() {
     //Need to replace hard-coded id
-    this.props.fetchCurrentUser(1);
-    this.props.fetchUserClans(1);
-    this.props.fetchUserForums(1);
+    console.log('hello')
+    this.props.fetchCurrentUser(2);
+    this.props.fetchUserClans(2);
+    this.props.fetchUserForums(2);
   }
 
   render() {
