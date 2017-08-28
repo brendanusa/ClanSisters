@@ -121,8 +121,8 @@ router.route('/:user/clans')
 router.route('/:user/members/:clanId')
   .get((req, res, next) => {
     Member.read({
-      userId: req.params.user,
-      clanId: req.params.clanId, 
+      userId: `${req.params.user}`,
+      clanId: `${req.params.clanId}`, 
     }) 
       .then(doc => {
         res.status(200);
@@ -139,12 +139,14 @@ router.route('/:user/members/:clanId')
       });
   })
   .post((req, res, next) => {
-    Member.update({
+    console.log('should be the user and clan Ids: ', {
       userId: req.params.user,
-      clanId: req.params.clanId, 
-    }, {
-      confirmed: req.body.confirmed
-    })
+      clanId: req.params.clanId
+    });
+    Member.create(req.params.user,
+      req.params.clanId, 
+      req.body.confirmed
+    )
       .then(doc => {
         res.status(200);
         res.json({id: doc.id});

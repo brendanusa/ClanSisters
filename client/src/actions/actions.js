@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export const types = {
   FETCH_ALL_CLANS: 'FETCH_ALL_CLANS',
-  FETCH_USER_CLANS: 'FETCH_USER_CLANS',
-  ADD_CLAN: 'ADD_CLAN',
+  FETCH_CLAN_MEMBERS: 'FETCH_CLAN_MEMBERS',
+  ADD_CLAN_MEMBER: 'ADD_CLAN_MEMBER',
   FETCH_USER_FORUMS: 'FETCH_USER_FORUMS',
   FETCH_CLAN_FORUMS: 'FETCH_CLAN_FORUMS',
   FETCH_ALL_USERS: 'FETCH_ALL_USERS',
@@ -12,10 +12,12 @@ export const types = {
 
 // **********CLAN ACTIONS**********
 
-export const addClan = () => {
-  return {
-    type: types.ADD_CLAN,
-    payload: [{key: 1, type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'}]
+export const addClanMember = (userId = 3, clanId = 2) => {
+  let addMembership = axios.post(`/api/users/${userId}/members/${clanId}`);
+  return dispatch => {
+    addMembership
+      .then(res => console.log('membership should have been added, response: ', res))
+      .catch(err => console.log('failure adding new membership!: ', err));
   };
 };
 
@@ -36,23 +38,24 @@ export const fetchAllClans = () => {
   };
 };
 
-export const fetchUserClans = (user) => {
-  const getUserClans = axios.get(`/api/users/${user}/clans`);
-  const userClans = [];
+export const fetchClanMembers = (clanId = 1) => {
+  const getClanMembers = axios.get(`api/clans/${clanId}/members`);
   return (dispatch) => {
-    getUserClans
-      .then(clans => {
+    getClanMembers
+      .then(members => {
+        console.log('should be the clan members: ', members);
         dispatch({
-          type: types.FETCH_USER_CLANS,
-          payload: clans.data
+          type: types.FETCH_CLAN_MEMBERS,
+          payload: members.data.results
         });
       })
       .catch(err => {
-        console.log('error getting user clans');
+        console.log('error getting the clan members: ');
         throw err;
       });
   };
 };
+
 
 export const fetchClanForums = (clanId) => {
   //below, the template string will append the clanId query to the end of the 
