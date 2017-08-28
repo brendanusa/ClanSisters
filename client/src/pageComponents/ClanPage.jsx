@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Nav from '../components/Nav.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllClans, addClanMember, fetchClanForums, fetchClanMembers } from  '../actions/clanActions';
+import { fetchAllClans, addClanMember, fetchClanForums, fetchClanMembers } from  '../actions/actions';
 
 const joinClan = () => {
   this.props.dispatch(addClanMember)
@@ -52,7 +52,7 @@ class ClanPage extends React.Component {
         <div className = 'textCenter'>
           <RaisedButton
           label = 'Join This Clan'
-          onClick = {() => this.props.addClanMember()}
+          onClick = {() => this.props.addClanMember()}/>
           
         </div>
         <h2>Your Clans</h2>
